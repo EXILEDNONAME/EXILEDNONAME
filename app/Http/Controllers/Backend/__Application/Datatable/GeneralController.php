@@ -12,7 +12,7 @@ class GeneralController extends Controller {
     $this->middleware(['auth']);
     $this->model = 'App\Models\Backend\__Application\Datatable\General';
     $this->path = 'pages.backend.__application.datatable.general.';
-    $this->url = '/dashboard/applications/tables/generals';
+    $this->url = '/dashboard/applications/datatables';
     $this->sort = 1;
     $this->RequestStore = [];
     $this->RequestUpdate = [];
@@ -41,15 +41,66 @@ class GeneralController extends Controller {
     return view($this->path . 'index', compact('model', 'sort'));
   }
 
+  /**
+  **************************************************
+  * @return SHOW
+  **************************************************
+  **/
+
+  public function show($id) {
+    $model = $this->model;
+    $data = $this->model::findOrFail($id);
+    return view($this->path . 'show', compact('data', 'model'));
+  }
+
+  /**
+  **************************************************
+  * @return CREATE
+  **************************************************
+  **/
+
+  public function create() {
+    $path = $this->path;
+    return view($this->path . 'create', compact('path'));
+  }
+
+  /**
+  **************************************************
+  * @return STORE
+  **************************************************
+  **/
+
   public function store(Request $request) {
     $validated = $request->validate($this->RequestStore);
     $store = $request->all();
-    foreach ($request->date as $data) {
-      $store['date'] = \Carbon\Carbon::now()->format('Y') . '-'. $request->month . '-' . $data . ' ' . $request->time;
-      $this->model::create($store);
-    }
-
+    $this->model::create($store);
     return redirect($this->url)->with('success', __('default.notification.success.item-created'));
+  }
+
+  /**
+  **************************************************
+  * @return EDIT
+  **************************************************
+  **/
+
+  public function edit($id) {
+    $path = $this->path;
+    $model = $this->model;
+    $data = $this->model::findOrFail($id);
+    return view($this->path . 'edit', compact('path', 'data', 'model'));
+  }
+
+  /**
+  **************************************************
+  * @return UPDATE
+  **************************************************
+  **/
+
+  public function update(Request $request, $id) {
+    $data = $this->model::findOrFail($id);
+    $update = $request->all();
+    $data->update($update);
+    return redirect($this->url)->with('success', __('default.notification.success.item-updated'));
   }
 
 

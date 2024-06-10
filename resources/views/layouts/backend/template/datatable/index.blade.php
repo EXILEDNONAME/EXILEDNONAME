@@ -68,6 +68,19 @@
 @push('js')
 <script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js?v=7.0.6"></script>
 <script>
+$(document).ready(function() {
+  $('#toast-container').fadeOut(5000);
+  KTApp.block('#exilednoname_body', {
+    overlayColor: '#000000',
+    state: 'primary',
+    message: "{{ __('default.label.please-wait') }} ..."
+  });
+
+  setTimeout(function() {
+    KTApp.unblock('#exilednoname_body');
+  }, 2000);
+});
+
 "use strict";
 
 var sort = 1;

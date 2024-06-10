@@ -25,4 +25,12 @@ Route::get('/layout', function () {
   return view('layouts.default');
 });
 
-Route::get('/dashboard/applications/datatables', [App\Http\Controllers\Backend\__Application\Datatable\GeneralController::class, 'index'])->name('dashboard.__application.datatables.index');
+// APPLICATIONS - DATATABLES
+Route::group([
+  'as' => 'dashboard.applications.datatables.',
+  'prefix' => 'dashboard/applications/datatables',
+  'namespace' => 'App\Http\Controllers\Backend\__Application\Datatable',
+  'middleware' => 'auth',
+], function () {
+  Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
+});
