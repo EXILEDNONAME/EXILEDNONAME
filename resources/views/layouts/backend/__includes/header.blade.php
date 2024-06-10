@@ -13,9 +13,9 @@
     </div>
 
     <div class="topbar">
-      @include('templates.__includes.notification')
-      @include('templates.__includes.language')
-      @include('templates.__includes.user')
+      @include('layouts.backend.__includes.notification')
+      @include('layouts.backend.__includes.language')
+      @include('layouts.backend.__includes.user')
     </div>
 
   </div>

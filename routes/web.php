@@ -22,9 +22,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/layout', function () {
-  return view('templates.default');
+  return view('layouts.default');
 });
 
-Route::get('/datatables', function () {
-  return view('templates.datatables');
-});
+Route::get('/dashboard/applications/datatables', [App\Http\Controllers\Backend\__Application\Datatable\GeneralController::class, 'index'])->name('dashboard.__application.datatables.index');
