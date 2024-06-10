@@ -3,7 +3,7 @@
   <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px">
     <div class="btn btn-icon btn-icon-mobile w-auto btn-clean d-flex align-items-center btn-lg px-2">
       <span class="text-muted font-weight-bold font-size-base d-none d-md-inline mr-1"> Hi, </span>
-      <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"> Administrator </span>
+      <span class="text-dark-50 font-weight-bolder font-size-base d-none d-md-inline mr-3"> {{ Auth::User()->name }} </span>
       <div class="symbol symbol-lg-35 symbol-30 symbol-circle symbol-light-success">
         <i class="symbol-badge symbol-badge-bottom bg-success"></i>
         <img alt="Pic" src="{{ isset(Auth::User()->avatar) ? '/storage/avatar/' . Auth::User()->id . '/' . Auth::User()->avatar : '/assets/backend/media/users/blank.png' }}">
