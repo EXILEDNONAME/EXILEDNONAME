@@ -1,6 +1,6 @@
 @extends('layouts.backend.default')
 
-@push('content')
+@section('content')
 <div class="row">
   <div class="col-lg-12">
     <div class="card card-custom gutter-b card-sticky" data-card="true" id="kt_page_sticky_card">
@@ -45,35 +45,9 @@
           <div class="table-responsive">
             <table width="100%" class="table table-bordered table-checkable" id="exilednoname_table">
               <input class="form-control" name="id" type="hidden" value="{{ $data->id }}">
-              @if (!empty($datetime) && $datetime == 'true')
-              <tr class="text-nowrap">
-                <td class="align-middle font-weight-bold" width="300"> {{ __('default.label.date-start') }} </td>
-                <td class="align-middle"> {{ \Carbon\Carbon::parse($data->date_start)->format('d F Y, H:i') }} </td>
-              </tr>
-              <tr class="text-nowrap">
-                <td class="align-middle font-weight-bold" width="300"> {{ __('default.label.date-end') }} </td>
-                <td class="align-middle"> {{ \Carbon\Carbon::parse($data->date_end)->format('d F Y, H:i') }} </td>
-              </tr>
-              @endif
+
               @stack('content')
-              <tr class="text-nowrap">
-                <td class="align-middle font-weight-bold" width="300"> {{ __('default.label.active') }} </td>
-                <td class="align-middle">
-                  @if ( $data->active == 1 ) {{ __('default.label.yes') }}
-                  @else {{ __('default.label.no') }}
-                  @endif
-                </td>
-              </tr>
-              @if ( !empty($status) && $status == 'true')
-              <tr class="text-nowrap">
-                <td class="align-middle font-weight-bold"> Status </td>
-                <td class="align-middle">
-                  @if ( $data->status == 1 ) {{ __('default.label.success') }}
-                  @else {{ __('default.label.pending') }}
-                  @endif
-                </td>
-              </tr>
-              @endif
+
               <tr class="text-nowrap">
                 <td class="align-middle font-weight-bold"> {{ __('default.label.created-by') }} </td>
                 <td class="align-middle">
@@ -131,7 +105,7 @@
     </div>
   </div>
 </div>
-@endpush
+@endsection
 
 @push('modal')
 

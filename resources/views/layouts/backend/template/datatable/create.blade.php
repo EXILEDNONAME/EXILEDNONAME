@@ -1,6 +1,6 @@
 @extends('layouts.backend.default')
 
-@push('content')
+@section('content')
 <div class="row">
   <div class="col-lg-12">
     <div class="card card-custom gutter-b card-sticky" data-card="true" id="exilednoname_card_sticky">
@@ -34,7 +34,7 @@
     </div>
   </div>
 </div>
-@endpush
+@endsection
 
 @push('js')
 <script src="/assets/backend/js/pages/crud/forms/widgets/bootstrap-datetimepicker.js?v=7.0.6"></script>

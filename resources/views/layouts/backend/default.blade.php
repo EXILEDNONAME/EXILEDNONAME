@@ -31,8 +31,8 @@
                 </div>
               </div>
               @endif
-              
-              @stack('content')
+
+              @yield('content')
             </div>
           </div>
         </div>

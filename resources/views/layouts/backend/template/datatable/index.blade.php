@@ -4,7 +4,7 @@
 <link rel="stylesheet" type="text/css" href="/assets/backend/plugins/custom/datatables/datatables.bundle.css?v=7.0.6" />
 @endpush
 
-@push('content')
+@section('content')
 <div class="row">
   <div class="col-lg-12">
     <div class="card card-custom card-stretch gutter-b" data-card="true" id="exilednoname_card">
@@ -63,7 +63,7 @@
     </div>
   </div>
 </div>
-@endpush
+@endsection
 
 @push('js')
 <script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js?v=7.0.6"></script>
