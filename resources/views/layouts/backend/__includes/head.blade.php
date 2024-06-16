@@ -1,7 +1,7 @@
 <head>
   <base href="../../">
   <meta charset="utf-8">
-  <title> EXILEDNONAME </title>
+  <title> EXILEDNONAME - @yield('title') </title>
   <meta name="description" content="Page with empty content">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="/assets/backend/css/fonts/poppins.css?family=Poppins:300,400,500,600,700">

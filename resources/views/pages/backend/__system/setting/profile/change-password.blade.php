@@ -32,7 +32,7 @@
       <div class="form-group row">
         <label class="col-lg-3 col-form-label"> Current Password </label>
         <div class="col-lg-9">
-          {{ Html::password('current-password', ['class' => $errors->has('blank') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) }}
+          {{ Html::password('current-password')->class([ $errors->has('current-password') ? 'form-control is-invalid' : 'form-control'])->required() }}
           @error('current-password') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
         </div>
       </div>
@@ -40,7 +40,7 @@
       <div class="form-group row">
         <label class="col-lg-3 col-form-label"> New Password </label>
         <div class="col-lg-9">
-          {{ Html::password('new-password', ['class' => $errors->has('blank') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) }}
+          {{ Html::password('new-password')->class([ $errors->has('new-password') ? 'form-control is-invalid' : 'form-control'])->required() }}
           @error('new-password') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
         </div>
       </div>
@@ -48,7 +48,7 @@
       <div class="form-group row">
         <label class="col-lg-3 col-form-label"> Confirm Password </label>
         <div class="col-lg-9">
-          {{ Html::password('confirm-password', ['class' => $errors->has('blank') ? 'form-control is-invalid' : 'form-control', 'required' => 'required']) }}
+          {{ Html::password('confirm-password')->class([ $errors->has('confirm-password') ? 'form-control is-invalid' : 'form-control'])->required() }}
           @error('confirm-password') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
         </div>
       </div>

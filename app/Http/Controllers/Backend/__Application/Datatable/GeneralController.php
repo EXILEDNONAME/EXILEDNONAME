@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend\__Application\Datatable;
 use App\Http\Controllers\Controller;
 use DataTables;
 use Illuminate\Http\Request;
+use Redirect, Response;
+use Spatie\Activitylog\Models\Activity;
 
 class GeneralController extends Controller {
 
@@ -33,9 +35,9 @@ class GeneralController extends Controller {
       return DataTables::of($this->data)
       ->editColumn('date_start', function ($order) { return empty($order->date_start) ? NULL : \Carbon\Carbon::parse($order->date_start)->format('d F Y, H:i'); })
       ->editColumn('date_end', function ($order) { return empty($order->date_end) ? NULL : \Carbon\Carbon::parse($order->date_end)->format('d F Y, H:i'); })
-      ->editColumn('date', function ($order) { return empty($order->date) ? NULL : \Carbon\Carbon::parse($order->date)->format('d F Y, H:i'); })
+      ->editColumn('date', function ($order) { return empty($order->date) ? NULL : \Carbon\Carbon::parse($order->date)->format('d F Y') . ' <br>' . \Carbon\Carbon::parse($order->date)->format('H:i:s'); })
       ->editColumn('description', function ($order) { return nl2br(e($order->description)); })
-      ->rawColumns(['description'])
+      ->rawColumns(['description', 'date'])
       ->addIndexColumn()->make(true);
     }
     return view($this->path . 'index', compact('model', 'sort'));
@@ -48,9 +50,10 @@ class GeneralController extends Controller {
   **/
 
   public function show($id) {
+    $url = $this->url;
     $model = $this->model;
     $data = $this->model::findOrFail($id);
-    return view($this->path . 'show', compact('data', 'model'));
+    return view($this->path . 'show', compact('data', 'model', 'url'));
   }
 
   /**
@@ -61,7 +64,8 @@ class GeneralController extends Controller {
 
   public function create() {
     $path = $this->path;
-    return view($this->path . 'create', compact('path'));
+    $url = $this->url;
+    return view($this->path . 'create', compact('path', 'url'));
   }
 
   /**
@@ -84,10 +88,11 @@ class GeneralController extends Controller {
   **/
 
   public function edit($id) {
+    $data = $this->model::findOrFail($id);
     $path = $this->path;
     $model = $this->model;
-    $data = $this->model::findOrFail($id);
-    return view($this->path . 'edit', compact('path', 'data', 'model'));
+    $url = $this->url;
+    return view($this->path . 'edit', compact('path', 'data', 'model', 'url'));
   }
 
   /**
@@ -101,6 +106,85 @@ class GeneralController extends Controller {
     $update = $request->all();
     $data->update($update);
     return redirect($this->url)->with('success', __('default.notification.success.item-updated'));
+  }
+
+  /**
+  **************************************************
+  * @return DESTROY
+  **************************************************
+  **/
+
+  public function destroy($id) {
+    try {
+      $this->model::destroy($id);
+      return redirect($this->url)->with('success', __('default.notification.success.item-deleted'));
+    } catch (\Exception $e) {
+      return redirect($this->url)->with('error', __('default.notification.error'));
+    }
+  }
+
+  /**
+  **************************************************
+  * @return ACTIVE
+  **************************************************
+  **/
+
+  public function active($id) {
+    $data = $this->model::where('id', $id)->update([ 'active' => 1 ]);
+    return Response::json($data);
+  }
+
+  /**
+  **************************************************
+  * @return INACTIVE
+  **************************************************
+  **/
+
+  public function inactive($id) {
+    $data = $this->model::where('id', $id)->update([ 'active' => 0 ]);
+    return Response::json($data);
+  }
+
+  /**
+  **************************************************
+  * @return ACTIVITIES
+  **************************************************
+  **/
+
+  public function activity() {
+    $data = Activity::where('subject_type', $this->model)->orderby('updated_at', 'desc')->get();
+    $model = $this->model;
+    $sort = $this->sort;
+    $url = $this->url;
+    if (request()->ajax()) {
+      return DataTables::of($data)
+      ->editColumn('subjects', function($order) { if(!empty($order->properties['attributes']['name'])) { return $order->properties['attributes']['name']; } else { return ''; }})
+      ->editColumn('causer_id', function($order) { return $order->causer->name; })
+      ->editColumn('updated_at', function($order) { return \Carbon\Carbon::parse($order->updated_at)->format('d F Y, H:i'); })
+      ->editColumn('description', function ($order) { return nl2br(e($order->description)); })
+      ->rawColumns(['description'])
+      ->addIndexColumn()->make(true);
+    }
+    return view($this->path . 'activity', compact('data', 'model', 'sort', 'url'));
+  }
+
+  /**
+  **************************************************
+  * @return TRASH
+  **************************************************
+  **/
+
+  public function trash() {
+    $data = $this->model::onlyTrashed()->get();
+    $url = $this->url;
+    if(request()->ajax()) {
+      return DataTables::of($data)
+      ->editColumn('deleted_at', function($order) { return \Carbon\Carbon::parse($order->deleted_at)->format('d F Y, H:i'); })
+      ->rawColumns(['description'])
+      ->addIndexColumn()
+      ->make(true);
+    }
+    return view($this->path . 'trash', compact('data', 'url'));
   }
 
 

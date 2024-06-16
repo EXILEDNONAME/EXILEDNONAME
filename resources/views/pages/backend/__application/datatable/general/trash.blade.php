@@ -1,4 +1,4 @@
-@extends('pages.backend.__templates.datatable.trash')
+@extends('layouts.backend.__templates.datatable.trash')
 @section('title', 'Table Generals')
 
 @section('table-header')

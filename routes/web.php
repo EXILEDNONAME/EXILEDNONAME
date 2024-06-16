@@ -32,6 +32,10 @@ Route::group([
   'namespace' => 'App\Http\Controllers\Backend\__Application\Datatable',
   'middleware' => 'auth',
 ], function () {
+  Route::get('active/{id}', 'GeneralController@active')->name('active');
+  Route::get('activities', 'GeneralController@activity')->name('activity');
+  Route::get('inactive/{id}', 'GeneralController@inactive')->name('inactive');
+  Route::get('trash', 'GeneralController@trash')->name('trash');
   Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
 });
 
@@ -49,7 +53,8 @@ Route::group([
 });
 
 // LOGOUT
-// Route::get('dashboard/logout', 'App\Http\Controllers\Backend\SystemController@logout')->name('dashboard.logout');
+Route::get('dashboard/logout', [App\Http\Controllers\Backend\DashboardController::class, 'logout'])->name('dashboard.logout');
+Route::get('/dashboard/file-manager', [App\Http\Controllers\Backend\DashboardController::class, 'file_manager'])->name('dashboard.file-manager');
 
 // ADMINISTRATIVE - SETTINGS
 Route::get('/dashboard/administrative/applications/settings', [App\Http\Controllers\Backend\__System\Administrative\Application\SettingController::class, 'index'])->name('dashboard.administrative.application.setting.index');

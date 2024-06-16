@@ -1,0 +1,46 @@
+@extends('layouts.backend.default')
+
+@section('content')
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card card-custom gutter-b card-sticky" data-card="true" id="exilednoname_card_sticky">
+      <div class="card-header">
+        <div class="card-title"><h3 class="card-label"> {{ __('default.label.edit') }} </h3></div>
+        <div class="card-toolbar">
+          <a href="{{ $url }}" class="btn btn-icon btn-xs btn-hover-light-primary" title="{{ __('default.label.back') }}"><i class="fas fa-arrow-left"></i></a>
+          <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle" title="Hide or Show"><i class="fas fa-caret-down"></i></a>
+        </div>
+      </div>
+      <div class="card-body" style="">
+
+        @if ($message = Session::get('error'))
+        <div class="alert alert-danger" role="alert"> {{ $message }} </div><hr>
+        @endif
+
+        <form method="POST" id="exilednoname-form" action="{{ URL::current() }}/../../{{ $data->id }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+          {{ method_field('PATCH') }}
+          {{ csrf_field() }}
+          <input class="form-control" name="id" type="hidden" value="{{ $data->id }}">
+          <input class="form-control" name="updated_by" type="hidden" value="{{ Auth::User()->id }}">
+          @include($path . 'form', ['formMode' => 'edit'])
+          <div class="form-group row">
+            <label class="col-lg-3 col-form-label"> </label>
+            <div class="col-lg-9">
+              <button type="submit" class="btn btn-block btn-sm btn-outline-primary font-weight-bolder mb-2" form="exilednoname-form">
+                {{ __('default.label.update') }}
+              </button>
+            </div>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>
+@endsection
+
+@push('js')
+<script src="/assets/backend/js/pages/crud/forms/widgets/bootstrap-datetimepicker.js?v=7.0.6"></script>
+<script src="/assets/backend/js/pages/crud/forms/widgets/bootstrap-timepicker.js?v=7.0.6"></script>
+<script src="/assets/backend/js/pages/custom/profile/profile.js?v=7.0.6"></script>
+@endpush

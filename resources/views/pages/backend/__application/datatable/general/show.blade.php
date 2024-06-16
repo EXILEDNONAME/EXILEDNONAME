@@ -1,4 +1,4 @@
-@extends('layouts.backend.template.datatable.show', ['datetime' => 'true', 'status' => 'true'])
+@extends('layouts.backend.__templates.datatable.show', ['datetime' => 'true', 'status' => 'true', 'active' => 'true'])
 @section('title', 'Table Generals')
 
 @push('content')

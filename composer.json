@@ -6,12 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "arcanedev/log-viewer": "^10.0",
+        "barryvdh/laravel-elfinder": "^0.5.2",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.5",
         "simplesoftwareio/simple-qrcode": "^4.2",
+        "spatie/laravel-activitylog": "^4.7",
         "spatie/laravel-html": "^3.3",
         "yajra/laravel-datatables": "10.0"
     },
