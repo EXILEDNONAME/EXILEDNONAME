@@ -1,4 +1,4 @@
-@extends('layouts.backend.default')
+ @extends('layouts.backend.default')
 
 @push('head')
 <link href="{{ asset('/assets/backend/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -43,21 +43,27 @@
 
       <div class="card-body" id="exilednoname_body">
 
-        @if ($message = Session::get('success'))
-        <div id="toast-container" class="toast-bottom-right">
-          <div class="toast toast-success" aria-live="polite">
-            <div class="toast-message">{{ $message }}</div>
-          </div>
-        </div>
-        @endif
+        <div class="accordion" id="accordion-filter">
+          <div id="collapse-filter" class="collapse hide" data-parent="#accordion-filter">
 
-        @if ($message = Session::get('error'))
-        <div id="toast-container" class="toast-bottom-right">
-          <div class="toast toast-error" aria-live="polite">
-            <div class="toast-message">{{ $message }}</div>
+            <div class="mb-2">
+              <div class="col-lg-12 my-2 my-md-0">
+                <div class="d-flex align-items-center">
+                  <select data-column="2" class="form-control filter-form filter_status">
+                    <option value=""> - {{ __('default.select.status') }} - </option>
+                    <option value="created"> {{ __('default.label.created') }} </option>
+                    <option value="updated"> {{ __('default.label.updated') }} </option>
+                    <option value="deleted"> {{ __('default.label.deleted') }} </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            @stack('filter-head')
+
+            <hr>
           </div>
         </div>
-        @endif
 
         <div class="table-responsive">
           <table class="table table-hover table-separate table-head-custom table-checkable table-sm rounded" id="exilednoname_table">
@@ -100,6 +106,8 @@ $(document).ready(function() {
 "use strict";
 
 var table = $('#exilednoname_table').DataTable({
+  "bInfo": false,
+  "sPaginationType": "full_numbers",
   serverSide: true,
   searching: true,
   rowId: 'Collocation',
@@ -212,6 +220,22 @@ var table = $('#exilednoname_table').DataTable({
     { data: 'updated_at', 'className': 'align-middle text-nowrap', 'width': '1' },
   ],
   order: [[0, 'asc']]
+});
+
+$('.filter_status').change(function () {
+  var card = new KTCard('exilednoname_card');
+  KTApp.block('#exilednoname_body', {
+    overlayColor: '#ffffff',
+    type: 'loader',
+    state: 'primary',
+    message: '{{ __('default.label.processing') }} ...',
+    opacity: 0.3,
+    size: 'lg'
+  });
+  setTimeout(function() {
+    KTApp.unblock('#exilednoname_body');
+  }, 2000);
+  table.column(2).search( $(this).val() ).draw();
 });
 
 $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });

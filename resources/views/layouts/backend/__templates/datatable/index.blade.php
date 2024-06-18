@@ -83,20 +83,20 @@
         </div>
 
         <div class="table-responsive">
-        <table width="100%" class="table table-hover table-separate table-head-custom table-checkable table-sm rounded" id="exilednoname_table">
-          <thead>
-            <tr>
-              <th class="no-export"> </th>
-              <th> No. </th>
-              @yield('table-header')
-              @if (empty($active) || $active == 'true')
-              <th class="no-export"> {{ __('default.label.active') }} </th>
-              @endif
-              <th class="no-export"> </th>
-            </tr>
-          </thead>
-        </table>
-      </div>
+          <table width="100%" class="table table-hover table-separate table-head-custom table-checkable table-sm rounded" id="exilednoname_table">
+            <thead>
+              <tr>
+                <th class="no-export"> </th>
+                <th> No. </th>
+                @yield('table-header')
+                @if (empty($active) || $active == 'true')
+                <th class="no-export"> {{ __('default.label.active') }} </th>
+                @endif
+                <th class="no-export"> </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
 
       </div>
     </div>
@@ -107,113 +107,180 @@
 @push('js')
 <script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js?v=7.0.6"></script>
 <script>
-$(document).ready(function() {
-  $('#toast-container').fadeOut(5000);
-  KTApp.block('#exilednoname_body', {
-    overlayColor: '#000000',
-    state: 'primary',
-    message: "{{ __('default.label.please-wait') }} ..."
+  $(document).ready(function() {
+    $('#toast-container').fadeOut(5000);
+    KTApp.block('#exilednoname_body', {
+      overlayColor: '#000000',
+      state: 'primary',
+      message: "{{ __('default.label.please-wait') }} ..."
+    });
+
+    setTimeout(function() {
+      KTApp.unblock('#exilednoname_body');
+    }, 2000);
   });
 
-  setTimeout(function() {
-    KTApp.unblock('#exilednoname_body');
-  }, 2000);
-});
+  "use strict";
 
-"use strict";
-
-var sort = 1;
-var table = $('#exilednoname_table').DataTable({
-  // "sDom": '<"row view-filter"<"col-sm-12"<"pull-left"l><"pull-right"f><"clearfix">>>t<"row view-pager"<"col-sm-12"<"text-center"ip>>>',
-   // "dom": '<"row"<"col-sm-4"l><"col-sm-4 text-center"p><"col-sm-4"f>>tip',
-  // "bPaginate": false,
-  "bInfo": false,
-  // responsive: true,
-   "sPaginationType": "full_numbers",
-  serverSide: true,
-  searching: true,
-  rowId: 'Collocation',
-  select: {
-    style: 'multi',
-    selector: 'td:first-child .checkable',
-  },
-  ajax: {
-    url: "{{ URL::current() }}",
-  },
-  headerCallback: function(thead, data, start, end, display) {
-    thead.getElementsByTagName('th')[0].innerHTML = `
-    <label class="checkbox checkbox-single checkbox-solid checkbox-primary mb-0">
-    <input type="checkbox" value="" class="group-checkable"/>
-    <span></span>
-    </label>`;
-  },
-  "lengthMenu": [[50, 100, 250, 500, -1], [50, 100, 250, 500, "All"]],
-  buttons: [
-    { extend: 'print', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export" }, },
-    { extend: 'copyHtml5', autoClose: 'true', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export" }, },
-    { extend: 'excelHtml5', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export" }, },
-    { extend: 'pdfHtml5', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export" }, },
-    { extend: 'print', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export", rows: { selected: true } }, },
-    { extend: 'copyHtml5', autoClose: 'true', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export", rows: { selected: true } }, },
-    { extend: 'excelHtml5', exportOptions: {  columns: "thead th:not(.no-export)", orthogonal: "Export", rows: { selected: true } }, },
-    { extend: 'pdfHtml5', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export", rows: { selected: true } }, },
-  ],
-  columns: [
-    {
-      data: 'checkbox', orderable: false, searchable: false, width: '1',
-      render: function(data, type, row, meta) { return '<label class="checkbox checkbox-single checkbox-primary mb-0"><input type="checkbox" data-id="' + row.id + '" class="checkable"><span></span></label>'; },
+  var sort = 1;
+  var table = $('#exilednoname_table').DataTable({
+    "bInfo": false,
+    "sPaginationType": "full_numbers",
+    serverSide: true,
+    searching: true,
+    rowId: 'Collocation',
+    select: {
+      style: 'multi',
+      selector: 'td:first-child .checkable',
     },
-    {
-      data: 'autonumber', orderable: true, searchable: false, 'className': 'align-middle text-center', width: '1',
-      render: function(data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }
+    ajax: {
+      url: "{{ URL::current() }}",
     },
-    @yield('table-body')
-    @if (empty($active) || $active == 'true')
-    {
-      data: 'active', orderable: true, 'className': 'align-middle text-center', width: '1',
-      render: function ( data, type, row ) {
-        if ( data == 0 ) { return '<a href="javascript:void(0);" id="active" title="Switch To Active" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ __("default.label.no") }} </span></a>'; }
-        if ( data == 1 ) { return '<a href="javascript:void(0);" id="inactive" title="Switch To Inactive" data-id="' + row.id + '"><span class="label label-info label-inline"> {{ __("default.label.yes") }} </span></a>'; }
-      }
+    headerCallback: function(thead, data, start, end, display) {
+      thead.getElementsByTagName('th')[0].innerHTML = `
+      <label class="checkbox checkbox-single checkbox-solid checkbox-primary mb-0">
+        <input type="checkbox" value="" class="group-checkable"/>
+        <span></span>
+      </label>`;
     },
-    @endif
-    {
-      data: 'action',
-      orderable: false,
-      searchable: false,
-      width: '1',
-      render: function(data, type, row) {
-        return '' +
-        '<div class="dropdown dropdown-inline">' +
-        '<button type="button" class="btn btn-hover-light-dark btn-icon btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ki ki-bold-more-ver"></i></button>' +
-        '<div class="dropdown-menu dropdown-menu-xs" style="">' +
-        '<ul class="navi navi-hover py-5">' +
-        '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '" class="navi-link"><span class="navi-icon"><i class="flaticon2-expand"></i></span><span class="navi-text">{{ __("default.label.view") }}</span></a></li>' +
-        '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '/edit" class="navi-link"><span class="navi-icon"><i class="flaticon2-contract"></i></span><span class="navi-text">{{ __("default.label.edit") }}</span></a></li>' +
-        '<li class="navi-item"><a href="javascript:void(0);" class="navi-link delete" data-id="' + row.id + '"><span class="navi-icon"><i class="flaticon2-trash"></i></span><span class="navi-text"> {{ __("default.label.delete./") }} </span></a></li>' +
-        '</ul>' +
-        '</div>' +
-        '</div>';
+    "lengthMenu": [[50, 100, 250, 500, -1], [50, 100, 250, 500, "All"]],
+    buttons: [
+      { extend: 'print', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export" }, },
+      { extend: 'copyHtml5', autoClose: 'true', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export" }, },
+      { extend: 'excelHtml5', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export" }, },
+      { extend: 'pdfHtml5', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export" }, },
+      { extend: 'print', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export", rows: { selected: true } }, },
+      { extend: 'copyHtml5', autoClose: 'true', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export", rows: { selected: true } }, },
+      { extend: 'excelHtml5', exportOptions: {  columns: "thead th:not(.no-export)", orthogonal: "Export", rows: { selected: true } }, },
+      { extend: 'pdfHtml5', exportOptions: { columns: "thead th:not(.no-export)", orthogonal: "Export", rows: { selected: true } }, },
+    ],
+    columns: [
+      {
+        data: 'checkbox', orderable: false, searchable: false, width: '1',
+        render: function(data, type, row, meta) { return '<label class="checkbox checkbox-single checkbox-primary mb-0"><input type="checkbox" data-id="' + row.id + '" class="checkable"><span></span></label>'; },
       },
-    },
-  ],
-  order: [
-    [sort, 'asc']
-  ]
-});
+      {
+        data: 'autonumber', orderable: true, searchable: false, 'className': 'align-middle text-center', width: '1',
+        render: function(data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }
+      },
+      @yield('table-body')
+      @if (empty($active) || $active == 'true')
+      {
+        data: 'active', orderable: true, 'className': 'align-middle text-center', width: '1',
+        render: function ( data, type, row ) {
+          if ( data == 0 ) { return '<a href="javascript:void(0);" id="active" title="Switch To Active" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ __("default.label.no") }} </span></a>'; }
+          if ( data == 1 ) { return '<a href="javascript:void(0);" id="inactive" title="Switch To Inactive" data-id="' + row.id + '"><span class="label label-info label-inline"> {{ __("default.label.yes") }} </span></a>'; }
+        }
+      },
+      @endif
+      {
+        data: 'action',
+        orderable: false,
+        searchable: false,
+        width: '1',
+        render: function(data, type, row) {
+          return '' +
+          '<div class="dropdown dropdown-inline">' +
+          '<button type="button" class="btn btn-hover-light-dark btn-icon btn-xs" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="ki ki-bold-more-ver"></i></button>' +
+          '<div class="dropdown-menu dropdown-menu-xs" style="">' +
+          '<ul class="navi navi-hover py-5">' +
+          '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '" class="navi-link"><span class="navi-icon"><i class="flaticon2-expand"></i></span><span class="navi-text">{{ __("default.label.view") }}</span></a></li>' +
+          '<li class="navi-item"><a href="{{ URL::current() }}/' + row.id + '/edit" class="navi-link"><span class="navi-icon"><i class="flaticon2-contract"></i></span><span class="navi-text">{{ __("default.label.edit") }}</span></a></li>' +
+          '<li class="navi-item"><a href="javascript:void(0);" class="navi-link delete" data-id="' + row.id + '"><span class="navi-icon"><i class="flaticon2-trash"></i></span><span class="navi-text"> {{ __("default.label.delete./") }} </span></a></li>' +
+          '</ul>' +
+          '</div>' +
+          '</div>';
+        },
+      },
+    ],
+    order: [
+      [sort, 'asc']
+    ]
+  });
 
-$('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });
-$('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
-$('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
-$('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
+  $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });
+  $('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
+  $('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
+  $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
 
-@include('layouts.backend.__templates.datatable.extension.javascript.checkable')
-@include('layouts.backend.__templates.datatable.extension.javascript.checkable-group')
-@include('layouts.backend.__templates.datatable.extension.javascript.filter-active')
+  @include('layouts.backend.__templates.datatable.extension.javascript.checkable')
+  @include('layouts.backend.__templates.datatable.extension.javascript.checkable-group')
+  @include('layouts.backend.__templates.datatable.extension.javascript.filter-active')
 
-@include('layouts.backend.__templates.datatable.extension.javascript.table-refresh')
+  @include('layouts.backend.__templates.datatable.extension.javascript.table-refresh')
 
-@include('layouts.backend.__templates.datatable.extension.javascript.active')
-@include('layouts.backend.__templates.datatable.extension.javascript.inactive')
+  @include('layouts.backend.__templates.datatable.extension.javascript.active')
+  @include('layouts.backend.__templates.datatable.extension.javascript.inactive')
+
+  @if (empty($active) || $active == 'true')
+  $('.selected-active').on('click', function(e) {
+    var exilednonameArr = [];
+    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
+    var strEXILEDNONAME = exilednonameArr.join(",");
+    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-active') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
+      if (result.value) {
+        $.ajax({
+          url: "{{ URL::current() }}/selected-active", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
+          success: function (data) {
+            KTApp.block('#exilednoname_body', {
+              overlayColor: '#000000',
+              state: 'info',
+              message: '{{ __('default.label.processing') }} ...'
+              });
+              setTimeout(function() {
+                KTApp.unblock('#exilednoname_body');
+                var oTable = $('#exilednoname_table').dataTable();
+                $('#toolbar_delete').collapse('hide');
+                $('#collapse_bulk').collapse('hide');
+                oTable.fnDraw(false);
+                toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+                toastr.success("{{ __('default.notification.success.selected-active') }}");
+              }, 2000);
+          },
+          error: function (data) {
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.error("{{ __('default.notification.error./') }}");
+          }
+        });
+      }
+    });
+  });
+  @endif
+
+  @if (empty($active) || $active == 'true')
+  $('.selected-inactive').on('click', function(e) {
+    var exilednonameArr = [];
+    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
+    var strEXILEDNONAME = exilednonameArr.join(",");
+    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-inactive') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
+      if (result.value) {
+        $.ajax({
+          url: "{{ URL::current() }}/selected-inactive", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
+          success: function (data) {
+            KTApp.block('#exilednoname_body', {
+              overlayColor: '#000000',
+              state: 'info',
+              message: '{{ __('default.label.processing') }} ...'
+              });
+              setTimeout(function() {
+                KTApp.unblock('#exilednoname_body');
+                var oTable = $('#exilednoname_table').dataTable();
+                $('#toolbar_delete').collapse('hide');
+                $('#collapse_bulk').collapse('hide');
+                oTable.fnDraw(false);
+                toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+                toastr.success("{{ __('default.notification.success.selected-inactive') }}");
+              }, 2000);
+          },
+          error: function (data) {
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.error("{{ __('default.notification.error./') }}");
+          }
+        });
+      }
+    });
+  });
+  @endif
+
 </script>
 @endpush

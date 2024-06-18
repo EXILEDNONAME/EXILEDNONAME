@@ -10,6 +10,7 @@ return [
     'back'                          => 'Back',
     'close'                         => 'Close',
     'create'                        => 'Create',
+    'created'                       => 'Created',
     'created-by'                    => 'Created By',
     'created-at'                    => 'Created At',
     'updated-by'                    => 'Updated By',
@@ -18,6 +19,7 @@ return [
     'delete' =>  [
       '/'                           => 'Delete',
     ],
+    'deleted'                       => 'Deleted',
     'download'                      => 'Download',
     'edit'                          => 'Edit',
     'export' => [
@@ -45,9 +47,11 @@ return [
     'selected-active'               => 'Selected Set Active',
     'selected-inactive'             => 'Selected Set Inactive',
     'selected-delete'               => 'Selected Delete',
+    'sessions'                      => 'Sessions',
     'submit'                        => 'Submit',
     'trash'                         => 'Trash',
     'update'                        => 'Update',
+    'updated'                       => 'Updated',
     'view'                          => 'View',
     'yes'                           => 'Yes',
   ],
@@ -55,6 +59,7 @@ return [
   'select' => [
     'active'                        => 'Select Active',
     'date'                          => 'Select Date',
+    'status'                        => 'Select Status',
   ],
 
   'notification' => [
@@ -62,6 +67,8 @@ return [
     'confirm' => [
       'are-you-sure'                => 'Are You Sure',
       'delete'                      => 'Delete This Item',
+      'selected-active'             => 'Activate All Item Selected',
+      'selected-inactive'           => 'Inactivate All Item Selected',
     ],
 
     'success' => [
@@ -70,6 +77,8 @@ return [
       'item-inactive'               => 'Successfully Item Inactivated',
       'item-updated'                => 'Successfully Item Updated',
       'item-deleted'                => 'Successfully Item Deleted',
+      'selected-active'             => 'All Items Have Been Activated',
+      'selected-inactive'           => 'All Items Have Been Inactivated',
     ],
 
     'error' => [

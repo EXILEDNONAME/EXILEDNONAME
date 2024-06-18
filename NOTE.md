@@ -5,8 +5,7 @@
   - Create
   - Edit
   - Trash
-  - Global Activity
-  - Single Activity
+  - Activity
 
 - Page Managements
 - Page Login

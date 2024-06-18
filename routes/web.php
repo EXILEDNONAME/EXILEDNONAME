@@ -2,28 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-  return view('welcome');
-});
+Route::get('/', function () { return view('pages.frontend.index'); });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/layout', function () {
-  return view('layouts.default');
-});
 
 // APPLICATIONS - DATATABLES
 Route::group([
@@ -35,10 +18,13 @@ Route::group([
   Route::get('active/{id}', 'GeneralController@active')->name('active');
   Route::get('activities', 'GeneralController@activity')->name('activity');
   Route::get('inactive/{id}', 'GeneralController@inactive')->name('inactive');
+  Route::get('selected-active', 'GeneralController@selected_active')->name('selected-active');
+  Route::get('selected-inactive', 'GeneralController@selected_inactive')->name('selected-inactive');
   Route::get('trash', 'GeneralController@trash')->name('trash');
   Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
 });
 
+// SETTINGS - PROFILES
 Route::group([
   'as' => 'dashboard.system.setting.profile.',
   'prefix' => 'dashboard/settings/profiles',

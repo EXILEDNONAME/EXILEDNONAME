@@ -187,5 +187,29 @@ class GeneralController extends Controller {
     return view($this->path . 'trash', compact('data', 'url'));
   }
 
+  /**
+  **************************************************
+  * @return SELECTED-ACTIVE
+  **************************************************
+  **/
+
+  public function selected_active(Request $request) {
+    $data = $request->EXILEDNONAME;
+    $this->model::whereIn('id',explode(",",$data))->update(['active' => 1]);
+    return Response::json($data);
+  }
+
+  /**
+  **************************************************
+  * @return SELECTED-INACTIVE
+  **************************************************
+  **/
+
+  public function selected_inactive(Request $request) {
+    $data = $request->EXILEDNONAME;
+    $this->model::whereIn('id',explode(",",$data))->update(['active' => 0]);
+    return Response::json($data);
+  }
+
 
 }
