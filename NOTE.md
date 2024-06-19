@@ -7,11 +7,16 @@
   - Trash
   - Activity
 
+- Profile Account Info Fix Submit
+- Profile Change Password Fix Submit
+- Language Hide Or Show
+- Page Activities (Filter Causer, Daterange)
+- Page Trash (Filter Daterange, Restore, Permanent Delete)
+
 - Page Managements
 - Page Login
 - Breadcumbs
 - Charts
-- Activities
 
 - Idle Time Lock Account
 - Languages

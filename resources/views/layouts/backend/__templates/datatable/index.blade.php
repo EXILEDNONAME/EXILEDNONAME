@@ -42,7 +42,7 @@
           <div id="collapse_bulk" class="collapse">
             <div class="dropdown">
               <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px">
-                <a class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.action') }}"><i class="fas fa-ellipsis-h"></i></a>
+                <a class="btn btn-icon btn-xs btn-hover-light-primary" title="{{ __('default.label.action') }}"><i class="fas fa-ellipsis-h"></i></a>
               </div>
               <div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
                 <ul class="navi navi-hover py-4">

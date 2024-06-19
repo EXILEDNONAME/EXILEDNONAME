@@ -102,6 +102,8 @@ $(document).ready(function() {
 "use strict";
 
 var table = $('#exilednoname_table').DataTable({
+  "bInfo": false,
+  "sPaginationType": "full_numbers",
   serverSide: true,
   searching: true,
   rowId: 'Collocation',
