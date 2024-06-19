@@ -23,7 +23,6 @@ class ProfileController extends Controller {
   **/
 
   public function index() {
-    // return view('pages.backend.system.setting.profile.index');
     return redirect('dashboard/settings/profile/account-informations');
   }
 
@@ -46,7 +45,7 @@ class ProfileController extends Controller {
       'phone' => $request->get('phone'),
       'address' => $request->get('address'),
     ]);
-    return redirect('/dashboard/settings/profile/account-informations')->with('success', __('system.notification.success.profile-updated'));
+    return redirect()->back()->with('success', __('default.notification.success.profile-updated'));
   }
 
   public function change_password() {
@@ -55,22 +54,22 @@ class ProfileController extends Controller {
 
   public function update_password(Request $request) {
     if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
-      return redirect()->back()->with('error', __('system.notification.error.password-current'));
+      return redirect()->back()->with('error', __('default.notification.error.password-current'));
     }
 
     if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
-      return redirect()->back()->with('error', __('system.notification.error.password-new'));
+      return redirect()->back()->with('error', __('default.notification.error.password-new'));
     }
 
     if(!(strcmp($request->get('new-password'), $request->get('confirm-password'))) == 0){
-      return redirect()->back()->with('error', __('system.notification.error.password-confirm'));
+      return redirect()->back()->with('error', __('default.notification.error.password-confirm'));
     }
 
     $user = Auth::user();
     $user->password = bcrypt($request->get('new-password'));
     $user->save();
 
-    return redirect()->back()->with('success', __('system.notification.success.password-changed'));
+    return redirect()->back()->with('success', __('default.notification.success.password-changed'));
   }
 
 }

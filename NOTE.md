@@ -7,14 +7,10 @@
   - Trash
   - Activity
 
-- Profile Account Info Fix Submit
-- Profile Change Password Fix Submit
-- Language Hide Or Show
 - Page Activities (Filter Causer, Daterange)
 - Page Trash (Filter Daterange, Restore, Permanent Delete)
 
 - Page Managements
-- Page Login
 - Breadcumbs
 - Charts
 
@@ -23,5 +19,9 @@
 - Animation After Login Scanning
 - x File Manager
 - x Global Application Settings
+- x Language Hide Or Show
+- x Page Login
+- x Profile Account Info Fix Submit
+- x Profile Change Password Fix Submit
 - x Sessions
 - x Statistics

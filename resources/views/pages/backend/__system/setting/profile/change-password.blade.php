@@ -9,25 +9,13 @@
       <span class="text-muted font-weight-bold font-size-sm mt-1"> Change Your Account Password </span>
     </div>
     <div class="card-toolbar">
-      <div class="btn-group">
-        <button type="submit" class="btn btn-outline-primary" form="form-exilednoname" data-toggle="tooltip" title="{{ __('system.label.save')}}">
-          <i class="flaticon2-paperplane"></i> <span class="font-weight-bolder"> </span>
-        </button>
-      </div>
+      <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle" title="{{ __('default.label.hide-show') }}"><i class="fas fa-caret-down"></i></a>
     </div>
   </div>
   <div class="card-body">
 
-    <form id="form-exilednoname" method="POST" action="{{ URL::current() }}/../update-password" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+    <form id="exilednoname-form" method="POST" action="{{ URL::current() }}/../update-password" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
       {{ csrf_field() }}
-
-      @if ($message = Session::get('success'))
-      <div class="alert alert-success" role="alert"> {{ $message }} </div><hr>
-      @endif
-
-      @if ($message = Session::get('error'))
-      <div class="alert alert-danger" role="alert"> {{ $message }} </div><hr>
-      @endif
 
       <div class="form-group row">
         <label class="col-lg-3 col-form-label"> Current Password </label>
@@ -50,6 +38,15 @@
         <div class="col-lg-9">
           {{ Html::password('confirm-password')->class([ $errors->has('confirm-password') ? 'form-control is-invalid' : 'form-control'])->required() }}
           @error('confirm-password') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span> @enderror
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-lg-3 col-form-label"> </label>
+        <div class="col-lg-9 text-right">
+          <button type="submit" class="btn btn-block btn-sm btn-outline-primary font-weight-bolder" form="exilednoname-form">
+            {{ __('default.label.save') }}
+          </button>
         </div>
       </div>
 

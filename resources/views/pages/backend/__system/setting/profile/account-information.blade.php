@@ -1,5 +1,5 @@
 @extends('layouts.backend.default')
-@push('title', 'Account Informations')
+@section('title', 'Account Informations')
 
 @section('content')
 <div class="card card-custom gutter-b card-sticky" data-card="true" id="kt_page_sticky_card">
@@ -9,22 +9,14 @@
       <span class="text-muted font-weight-bold font-size-sm mt-1"> Change Your Account Informations </span>
     </div>
     <div class="card-toolbar">
-      <div class="btn-group">
-        <button type="submit" class="btn btn-outline-primary" form="form-exilednoname" data-toggle="tooltip" title="{{ __('system.label.save')}}">
-          <i class="flaticon2-paperplane"></i> <span class="font-weight-bolder"> </span>
-        </button>
-      </div>
+      <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle" title="{{ __('default.label.hide-show') }}"><i class="fas fa-caret-down"></i></a>
     </div>
   </div>
   <div class="card-body">
 
-    <form method="POST" id="form-exilednoname" action="{{ URL::current() }}/update/{{ $data->id }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
+    <form method="POST" id="exilednoname-form" action="{{ URL::current() }}/update/{{ $data->id }}" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
       {{ method_field('PATCH') }}
       {{ csrf_field() }}
-
-      @if ($message = Session::get('success'))
-      <div class="alert alert-success" role="alert"> {{ $message }} </div><hr>
-      @endif
 
       @if ($message = Session::get('error'))
       <div class="alert alert-danger" role="alert"> {{ $message }} </div><hr>
@@ -80,8 +72,25 @@
         </div>
       </div>
 
+      <div class="form-group row">
+        <label class="col-lg-3 col-form-label"> </label>
+        <div class="col-lg-9 text-right">
+          <button type="submit" class="btn btn-block btn-sm btn-outline-primary font-weight-bolder" form="exilednoname-form">
+            {{ __('default.label.save') }}
+          </button>
+        </div>
+      </div>
+
     </form>
 
   </div>
 </div>
 @endsection
+
+@push('js')
+<script>
+  $(document).ready(function() {
+    $('#toast-container').fadeOut(5000);
+  });
+  </script>
+@endpush

@@ -9,8 +9,8 @@
 <script>
 $("#logout").click(function(e) {
   Swal.fire({
-    title: "{{ trans('system.notification.are-you-sure') }}?",
-    text: "{{ trans('system.label.logout-session') }}",
+    title: "{{ __('default.notification.confirm.are-you-sure') }}?",
+    text: "{{ __('default.label.logout-session') }}",
     icon: "warning",
     showCancelButton: true,
     confirmButtonText: "Yes",
@@ -19,7 +19,7 @@ $("#logout").click(function(e) {
   }).then(function(result) {
     if (result.value) {
       Swal.fire({
-        text: "{{ trans('system.label.redirect-login') }}",
+        text: "{{ __('default.label.redirect-login') }}",
         timer: 2000,
         onOpen: function() {
           Swal.showLoading()
@@ -37,8 +37,8 @@ $("#logout").click(function(e) {
 <script>
 $("#logout_topbar").click(function(e) {
   Swal.fire({
-    title: "{{ trans('system.notification.are-you-sure') }}?",
-    text: "{{ trans('system.label.logout-session') }}",
+    title: "{{ __('default.notification.confirm.are-you-sure') }}?",
+    text: "{{ __('default.label.logout-session') }}",
     icon: "warning",
     showCancelButton: true,
     confirmButtonText: "Yes",
@@ -47,7 +47,7 @@ $("#logout_topbar").click(function(e) {
   }).then(function(result) {
     if (result.value) {
       Swal.fire({
-        text: "{{ trans('system.label.redirect-login') }}",
+        text: "{{ __('default.label.redirect-login') }}",
         timer: 2000,
         onOpen: function() {
           Swal.showLoading()

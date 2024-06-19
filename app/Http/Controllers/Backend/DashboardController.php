@@ -20,6 +20,10 @@ class DashboardController extends Controller {
     $this->middleware('auth');
   }
 
+  public function index() {
+    return view('pages.backend.dashboard');
+  }
+
   public function file_manager() {
     return view('pages.backend.__system.file-manager.index');
   }

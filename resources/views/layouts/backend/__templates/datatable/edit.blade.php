@@ -8,7 +8,7 @@
         <div class="card-title"><h3 class="card-label"> {{ __('default.label.edit') }} </h3></div>
         <div class="card-toolbar">
           <a href="{{ $url }}" class="btn btn-icon btn-xs btn-hover-light-primary" title="{{ __('default.label.back') }}"><i class="fas fa-arrow-left"></i></a>
-          <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle" title="Hide or Show"><i class="fas fa-caret-down"></i></a>
+          <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle" title="{{ __('default.label.hide-show') }}"><i class="fas fa-caret-down"></i></a>
         </div>
       </div>
       <div class="card-body" style="">
