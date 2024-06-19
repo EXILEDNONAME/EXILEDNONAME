@@ -59,11 +59,22 @@
               </div>
             </div>
 
+            <div class="mb-2">
+              <div class="col-lg-12 my-2 my-md-0">
+                <div class="d-flex align-items-center">
+                  <!-- {{ Html::select('id_table_general', activity_causer(), (isset($data->id_table_general) ? $data->id_table_general : NULL))->placeholder('- Select Table General')->class('form-control')->required() }} -->
+                  {{ Html::select(NULL, activity_causer(), NULL, ['data-column' => -2])->placeholder('- Filter Causer ID -')->class('form-control filter_causer_id') }}
+                </div>
+              </div>
+            </div>
+
             @stack('filter-head')
 
             <hr>
           </div>
         </div>
+
+        
 
         <div class="table-responsive">
           <table class="table table-hover table-separate table-head-custom table-checkable table-sm rounded" id="exilednoname_table">
@@ -115,7 +126,12 @@ var table = $('#exilednoname_table').DataTable({
     style: 'multi',
     selector: 'td:first-child .checkable',
   },
-  ajax: { url: "{{ URL::current() }}", },
+  ajax: {
+    url: "{{ URL::current() }}",
+    "data" : function (ex) {
+          ex.filter_causer_id = $('#filter_causer_id').val();
+        }
+  },
   "lengthMenu": [[50, 100, 250, 500, -1], [50, 100, 250, 500, "All"]],
   buttons: [
     {
@@ -236,6 +252,12 @@ $('.filter_status').change(function () {
     KTApp.unblock('#exilednoname_body');
   }, 2000);
   table.column(2).search( $(this).val() ).draw();
+});
+
+$('.filter_causer_id').change(function () {
+  table.column(-2)
+  .search( $(this).val() )
+  .draw();
 });
 
 $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });

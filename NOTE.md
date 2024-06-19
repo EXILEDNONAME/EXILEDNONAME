@@ -11,12 +11,12 @@
 - Page Trash (Filter Daterange, Restore, Permanent Delete)
 
 - Page Managements
-- Breadcumbs
 - Charts
-
 - Idle Time Lock Account
 - Languages
 - Animation After Login Scanning
+
+- x Breadcumbs
 - x File Manager
 - x Global Application Settings
 - x Language Hide Or Show
