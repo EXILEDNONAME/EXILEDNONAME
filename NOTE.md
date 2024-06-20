@@ -7,7 +7,7 @@
   - Trash
   - Activity
 
-- Page Activities (Filter Causer, Daterange)
+- Page Activities (Daterange)
 - Page Trash (Filter Daterange, Restore, Permanent Delete)
 
 - Page Managements

@@ -1,4 +1,4 @@
- @extends('layouts.backend.default')
+@extends('layouts.backend.default')
 
 @push('head')
 <link href="{{ asset('/assets/backend/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
@@ -62,19 +62,24 @@
             <div class="mb-2">
               <div class="col-lg-12 my-2 my-md-0">
                 <div class="d-flex align-items-center">
-                  <!-- {{ Html::select('id_table_general', activity_causer(), (isset($data->id_table_general) ? $data->id_table_general : NULL))->placeholder('- Select Table General')->class('form-control')->required() }} -->
-                  {{ Html::select(NULL, activity_causer(), NULL, ['data-column' => -2])->placeholder('- Filter Causer ID -')->class('form-control filter_causer_id') }}
+                  <div class="input-daterange input-group" id="ex_datepicker_datetime">
+                    <input type="text" id="date_start" class="form-control filter-form text-center" name="date_start" placeholder="- {{ __('default.select.date') }} -" autocomplete="off" readonly>
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="la la-ellipsis-h"></i>
+                      </span>
+                    </div>
+                    <input type="text" id="date_end" class="form-control filter-form text-center" name="date_end" placeholder="- {{ __('default.select.date') }} -" autocomplete="off" readonly>
+                  </div>
                 </div>
               </div>
             </div>
-
-            @stack('filter-head')
 
             <hr>
           </div>
         </div>
 
-        
+
 
         <div class="table-responsive">
           <table class="table table-hover table-separate table-head-custom table-checkable table-sm rounded" id="exilednoname_table">
@@ -101,178 +106,212 @@
 <script src="{{ asset('/assets/backend/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 <script src="{{ asset('/assets/backend/js/pages/crud/forms/widgets/bootstrap-datepicker.js') }}"></script>
 <script>
-$(document).ready(function() {
-  $('#toast-container').fadeOut(5000);
-  KTApp.block('#exilednoname_body', {
-    overlayColor: '#000000',
-    state: 'primary',
-    message: "{{ __('default.label.please-wait') }} ..."
+  $(document).ready(function() {
+    $('#toast-container').fadeOut(5000);
+    KTApp.block('#exilednoname_body', {
+      overlayColor: '#000000',
+      state: 'primary',
+      message: "{{ __('default.label.please-wait') }} ..."
+    });
+
+    setTimeout(function() {
+      KTApp.unblock('#exilednoname_body');
+    }, 2000);
   });
 
-  setTimeout(function() {
-    KTApp.unblock('#exilednoname_body');
-  }, 2000);
-});
+  "use strict";
 
-"use strict";
-
-var table = $('#exilednoname_table').DataTable({
-  "bInfo": false,
-  "sPaginationType": "full_numbers",
-  serverSide: true,
-  searching: true,
-  rowId: 'Collocation',
-  select: {
-    style: 'multi',
-    selector: 'td:first-child .checkable',
-  },
-  ajax: {
-    url: "{{ URL::current() }}",
-    "data" : function (ex) {
-          ex.filter_causer_id = $('#filter_causer_id').val();
+  var table = $('#exilednoname_table').DataTable({
+    "bInfo": false,
+    "sPaginationType": "full_numbers",
+    serverSide: true,
+    searching: true,
+    rowId: 'Collocation',
+    select: {
+      style: 'multi',
+      selector: 'td:first-child .checkable',
+    },
+    ajax: {
+      url: "{{ URL::current() }}",
+      "data" : function (ex) {
+        ex.filter_causer_id = $('#filter_causer_id').val();
+        ex.date_start = $('#date_start').val();
+        ex.date_end = $('#date_end').val();
+      }
+    },
+    "lengthMenu": [[50, 100, 250, 500, -1], [50, 100, 250, 500, "All"]],
+    buttons: [
+      {
+        extend: 'print',
+        exportOptions: {
+          columns: "thead th:not(.no-export)",
+          orthogonal: "Export"
+        },
+      },
+      {
+        extend: 'copyHtml5',
+        autoClose: 'true',
+        exportOptions: {
+          columns: "thead th:not(.no-export)",
+          orthogonal: "Export"
+        },
+      },
+      {
+        extend: 'excelHtml5',
+        exportOptions: {
+          columns: "thead th:not(.no-export)",
+          orthogonal: "Export"
+        },
+      },
+      {
+        extend: 'csvHtml5',
+        exportOptions: {
+          columns: "thead th:not(.no-export)",
+          orthogonal: "Export"
+        },
+      },
+      {
+        extend: 'pdfHtml5',
+        exportOptions: {
+          columns: "thead th:not(.no-export)",
+          orthogonal: "Export"
+        },
+      },
+      {
+        extend: 'pdfHtml5',
+        exportOptions: {
+          columns: "thead th:not(.no-export)",
+          orthogonal: "Export",
+          rows: { selected: true }
+        },
+      },
+      {
+        extend: 'excelHtml5',
+        exportOptions: {
+          columns: "thead th:not(.no-export)",
+          orthogonal: "Export",
+          rows: { selected: true }
+        },
+      },
+      {
+        extend: 'copyHtml5',
+        autoClose: 'true',
+        exportOptions: {
+          columns: "thead th:not(.no-export)",
+          orthogonal: "Export",
+          rows: { selected: true }
+        },
+      },
+      {
+        extend: 'print',
+        exportOptions: {
+          columns: "thead th:not(.no-export)",
+          orthogonal: "Export",
+          rows: { selected: true }
+        },
+      },
+    ],
+    columns: [
+      {
+        data: 'autonumber', orderable: false, orderable: false, searchable: false, 'width': '1',
+        render: function (data, type, row, meta) {
+          return meta.row + meta.settings._iDisplayStart + 1;
         }
-  },
-  "lengthMenu": [[50, 100, 250, 500, -1], [50, 100, 250, 500, "All"]],
-  buttons: [
-    {
-      extend: 'print',
-      exportOptions: {
-        columns: "thead th:not(.no-export)",
-        orthogonal: "Export"
       },
-    },
-    {
-      extend: 'copyHtml5',
-      autoClose: 'true',
-      exportOptions: {
-        columns: "thead th:not(.no-export)",
-        orthogonal: "Export"
+      {
+        data: 'description', orderable: false, 'className': 'align-middle', 'width': '1',
+        render: function ( data, type, row ) {
+          if ( data == 'created' ) { return '<span class="label label-dot label-success"></span>'; }
+          else if ( data == 'updated' ) { return '<span class="label label-dot label-warning"></span>'; }
+          else if ( data == 'deleted' ) { return '<span class="label label-dot label-danger"></span>'; }
+          else if ( data == 'restored' ) { return '<span class="label label-dot label-info"></span>'; }
+          else { return ''; }
+        }
       },
-    },
-    {
-      extend: 'excelHtml5',
-      exportOptions: {
-        columns: "thead th:not(.no-export)",
-        orthogonal: "Export"
+      {
+        data: 'description', orderable: true, 'className': 'align-middle',
+        render: function ( data, type, row ) {
+          if ( data == 'created' ) { return 'Created'; }
+          else if ( data == 'updated' ) { return 'Updated'; }
+          else if ( data == 'deleted' ) { return 'Deleted'; }
+          else if ( data == 'restored' ) { return 'Restored'; }
+          else { return ''; }
+        }
       },
-    },
-    {
-      extend: 'csvHtml5',
-      exportOptions: {
-        columns: "thead th:not(.no-export)",
-        orthogonal: "Export"
-      },
-    },
-    {
-      extend: 'pdfHtml5',
-      exportOptions: {
-        columns: "thead th:not(.no-export)",
-        orthogonal: "Export"
-      },
-    },
-    {
-      extend: 'pdfHtml5',
-      exportOptions: {
-        columns: "thead th:not(.no-export)",
-        orthogonal: "Export",
-        rows: { selected: true }
-      },
-    },
-    {
-      extend: 'excelHtml5',
-      exportOptions: {
-        columns: "thead th:not(.no-export)",
-        orthogonal: "Export",
-        rows: { selected: true }
-      },
-    },
-    {
-      extend: 'copyHtml5',
-      autoClose: 'true',
-      exportOptions: {
-        columns: "thead th:not(.no-export)",
-        orthogonal: "Export",
-        rows: { selected: true }
-      },
-    },
-    {
-      extend: 'print',
-      exportOptions: {
-        columns: "thead th:not(.no-export)",
-        orthogonal: "Export",
-        rows: { selected: true }
-      },
-    },
-  ],
-  columns: [
-    {
-      data: 'autonumber', orderable: false, orderable: false, searchable: false, 'width': '1',
-      render: function (data, type, row, meta) {
-        return meta.row + meta.settings._iDisplayStart + 1;
-      }
-    },
-    {
-      data: 'description', orderable: false, 'className': 'align-middle', 'width': '1',
-      render: function ( data, type, row ) {
-        if ( data == 'created' ) { return '<span class="label label-dot label-success"></span>'; }
-        else if ( data == 'updated' ) { return '<span class="label label-dot label-warning"></span>'; }
-        else if ( data == 'deleted' ) { return '<span class="label label-dot label-danger"></span>'; }
-        else if ( data == 'restored' ) { return '<span class="label label-dot label-info"></span>'; }
-        else { return ''; }
-      }
-    },
-    {
-      data: 'description', orderable: true, 'className': 'align-middle',
-      render: function ( data, type, row ) {
-        if ( data == 'created' ) { return 'Created'; }
-        else if ( data == 'updated' ) { return 'Updated'; }
-        else if ( data == 'deleted' ) { return 'Deleted'; }
-        else if ( data == 'restored' ) { return 'Restored'; }
-        else { return ''; }
-      }
-    },
-    { data: 'subjects' },
-    { data: 'causer_id', 'className': 'align-middle text-nowrap', 'width': '1' },
-    { data: 'updated_at', 'className': 'align-middle text-nowrap', 'width': '1' },
-  ],
-  order: [[0, 'asc']]
-});
-
-$('.filter_status').change(function () {
-  var card = new KTCard('exilednoname_card');
-  KTApp.block('#exilednoname_body', {
-    overlayColor: '#ffffff',
-    type: 'loader',
-    state: 'primary',
-    message: '{{ __('default.label.processing') }} ...',
-    opacity: 0.3,
-    size: 'lg'
+      { data: 'subjects' },
+      { data: 'causer_id', 'className': 'align-middle text-nowrap', 'width': '1' },
+      { data: 'updated_at', 'className': 'align-middle text-nowrap', 'width': '1' },
+    ],
+    order: [[0, 'asc']]
   });
-  setTimeout(function() {
-    KTApp.unblock('#exilednoname_body');
-  }, 2000);
-  table.column(2).search( $(this).val() ).draw();
-});
 
-$('.filter_causer_id').change(function () {
-  table.column(-2)
-  .search( $(this).val() )
-  .draw();
-});
+  $('.filter_status').change(function () {
+    var card = new KTCard('exilednoname_card');
+    KTApp.block('#exilednoname_body', {
+      overlayColor: '#ffffff',
+      type: 'loader',
+      state: 'primary',
+      message: '{{ __('default.label.processing') }} ...',
+        opacity: 0.3,
+        size: 'lg'
+      });
+      setTimeout(function() {
+        KTApp.unblock('#exilednoname_body');
+      }, 2000);
+      table.column(2).search( $(this).val() ).draw();
+  });
 
-$('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });
-$('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
-$('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
-$('#export_csv').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
-$('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(4).trigger(); });
+  $('.filter_causer_id').change(function () {
+    table.column(-2)
+    .search( $(this).val() )
+    .draw();
+  });
 
-@include('layouts.backend.__templates.datatable.extension.javascript.checkable')
-@include('layouts.backend.__templates.datatable.extension.javascript.checkable-group')
-@include('layouts.backend.__templates.datatable.extension.javascript.table-refresh')
+  $('#date_start').change(function () {
+    var card = new KTCard('exilednoname_card');
+    KTApp.block(card.getSelf(), {
+      overlayColor: '#ffffff',
+      type: 'loader',
+      state: 'primary',
+      message: '{{ __('default.label.processing') }} ...',
+      opacity: 0.3,
+      size: 'lg'
+    });
+    setTimeout(function() {
+      KTApp.unblock('#exilednoname_body');
+      table.draw();
+    }, 2000);
+  });
 
-// @!include('layouts.backend.__templates.datatable.extension.javascript.restore')
-// @!include('layouts.backend.__templates.datatable.extension.javascript.delete-permanent')
-// @!include('layouts.backend.__templates.datatable.extension.javascript.selected-restore')
-// @!include('layouts.backend.__templates.datatable.extension.javascript.selected-delete-permanent')
+  $('#date_end').change(function () {
+    var card = new KTCard('exilednoname_card');
+    KTApp.block(card.getSelf(), {
+      overlayColor: '#ffffff',
+      type: 'loader',
+      state: 'primary',
+      message: '{{ __('default.label.processing') }} ...',
+      opacity: 0.3,
+      size: 'lg'
+    });
+    setTimeout(function() {
+      KTApp.unblock('#exilednoname_body');
+      table.draw();
+    }, 2000);
+  });
+
+  $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });
+  $('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
+  $('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
+  $('#export_csv').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
+  $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(4).trigger(); });
+
+  @include('layouts.backend.__templates.datatable.extension.javascript.checkable')
+  @include('layouts.backend.__templates.datatable.extension.javascript.checkable-group')
+  @include('layouts.backend.__templates.datatable.extension.javascript.table-refresh')
+
+  // @!include('layouts.backend.__templates.datatable.extension.javascript.restore')
+  // @!include('layouts.backend.__templates.datatable.extension.javascript.delete-permanent')
+  // @!include('layouts.backend.__templates.datatable.extension.javascript.selected-restore')
+  // @!include('layouts.backend.__templates.datatable.extension.javascript.selected-delete-permanent')
 </script>
 @endpush
