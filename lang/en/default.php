@@ -17,8 +17,9 @@ return [
     'updated-by'                    => 'Updated By',
     'updated-at'                    => 'Updated At',
     'details'                       => 'Details',
-    'delete' =>  [
+    'delete'  => [
       '/'                           => 'Delete',
+      'permanent'                   => 'Delete Permanent',
     ],
     'deleted'                       => 'Deleted',
     'download'                      => 'Download',
@@ -50,10 +51,13 @@ return [
     'qr-code'                       => 'QR Code',
     'redirect-login'                => 'Logout This Session, and will be redirected to the login page',
     'refresh'                       => 'Refresh',
+    'restore'                       => 'Restore',
     'save'                          => 'Save',
     'selected-active'               => 'Selected Set Active',
     'selected-inactive'             => 'Selected Set Inactive',
     'selected-delete'               => 'Selected Delete',
+    'selected-delete-permanent'     => 'Selected Delete Permanent',
+    'selected-restore'              => 'Selected Restore',
     'sessions'                      => 'Sessions',
     'submit'                        => 'Submit',
     'trash'                         => 'Trash',
@@ -74,8 +78,10 @@ return [
     'confirm' => [
       'are-you-sure'                => 'Are You Sure',
       'delete'                      => 'Delete This Item',
+      'restore'                     => 'Restore This Item',
       'selected-active'             => 'Activate All Item Selected',
       'selected-inactive'           => 'Inactivate All Item Selected',
+      'selected-restore'            => 'Restore All Item Selected',
     ],
 
     'success' => [
@@ -84,8 +90,10 @@ return [
       'item-inactive'               => 'Successfully Item Inactivated',
       'item-updated'                => 'Successfully Item Updated',
       'item-deleted'                => 'Successfully Item Deleted',
+      'item-restore'                => 'Successfully Item Restored',
       'selected-active'             => 'All Items Have Been Activated',
       'selected-inactive'           => 'All Items Have Been Inactivated',
+      'selected-restore'            => 'All Items Have Been Restored',
       'password-changed'            => 'Password has been Changed',
       'profile-updated'             => 'Successfully Update Profile',
     ],

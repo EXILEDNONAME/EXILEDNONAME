@@ -174,21 +174,62 @@ class GeneralController extends Controller {
 
   /**
   **************************************************
+  * @return DELETE
+  **************************************************
+  **/
+
+  public function delete($id) {
+    $this->model::destroy($id);
+    $data = $this->model::where('id', $id)->delete();
+    return Response::json($data);
+  }
+
+  /**
+  **************************************************
+  * @return RESTORE
+  **************************************************
+  **/
+
+  public function restore($id) {
+    $data = $this->model::withTrashed()->findOrFail($id);
+    if ($data->trashed()) {
+      $data->restore();
+      $data = $this->model::where('id', $id)->update(['deleted_at' => NULL]);
+      return Response::json($data);
+    } else { return Response::json($data);}
+  }
+
+  /**
+  **************************************************
+  * @return SELECTED-RESTORE
+  **************************************************
+  **/
+
+  public function selected_restore(Request $request) {
+    $data = $request->EXILEDNONAME;
+    $this->model::whereIn('id',explode(",",$data))->restore();
+    return Response::json($data);
+  }
+
+  /**
+  **************************************************
   * @return TRASH
   **************************************************
   **/
 
   public function trash() {
-    $data = $this->model::onlyTrashed()->get();
+    if (request('date_start') && request('date_end')) { $this->data = $this->model::onlyTrashed()->whereBetween('deleted_at', [request('date_start'), request('date_end')])->get(); }
+    else { $this->data = $this->model::onlyTrashed()->get(); }
+
     $url = $this->url;
     if(request()->ajax()) {
-      return DataTables::of($data)
+      return DataTables::of($this->data)
       ->editColumn('deleted_at', function($order) { return \Carbon\Carbon::parse($order->deleted_at)->format('d F Y, H:i'); })
       ->rawColumns(['description'])
       ->addIndexColumn()
       ->make(true);
     }
-    return view($this->path . 'trash', compact('data', 'url'));
+    return view($this->path . 'trash', compact('url'));
   }
 
   /**

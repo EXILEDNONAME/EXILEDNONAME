@@ -17,9 +17,12 @@ Route::group([
 ], function () {
   Route::get('active/{id}', 'GeneralController@active')->name('active');
   Route::get('activities', 'GeneralController@activity')->name('activity');
+  Route::get('delete/{id}', 'GeneralController@delete')->name('delete');
   Route::get('inactive/{id}', 'GeneralController@inactive')->name('inactive');
   Route::get('selected-active', 'GeneralController@selected_active')->name('selected-active');
   Route::get('selected-inactive', 'GeneralController@selected_inactive')->name('selected-inactive');
+  Route::get('restore/{id}', 'GeneralController@restore')->name('restore');
+  Route::get('selected-restore', 'GeneralController@selected_restore')->name('selected-restore');
   Route::get('trash', 'GeneralController@trash')->name('trash');
   Route::resource('/', 'GeneralController')->parameters(['' => 'id']);
 });

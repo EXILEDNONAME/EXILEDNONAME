@@ -269,7 +269,7 @@
 
   $('#date_start').change(function () {
     var card = new KTCard('exilednoname_card');
-    KTApp.block(card.getSelf(), {
+    KTApp.block('#exilednoname_body', {
       overlayColor: '#ffffff',
       type: 'loader',
       state: 'primary',
@@ -285,7 +285,7 @@
 
   $('#date_end').change(function () {
     var card = new KTCard('exilednoname_card');
-    KTApp.block(card.getSelf(), {
+    KTApp.block('#exilednoname_body', {
       overlayColor: '#ffffff',
       type: 'loader',
       state: 'primary',

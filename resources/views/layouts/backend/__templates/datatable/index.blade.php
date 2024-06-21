@@ -282,5 +282,6 @@
   });
   @endif
 
+@include('layouts.backend.__templates.datatable.extension.javascript.delete')
 </script>
 @endpush

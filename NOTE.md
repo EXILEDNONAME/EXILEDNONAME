@@ -1,15 +1,11 @@
 # TO DO
 - Datatables // Active, Datetime, Status
-  - Index
+  - Index (Selected Delete, Selected Active, Selected Inactive)
   - Show
   - Create
   - Edit
-  - Trash
-  - Activity
 
-- Page Activities (Daterange)
-- Page Trash (Filter Daterange, Restore, Permanent Delete)
-
+- Page Trash (x Filter Daterange, x Restore, Permanent Delete)
 - Page Managements
 - Charts
 - Idle Time Lock Account
@@ -20,6 +16,7 @@
 - x File Manager
 - x Global Application Settings
 - x Language Hide Or Show
+- x Page Activities
 - x Page Login
 - x Profile Account Info Fix Submit
 - x Profile Change Password Fix Submit
