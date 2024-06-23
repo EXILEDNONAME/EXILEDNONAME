@@ -82,6 +82,7 @@ return [
       'restore'                     => 'Restore This Item',
       'selected-active'             => 'Activate All Item Selected',
       'selected-inactive'           => 'Inactivate All Item Selected',
+      'selected-delete'             => 'Delete All Item Selected',
       'selected-restore'            => 'Restore All Item Selected',
     ],
 
@@ -94,6 +95,7 @@ return [
       'item-restore'                => 'Successfully Item Restored',
       'selected-active'             => 'All Items Have Been Activated',
       'selected-inactive'           => 'All Items Have Been Inactivated',
+      'selected-delete'             => 'All Items Have Been Deleted',
       'selected-restore'            => 'All Items Have Been Restored',
       'password-changed'            => 'Password has been Changed',
       'profile-updated'             => 'Successfully Update Profile',

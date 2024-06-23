@@ -21,6 +21,7 @@ Route::group([
   Route::get('inactive/{id}', 'GeneralController@inactive')->name('inactive');
   Route::get('selected-active', 'GeneralController@selected_active')->name('selected-active');
   Route::get('selected-inactive', 'GeneralController@selected_inactive')->name('selected-inactive');
+  Route::get('selected-delete', 'GeneralController@selected_delete')->name('selected-delete');
   Route::get('restore/{id}', 'GeneralController@restore')->name('restore');
   Route::get('selected-restore', 'GeneralController@selected_restore')->name('selected-restore');
   Route::get('trash', 'GeneralController@trash')->name('trash');

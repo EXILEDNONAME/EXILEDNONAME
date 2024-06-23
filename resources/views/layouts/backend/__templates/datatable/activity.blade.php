@@ -309,9 +309,5 @@
   @include('layouts.backend.__templates.datatable.extension.javascript.checkable-group')
   @include('layouts.backend.__templates.datatable.extension.javascript.table-refresh')
 
-  // @!include('layouts.backend.__templates.datatable.extension.javascript.restore')
-  // @!include('layouts.backend.__templates.datatable.extension.javascript.delete-permanent')
-  // @!include('layouts.backend.__templates.datatable.extension.javascript.selected-restore')
-  // @!include('layouts.backend.__templates.datatable.extension.javascript.selected-delete-permanent')
 </script>
 @endpush

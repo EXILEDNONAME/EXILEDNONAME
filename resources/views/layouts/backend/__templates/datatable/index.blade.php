@@ -251,6 +251,7 @@
   @include('layouts.backend.__templates.datatable.extension.javascript.date')
   @include('layouts.backend.__templates.datatable.extension.javascript.selected-active')
   @include('layouts.backend.__templates.datatable.extension.javascript.selected-inactive')
+  @include('layouts.backend.__templates.datatable.extension.javascript.selected-delete')
   @include('layouts.backend.__templates.datatable.extension.javascript.delete')
 </script>
 @endpush
