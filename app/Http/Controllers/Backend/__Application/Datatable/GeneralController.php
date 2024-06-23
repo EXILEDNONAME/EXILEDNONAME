@@ -18,7 +18,8 @@ class GeneralController extends Controller {
     $this->sort = 1;
     $this->RequestStore = [];
     $this->RequestUpdate = [];
-    if (request('date_start') && request('date_end')) { $this->data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->get(); }
+    if (request('date_start') && request('date_end')) { $this->data = $this->model::orderby('date', 'desc')->whereBetween('date', [request('date_start'), request('date_end')])->get(); }
+    else if (!empty($this->model::get('date'))) { $this->data = $this->model::orderby('date', 'desc')->get(); }
     else { $this->data = $this->model::get(); }
   }
 
@@ -33,9 +34,7 @@ class GeneralController extends Controller {
     $sort = $this->sort;
     if (request()->ajax()) {
       return DataTables::of($this->data)
-      ->editColumn('date_start', function ($order) { return empty($order->date_start) ? NULL : \Carbon\Carbon::parse($order->date_start)->format('d F Y, H:i'); })
-      ->editColumn('date_end', function ($order) { return empty($order->date_end) ? NULL : \Carbon\Carbon::parse($order->date_end)->format('d F Y, H:i'); })
-      ->editColumn('date', function ($order) { return empty($order->date) ? NULL : \Carbon\Carbon::parse($order->date)->format('d F Y') . ' <br>' . \Carbon\Carbon::parse($order->date)->format('H:i:s'); })
+      ->editColumn('date', function ($order) { return empty($order->date) ? NULL : \Carbon\Carbon::parse($order->date)->format('d F Y, H:i'); })
       ->editColumn('description', function ($order) { return nl2br(e($order->description)); })
       ->rawColumns(['description', 'date'])
       ->addIndexColumn()->make(true);
@@ -121,17 +120,6 @@ class GeneralController extends Controller {
     } catch (\Exception $e) {
       return redirect($this->url)->with('error', __('default.notification.error'));
     }
-  }
-
-  /**
-  **************************************************
-  * @return ACTIVE
-  **************************************************
-  **/
-
-  public function active($id) {
-    $data = $this->model::where('id', $id)->update([ 'active' => 1 ]);
-    return Response::json($data);
   }
 
   /**

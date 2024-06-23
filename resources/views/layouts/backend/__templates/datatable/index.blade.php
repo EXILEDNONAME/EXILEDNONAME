@@ -1,8 +1,7 @@
 @extends('layouts.backend.default')
 
 @push('head')
-<link rel="stylesheet" type="text/css" href="/assets/backend/plugins/custom/datatables/datatables.bundle.css?v=7.0.6" />
-
+<link rel="stylesheet" type="text/css" href="/assets/backend/plugins/custom/datatables/datatables.bundle.css">
 @endpush
 
 @section('content')
@@ -76,6 +75,24 @@
             </div>
             @endif
 
+            @if (empty($date) || $date == 'true')
+            <div class="mb-2">
+              <div class="col-lg-12 my-2 my-md-0">
+                <div class="d-flex align-items-center">
+                  <div class="input-daterange input-group" id="ex_datepicker_datetime">
+                    <input type="text" id="date_start" class="form-control filter-form text-center" name="date_start" placeholder="- {{ __('default.select.date') }} -" autocomplete="off" readonly>
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="la la-ellipsis-h"></i>
+                      </span>
+                    </div>
+                    <input type="text" id="date_end" class="form-control filter-form text-center" name="date_end" placeholder="- {{ __('default.select.date') }} -" autocomplete="off" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
+
             @stack('filter-head')
 
             <hr>
@@ -88,6 +105,11 @@
               <tr>
                 <th class="no-export"> </th>
                 <th> No. </th>
+
+                @if (empty($date) || $date == 'true')
+                <th> {{ __('default.label.date') }} </th>
+                @endif
+
                 @yield('table-header')
                 @if (empty($active) || $active == 'true')
                 <th class="no-export"> {{ __('default.label.active') }} </th>
@@ -105,7 +127,8 @@
 @endsection
 
 @push('js')
-<script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js?v=7.0.6"></script>
+<script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="{{ asset('/assets/backend/js/pages/crud/forms/widgets/bootstrap-datepicker.js') }}"></script>
 <script>
   $(document).ready(function() {
     $('#toast-container').fadeOut(5000);
@@ -135,6 +158,13 @@
     },
     ajax: {
       url: "{{ URL::current() }}",
+      "data" : function (ex) {
+        @if (empty($date) || $date == 'true')
+        ex.date_start = $('#date_start').val();
+        ex.date_end = $('#date_end').val();
+        @endif
+        @stack('filter-data')
+      }
     },
     headerCallback: function(thead, data, start, end, display) {
       thead.getElementsByTagName('th')[0].innerHTML = `
@@ -163,6 +193,15 @@
         data: 'autonumber', orderable: true, searchable: false, 'className': 'align-middle text-center', width: '1',
         render: function(data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }
       },
+      @if (empty($date) || $date == 'true')
+      {
+        data: 'date', orderable: true, 'className': 'align-middle text-nowrap', 'width': '1',
+        render: function ( data, type, row ) {
+          if (data == null) { return '<center> - </center>'}
+          else { return data; }
+        }
+      },
+      @endif
       @yield('table-body')
       @if (empty($active) || $active == 'true')
       {
@@ -206,82 +245,12 @@
   @include('layouts.backend.__templates.datatable.extension.javascript.checkable')
   @include('layouts.backend.__templates.datatable.extension.javascript.checkable-group')
   @include('layouts.backend.__templates.datatable.extension.javascript.filter-active')
-
   @include('layouts.backend.__templates.datatable.extension.javascript.table-refresh')
-
   @include('layouts.backend.__templates.datatable.extension.javascript.active')
   @include('layouts.backend.__templates.datatable.extension.javascript.inactive')
-
-  @if (empty($active) || $active == 'true')
-  $('.selected-active').on('click', function(e) {
-    var exilednonameArr = [];
-    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
-    var strEXILEDNONAME = exilednonameArr.join(",");
-    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-active') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
-      if (result.value) {
-        $.ajax({
-          url: "{{ URL::current() }}/selected-active", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
-          success: function (data) {
-            KTApp.block('#exilednoname_body', {
-              overlayColor: '#000000',
-              state: 'info',
-              message: '{{ __('default.label.processing') }} ...'
-              });
-              setTimeout(function() {
-                KTApp.unblock('#exilednoname_body');
-                var oTable = $('#exilednoname_table').dataTable();
-                $('#toolbar_delete').collapse('hide');
-                $('#collapse_bulk').collapse('hide');
-                oTable.fnDraw(false);
-                toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-                toastr.success("{{ __('default.notification.success.selected-active') }}");
-              }, 2000);
-          },
-          error: function (data) {
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.error("{{ __('default.notification.error./') }}");
-          }
-        });
-      }
-    });
-  });
-  @endif
-
-  @if (empty($active) || $active == 'true')
-  $('.selected-inactive').on('click', function(e) {
-    var exilednonameArr = [];
-    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
-    var strEXILEDNONAME = exilednonameArr.join(",");
-    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-inactive') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
-      if (result.value) {
-        $.ajax({
-          url: "{{ URL::current() }}/selected-inactive", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
-          success: function (data) {
-            KTApp.block('#exilednoname_body', {
-              overlayColor: '#000000',
-              state: 'info',
-              message: '{{ __('default.label.processing') }} ...'
-              });
-              setTimeout(function() {
-                KTApp.unblock('#exilednoname_body');
-                var oTable = $('#exilednoname_table').dataTable();
-                $('#toolbar_delete').collapse('hide');
-                $('#collapse_bulk').collapse('hide');
-                oTable.fnDraw(false);
-                toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-                toastr.success("{{ __('default.notification.success.selected-inactive') }}");
-              }, 2000);
-          },
-          error: function (data) {
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.error("{{ __('default.notification.error./') }}");
-          }
-        });
-      }
-    });
-  });
-  @endif
-
-@include('layouts.backend.__templates.datatable.extension.javascript.delete')
+  @include('layouts.backend.__templates.datatable.extension.javascript.date')
+  @include('layouts.backend.__templates.datatable.extension.javascript.selected-active')
+  @include('layouts.backend.__templates.datatable.extension.javascript.selected-inactive')
+  @include('layouts.backend.__templates.datatable.extension.javascript.delete')
 </script>
 @endpush

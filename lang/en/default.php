@@ -16,6 +16,7 @@ return [
     'created-at'                    => 'Created At',
     'updated-by'                    => 'Updated By',
     'updated-at'                    => 'Updated At',
+    'date'                          => 'Date',
     'details'                       => 'Details',
     'delete'  => [
       '/'                           => 'Delete',
