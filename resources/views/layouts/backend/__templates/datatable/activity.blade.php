@@ -213,10 +213,8 @@
     ],
     columns: [
       {
-        data: 'autonumber', orderable: false, orderable: false, searchable: false, 'width': '1',
-        render: function (data, type, row, meta) {
-          return meta.row + meta.settings._iDisplayStart + 1;
-        }
+        data: 'autonumber', orderable: true, searchable: false, 'className': 'align-middle text-center', width: '1',
+        render: function(data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }
       },
       {
         data: 'description', orderable: false, 'className': 'align-middle', 'width': '1',
