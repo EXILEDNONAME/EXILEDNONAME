@@ -272,13 +272,13 @@
       type: 'loader',
       state: 'primary',
       message: '{{ __('default.label.processing') }} ...',
-      opacity: 0.3,
-      size: 'lg'
-    });
-    setTimeout(function() {
-      KTApp.unblock('#exilednoname_body');
-      table.draw();
-    }, 2000);
+        opacity: 0.3,
+        size: 'lg'
+      });
+      setTimeout(function() {
+        KTApp.unblock('#exilednoname_body');
+        table.draw();
+      }, 2000);
   });
 
   $('#date_end').change(function () {
@@ -288,13 +288,13 @@
       type: 'loader',
       state: 'primary',
       message: '{{ __('default.label.processing') }} ...',
-      opacity: 0.3,
-      size: 'lg'
-    });
-    setTimeout(function() {
-      KTApp.unblock('#exilednoname_body');
-      table.draw();
-    }, 2000);
+        opacity: 0.3,
+        size: 'lg'
+      });
+      setTimeout(function() {
+        KTApp.unblock('#exilednoname_body');
+        table.draw();
+      }, 2000);
   });
 
   $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });

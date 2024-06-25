@@ -7,6 +7,7 @@
 
 - Page Trash (xFilter Daterange, xRestore, Permanent Delete)
 - Page Managements (Permission, Role, User)
+- Page Session Reset (Delete All, Refresh Table)
 - Charts
 - Idle Time Lock Account
 - Languages
