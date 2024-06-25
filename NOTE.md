@@ -6,7 +6,7 @@
   - Edit
 
 - Page Trash (xFilter Daterange, xRestore, Permanent Delete)
-- Page Managements
+- Page Managements (Permission, Role, User)
 - Charts
 - Idle Time Lock Account
 - Languages
