@@ -18,6 +18,7 @@ trait DefaultController {
   use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Custom\InactiveController;
   use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Custom\DeleteController;
   use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Custom\RestoreController;
+  use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Custom\DeletePermanentController;
 
 // CONTROLLER PAGES
   use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Page\ActivityController;
@@ -25,6 +26,7 @@ trait DefaultController {
 
   use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Custom\SelectedActiveController;
   use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Custom\SelectedDeleteController;
+  use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Custom\SelectedDeletePermanentController;
   use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Custom\SelectedInactiveController;
   use \App\Http\Traits\Backend\__System\Controllers\Datatable\Extension\Custom\SelectedRestoreController;
 

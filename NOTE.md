@@ -1,11 +1,11 @@
 # TO DO
 - Datatables // Active, Datetime, Status
-  - Index (Selected Delete, xSelected Active, xSelected Inactive)
+  - Index (xSelected Delete, xSelected Active, xSelected Inactive)
   - Show (Status, Datetime)
   - Create
   - Edit
 
-- Page Trash (xFilter Daterange, xRestore, Permanent Delete)
+- Page Trash (xFilter Daterange, xRestore, xPermanent Delete)
 - Page Managements (Permission, Role, User)
 - Page Session Reset (Delete All, Refresh Table)
 - Charts

@@ -274,8 +274,8 @@ $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(4).t
 @include('layouts.backend.__templates.datatable.extension.javascript.table-refresh')
 
 @include('layouts.backend.__templates.datatable.extension.javascript.restore')
-// @!include('layouts.backend.__templates.datatable.extension.javascript.delete-permanent')
+@include('layouts.backend.__templates.datatable.extension.javascript.delete-permanent')
 @include('layouts.backend.__templates.datatable.extension.javascript.selected-restore')
-// @!include('layouts.backend.__templates.datatable.extension.javascript.selected-delete-permanent')
+@include('layouts.backend.__templates.datatable.extension.javascript.selected-delete-permanent')
 </script>
 @endpush
