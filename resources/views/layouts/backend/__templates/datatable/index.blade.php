@@ -124,6 +124,8 @@
     </div>
   </div>
 </div>
+
+@include('layouts.backend.__includes.extension')
 @endsection
 
 @push('js')
@@ -241,6 +243,8 @@
   $('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
   $('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
   $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
+
+  @include('layouts.backend.__templates.datatable.extension.javascript.chart')
 
   @include('layouts.backend.__templates.datatable.extension.javascript.checkable')
   @include('layouts.backend.__templates.datatable.extension.javascript.checkable-group')

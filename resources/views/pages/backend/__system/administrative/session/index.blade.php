@@ -115,5 +115,11 @@ var table = $('#exilednoname_table').DataTable({
     [sort, 'asc']
   ]
 });
+
+@include('layouts.backend.__templates.datatable.extension.javascript.chart')
+@include('layouts.backend.__templates.datatable.extension.javascript.checkable')
+@include('layouts.backend.__templates.datatable.extension.javascript.checkable-group')
+@include('layouts.backend.__templates.datatable.extension.javascript.table-refresh')
+@include('layouts.backend.__templates.datatable.extension.javascript.table-reset')
 </script>
 @endpush

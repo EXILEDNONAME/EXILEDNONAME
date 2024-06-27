@@ -2,6 +2,14 @@
 
 return [
 
+  'activity' => [
+    'item-created'                  => 'Create',
+    'item-deleted'                  => 'Delete',
+    'item-restored'                 => 'Restore',
+    'item-updated'                  => 'Update',
+    'no-recent-activities'          => 'No Recent Activities',
+  ],
+
   'label' => [
     'active'                        => 'Active',
     'action'                        => 'Action',
@@ -9,6 +17,7 @@ return [
     'activities'                    => 'Activities',
     'back'                          => 'Back',
     'cancel'                        => 'Cancel',
+    'charts'                        => 'Charts',
     'close'                         => 'Close',
     'create'                        => 'Create',
     'created'                       => 'Created',
@@ -52,6 +61,7 @@ return [
     'qr-code'                       => 'QR Code',
     'redirect-login'                => 'Logout This Session, and will be redirected to the login page',
     'refresh'                       => 'Refresh',
+    'reset'                         => 'Reset',
     'restore'                       => 'Restore',
     'save'                          => 'Save',
     'selected-active'               => 'Selected Set Active',

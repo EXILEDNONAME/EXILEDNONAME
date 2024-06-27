@@ -5,14 +5,14 @@
   - Create
   - Edit
 
-- Page Trash (xFilter Daterange, xRestore, xPermanent Delete)
 - Page Managements (Permission, Role, User)
-- Page Session Reset (Delete All, Refresh Table)
-- Charts
 - Idle Time Lock Account
-- Languages
 - Animation After Login Scanning
 
+- x Languages
+- x Charts & Activities
+- x Page Session Reset (Delete All, Refresh Table)
+- x Page Trash (xFilter Daterange, xRestore, xPermanent Delete)
 - x Breadcumbs
 - x File Manager
 - x Global Application Settings
