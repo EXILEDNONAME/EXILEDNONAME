@@ -11,9 +11,11 @@ class CreateActivityLogTable extends Migration {
       $table->bigIncrements('id');
       $table->string('log_name')->nullable();
       $table->text('description');
+      $table->string('event')->nullable();
       $table->nullableMorphs('subject', 'subject');
       $table->nullableMorphs('causer', 'causer');
       $table->json('properties')->nullable();
+      $table->uuid('batch_uuid')->nullable();
       $table->timestamps();
       $table->index('log_name');
     });
@@ -22,5 +24,5 @@ class CreateActivityLogTable extends Migration {
   public function down() {
     Schema::connection(config('activitylog.database_connection'))->dropIfExists(config('activitylog.table_name'));
   }
-  
+
 }

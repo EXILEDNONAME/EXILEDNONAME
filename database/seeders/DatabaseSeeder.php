@@ -13,26 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void {
         $this->call(Setting\SettingSeeder::class);
+        $this->call(Access\RoleSeeder::class);
+        $this->call(Access\UserSeeder::class);
 
-        \App\Models\User::factory()->create(
-          [
-            'name' => 'Administrator',
-            'phone' => '08112448111',
-            'username' => 'administrator',
-            'address' => NULL,
-            'email' => 'admin@exilednoname.com',
-            'password' => '$2y$12$tGhu0lq9skDaUWT/O3pHGO4IUbPuU7PDij2javbQuFY.PUxv6Li.2',
-        ]);
-
-        \App\Models\User::factory()->create(
-        [
-          'name' => 'Administrator 2',
-          'phone' => '08112448112',
-          'username' => 'administrator 2',
-          'address' => NULL,
-          'email' => 'admin2@exilednoname.com',
-          'password' => '$2y$12$tGhu0lq9skDaUWT/O3pHGO4IUbPuU7PDij2javbQuFY.PUxv6Li.2',
-      ]);
 
     }
 }
