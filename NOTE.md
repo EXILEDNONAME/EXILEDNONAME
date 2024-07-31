@@ -1,9 +1,9 @@
 # TO DO
 - Datatables // Active, Datetime, Status
-  - Index (xSelected Delete, xSelected Active, xSelected Inactive)
-  - Show (Status, Datetime)
-  - Create
-  - Edit
+  - Index (xSelected Delete, xSelected Active, xSelected Inactive, Status)
+  - Show (xStatus, xDate)
+  - X Create
+  - X Edit
 
 - Page Managements (Permission, Role, User)
 - Idle Time Lock Account

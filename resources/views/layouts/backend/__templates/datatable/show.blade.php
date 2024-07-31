@@ -38,6 +38,20 @@
             <table width="100%" class="table table-bordered table-checkable" id="exilednoname_table">
               <input class="form-control" name="id" type="hidden" value="{{ $data->id }}">
 
+              @if (empty($date) || $date == 'true')
+              <tr>
+                <td class="align-middle font-weight-bold"> Date </td>
+                <td class="align-middle"> {{ \Carbon\Carbon::parse($data->date)->format('d F Y, H:i') }} </td>
+              </tr>
+              @endif
+
+              @if (empty($status) || $status == 'true')
+              <tr>
+                <td class="align-middle font-weight-bold"> Status </td>
+                <td class="align-middle"> {{ $data->status }} </td>
+              </tr>
+              @endif
+
               @stack('content')
 
               @if (empty($active) || $active == 'true')
