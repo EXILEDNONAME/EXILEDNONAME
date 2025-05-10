@@ -1,0 +1,10 @@
+<script>var hostUrl = "/assets/backend/";</script>
+<script src="/assets/backend/plugins/global/plugins.bundle.js"></script>
+<script src="/assets/backend/js/scripts.bundle.js"></script>
+<script src="/assets/backend/plugins/custom/fullcalendar/fullcalendar.bundle.js"></script>
+<script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js"></script>
+<script src="/assets/backend/js/widgets.bundle.js"></script>
+<script src="/assets/backend/js/custom/widgets.js"></script>
+<script src="/assets/backend/js/custom/apps/chat/chat.js"></script>
+<script src="/assets/backend/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="/assets/backend/js/custom/utilities/modals/users-search.js"></script>
