@@ -74,6 +74,7 @@
                       </div>
                     </div>
                     <div class="card-body">
+                      <button id="logout" type="button" id="kt_docs_sweetalert_html" class="btn btn-primary">Toggle HTML SweetAlert</button>
                       Lorem Ipsum is simply dummy text...
                     </div>
                   </div>
@@ -94,6 +95,36 @@
     @include('pages.backend.__includes.modal-searchusers')
     @include('pages.backend.__includes.modal-invitefriend')
     @include('pages.backend.__includes.js')
+
+    <script>
+      $("#logout").click(function(e) {
+        Swal.fire({
+          title: "{{ __('default.notification.confirm.are-you-sure') }}?",
+          text: "{{ __('default.label.logout-session') }}",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: '{{ __("default.label.yes") }}',
+          cancelButtonText: '{{ __("default.label.no") }}',
+          reverseButtons: false
+        }).then(function(result) {
+          if (result.value) {
+            Swal.fire({
+              text: "{{ __('default.label.redirect-login') }}",
+              timer: 2000,
+              showConfirmButton: false,
+              allowOutsideClick: false,
+              didOpen: () => {
+    Swal.showLoading();
+  },
+            }).then(function(result) {
+              if (result.dismiss === "timer") {
+                window.location = "{{ url('/dashboard/logout') }}";
+              }
+            })
+          }
+        });
+      });
+    </script>
 
   </body>
 </html>
