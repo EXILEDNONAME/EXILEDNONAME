@@ -10,9 +10,9 @@ class GeneralController extends Controller {
 
 
   function __construct() {
-    $this->model = 'App\Models\Backend\__System\Application\Table\General';
-    $this->path = 'pages.backend.__system.application.table.general.';
-    $this->url = '/dashboard/applications/tables/generals';
+    $this->model = 'App\Models\Backend\__System\Application\Datatable\General';
+    $this->path = 'pages.backend.__system.application.datatable.general.';
+    $this->url = '/dashboard/applications/datatables/generals';
   }
 
   /**
@@ -35,14 +35,39 @@ class GeneralController extends Controller {
     return view($this->path . 'index', compact('model'));
   }
 
+  /**
+  **************************************************
+  * @return SHOW
+  **************************************************
+  **/
+
+  public function show($id) {
+    $model = $this->model;
+    $data = $this->model::findOrFail($id);
+    return view($this->path . 'show', compact('data', 'model'));
+  }
+
+  /**
+  **************************************************
+  * @return CREATE
+  **************************************************
+  **/
+
+  public function create() {
+    $path = $this->path;
+    return view($this->path . 'create', compact('path'));
+  }
+
+  /**
+  **************************************************
+  * @return STORE
+  **************************************************
+  **/
+
   public function store(Request $request) {
     $validated = $request->validate($this->RequestStore);
     $store = $request->all();
-    foreach ($request->date as $data) {
-      $store['date'] = \Carbon\Carbon::now()->format('Y') . '-'. $request->month . '-' . $data . ' ' . $request->time;
-      $this->model::create($store);
-    }
-
+    $this->model::create($store);
     return redirect($this->url)->with('success', __('default.notification.success.item-created'));
   }
 

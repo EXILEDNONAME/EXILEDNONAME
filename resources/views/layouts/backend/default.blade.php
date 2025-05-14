@@ -12,11 +12,13 @@
 
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
           @include('layouts.backend.__includes.header')
-          <div class="content  d-flex flex-column flex-column-fluid" id="kt_content">
+          <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
             @include('layouts.backend.__includes.subheader')
             <div class="d-flex flex-column-fluid">
-              <div class="container">
-                <p>Page content goes here...</p>
+              <div class="container-fluid">
+
+                @yield('content')
+
               </div>
             </div>
           </div>

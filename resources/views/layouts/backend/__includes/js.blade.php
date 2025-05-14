@@ -5,3 +5,5 @@
 <script src="/assets/backend/js/scripts.bundle.js?v=7.0.6"></script>
 <script src="/assets/backend/plugins/custom/fullcalendar/fullcalendar.bundle.js?v=7.0.6"></script>
 <script src="/assets/backend/js/pages/widgets.js?v=7.0.6"></script>
+<script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js?v=7.0.6"></script>
+<script src="/assets/backend/js/pages/crud/datatables/basic/paginations.js?v=7.0.6"></script>
