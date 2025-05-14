@@ -65,7 +65,6 @@ class GeneralController extends Controller {
   **/
 
   public function store(Request $request) {
-    $validated = $request->validate($this->RequestStore);
     $store = $request->all();
     $this->model::create($store);
     return redirect($this->url)->with('success', __('default.notification.success.item-created'));

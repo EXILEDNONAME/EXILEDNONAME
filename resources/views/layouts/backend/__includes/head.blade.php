@@ -17,4 +17,5 @@
   <link href="/assets/backend/css/themes/layout/brand/dark.css?v=7.0.6" rel="stylesheet" type="text/css"/>
   <link href="/assets/backend/css/themes/layout/aside/dark.css?v=7.0.6" rel="stylesheet" type="text/css"/>
   <link rel="shortcut icon" href="/assets/backend/media/logos/favicon.ico"/>
+
 </head>

@@ -11,8 +11,8 @@ return new class extends Migration {
       $table->increments('id');
       $table->timestamp('date_start')->nullable();
       $table->timestamp('date_end')->nullable();
-      $table->string('name');
       $table->timestamp('date')->nullable();
+      $table->string('name');
       $table->text('description')->nullable();
       $table->integer('active')->default(1);
       $table->integer('status')->default(1);
