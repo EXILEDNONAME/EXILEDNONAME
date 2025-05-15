@@ -13,6 +13,8 @@ class GeneralController extends Controller {
     $this->model = 'App\Models\Backend\__System\Application\Datatable\General';
     $this->path = 'pages.backend.__system.application.datatable.general.';
     $this->url = '/dashboard/applications/datatables/generals';
+    if (request('date_start') && request('date_end')) { $this->data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->get(); }
+    else { $this->data = $this->model::get(); }
   }
 
   /**
@@ -70,5 +72,30 @@ class GeneralController extends Controller {
     return redirect($this->url)->with('success', __('default.notification.success.item-created'));
   }
 
+  /**
+  **************************************************
+  * @return EDIT
+  **************************************************
+  **/
+
+  public function edit($id) {
+    $path = $this->path;
+    $model = $this->model;
+    $data = $this->model::findOrFail($id);
+    return view($this->path . 'edit', compact('path', 'data', 'model'));
+  }
+
+  /**
+  **************************************************
+  * @return UPDATE
+  **************************************************
+  **/
+
+  public function update(Request $request, $id) {
+    $data = $this->model::findOrFail($id);
+    $update = $request->all();
+    $data->update($update);
+    return redirect($this->url)->with('success', __('default.notification.success.item-updated'));
+  }
 
 }
