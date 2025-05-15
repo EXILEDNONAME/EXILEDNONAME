@@ -13,15 +13,39 @@
           <h3 class="card-label"> Main </h3>
         </div>
         <div class="card-toolbar">
-          <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="toggle" data-toggle="tooltip" data-placement="top" title="Toggle Card">
-            <i class="ki ki-arrow-down icon-nm"></i>
-          </a>
-          <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary mr-1" data-card-tool="reload" data-toggle="tooltip" data-placement="top" title="Reload Card">
-            <i class="ki ki-reload icon-nm"></i>
-          </a>
-          <a href="#" class="btn btn-icon btn-sm btn-hover-light-primary" data-card-tool="remove" data-toggle="tooltip" data-placement="top" title="Remove Card">
-            <i class="ki ki-close icon-nm"></i>
-          </a>
+          <a href="{{ URL::Current() }}/create" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.create') }}"><i class="fas fa-plus"></i></a>
+          <a id="table-refresh" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.refresh') }}"><i class="fas fa-sync-alt"></i></a>
+          <div data-toggle="collapse" data-target="#collapse-filter" aria-expanded="true"><a class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.filter./') }}"><i class="fas fa-filter"></i></a></div>
+          <div class="dropdown dropdown-inline" bis_skin_checked="1">
+            <button type="button" class="btn btn-clean btn-xs btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-download"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+              <ul class="navi navi-hover py-5">
+                <li class="navi-item" data-toggle="tooltip" data-original-title="{{ __('default.label.export.description.copy') }}"><a href="javascript:void(0);" class="navi-link" id="export_copy"><i class="navi-icon fa fa-copy"></i> {{ __('default.label.export.copy') }} </a></li>
+                <li class="navi-item" data-toggle="tooltip" data-original-title="{{ __('default.label.export.description.excel') }}"><a href="javascript:void(0);" class="navi-link" id="export_excel"><i class="navi-icon fa fa-file-excel"></i> {{ __('default.label.export.excel') }} </a></li>
+                <li class="navi-item" data-toggle="tooltip" data-original-title="{{ __('default.label.export.description.pdf') }}"><a href="javascript:void(0);" class="navi-link" id="export_pdf"><i class="navi-icon fa fa-file-pdf"></i> {{ __('default.label.export.pdf') }} </a></li>
+                <li class="navi-item" data-toggle="tooltip" data-original-title="{{ __('default.label.export.description.print') }}"><a href="javascript:void(0);" class="navi-link" id="export_print"><i class="navi-icon fa fa-print"></i> {{ __('default.label.export.print') }} </a></li>
+              </ul>
+            </div>
+          </div>
+          <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle"><i class="fas fa-caret-down"></i></a>
+          <div id="collapse_bulk" class="collapse">
+            <div class="dropdown">
+              <div class="topbar-item" data-toggle="dropdown" data-offset="0px,0px">
+                <a class="btn btn-icon btn-xs btn-hover-light-primary mr-1" data-toggle="tooltip" data-original-title="{{ __('default.label.action') }}"><i class="fas fa-ellipsis-h"></i></a>
+              </div>
+              <div class="dropdown-menu p-0 m-0 dropdown-menu-anim-up dropdown-menu-sm dropdown-menu-right">
+                <ul class="navi navi-hover py-4">
+                  @if (empty($active) || $active == 'true')
+                  <li class="navi-item"> <a href="javascript:void(0);" class="navi-link selected-active"> {{ __('default.label.selected-active') }} </a></li>
+                  <li class="navi-item"> <a href="javascript:void(0);" class="navi-link selected-inactive"> {{ __('default.label.selected-inactive') }} </a></li>
+                  @endif
+                  <li class="navi-item"> <a href="javascript:void(0);" class="navi-link selected-delete"> {{ __('default.label.selected-delete') }} </a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="card-body">
@@ -61,8 +85,8 @@
     headerCallback: function(thead, data, start, end, display) {
       thead.getElementsByTagName('th')[0].innerHTML = `
       <label class="checkbox checkbox-single checkbox-solid checkbox-primary mb-0">
-      <input type="checkbox" value="" class="group-checkable"/>
-      <span></span>
+        <input type="checkbox" value="" class="group-checkable"/>
+        <span></span>
       </label>`;
     },
     "lengthMenu": [[50, 100, 250, 500, -1], [50, 100, 250, 500, "All"]],
@@ -111,45 +135,45 @@
       [1, 'asc']
     ]
   });
-    </script>
+</script>
 
-    <script>
-      table.on('change', '.group-checkable', function() {
-        var set = $(this).closest('table').find('td:first-child .checkable');
-        var checked = $(this).is(':checked');
-        $(set).each(function() {
-          if (checked) {
-            $(this).prop('checked', true);
-            table.rows($(this).closest('tr')).select();
-            var checkedNodes = table.rows('.selected').nodes();
-            var count = checkedNodes.length;
-            $('#exilednoname_selected').html(count);
-            if (count > 0) {
-              $('#toolbar_delete').collapse('show');
-              $('#collapse_bulk').collapse('show');
-            }
-          } else {
-            $(this).prop('checked', false);
-            table.rows($(this).closest('tr')).deselect();
-            $('#toolbar_delete').collapse('hide');
-            $('#collapse_bulk').collapse('hide');
-          }
-        });
-      });
-      </script>
+<script>
+  table.on('change', '.group-checkable', function() {
+    var set = $(this).closest('table').find('td:first-child .checkable');
+    var checked = $(this).is(':checked');
+    $(set).each(function() {
+      if (checked) {
+        $(this).prop('checked', true);
+        table.rows($(this).closest('tr')).select();
+        var checkedNodes = table.rows('.selected').nodes();
+        var count = checkedNodes.length;
+        $('#exilednoname_selected').html(count);
+        if (count > 0) {
+          $('#toolbar_delete').collapse('show');
+          $('#collapse_bulk').collapse('show');
+        }
+      } else {
+        $(this).prop('checked', false);
+        table.rows($(this).closest('tr')).deselect();
+        $('#toolbar_delete').collapse('hide');
+        $('#collapse_bulk').collapse('hide');
+      }
+    });
+  });
+</script>
 
-      <script>
-        table.on('change', '.checkable', function() {
-          var checkedNodes = table.rows('.selected').nodes();
-          var count = checkedNodes.length;
-          $('#exilednoname_selected').html(count);
-          if (count > 0) {
-            $('#toolbar_delete').collapse('show');
-            $('#collapse_bulk').collapse('show');
-          } else {
-            $('#toolbar_delete').collapse('hide');
-            $('#collapse_bulk').collapse('hide');
-          }
-        });
-         </script>
+<script>
+  table.on('change', '.checkable', function() {
+    var checkedNodes = table.rows('.selected').nodes();
+    var count = checkedNodes.length;
+    $('#exilednoname_selected').html(count);
+    if (count > 0) {
+      $('#toolbar_delete').collapse('show');
+      $('#collapse_bulk').collapse('show');
+    } else {
+      $('#toolbar_delete').collapse('hide');
+      $('#collapse_bulk').collapse('hide');
+    }
+  });
+</script>
 @endpush
