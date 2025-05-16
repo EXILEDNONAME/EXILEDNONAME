@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\__System\Application\Datatable;
 use App\Http\Controllers\Controller;
 use DataTables;
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
 
 class GeneralController extends Controller {
 
@@ -68,7 +69,7 @@ class GeneralController extends Controller {
   **************************************************
   **/
 
-  public function store(Request $request) {
+  public function store(StorePostRequest $request) {
     $store = $request->all();
     $this->model::create($store);
     return redirect($this->url)->with('success', __('default.notification.success.item-created'));
