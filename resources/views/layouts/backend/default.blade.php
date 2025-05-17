@@ -35,7 +35,7 @@
     @include('layouts.backend.__includes.panel-chat')
     @include('layouts.backend.__includes.panel-demo')
     @include('layouts.backend.__includes.scroll-top')
-    @include('layouts.backend.__includes.sticky-toolbar')
+    <!-- @!include('layouts.backend.__includes.sticky-toolbar') -->
     @include('layouts.backend.__includes.js')
 
   </body>

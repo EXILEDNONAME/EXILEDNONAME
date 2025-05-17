@@ -10,7 +10,7 @@
     <div class="card card-custom" data-card="true" id="kt_card_1">
       <div class="card-header">
         <div class="card-title">
-          <h3 class="card-label"> Main </h3>
+          <h3 class="card-label"> {{ __('default.label.main') }} </h3>
         </div>
         <div class="card-toolbar">
           <a href="{{ URL::Current() }}/create" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.create') }}"><i class="fas fa-plus"></i></a>
@@ -48,15 +48,33 @@
           </div>
         </div>
       </div>
-      <div class="card-body">
+      <div class="card-body" id="exilednoname_body">
+
+        <div class="accordion" id="accordion-filter">
+          <div id="collapse-filter" class="collapse hide" data-parent="#accordion-filter">
+            <div class="mb-2">
+              <div class="col-lg-12 my-2 my-md-0">
+                <div class="d-flex align-items-center">
+                  <select data-column="-2" class="form-control filter-form filter_active">
+                    <option value=""> - {{ __('default.select.active') }} - </option>
+                    <option value="1"> {{ __('default.label.yes') }} </option>
+                    <option value="2"> {{ __('default.label.no') }} </option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <hr>
+          </div>
+        </div>
+
         <table class="table table-separate table-head-custom table-checkable" id="exilednoname_table">
           <thead>
             <tr>
-              <th> </th>
+              <th class="no-export"> </th>
               <th> No. </th>
-              <th> Name </th>
-              <th> Description </th>
-              <th> </th>
+              @yield('table-header')
+              <th class="no-export"> {{ __('default.label.active') }} </th>
+              <th class="no-export"> </th>
             </tr>
           </thead>
         </table>
@@ -109,8 +127,15 @@
         data: 'autonumber', orderable: false, searchable: false, 'className': 'align-middle text-center', 'width': '1',
         render: function(data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }
       },
-      { data: 'name' },
-      { data: 'description' },
+      @yield('table-body')
+      {
+        data: 'active', orderable: true, 'className': 'align-middle text-center', 'width': '1',
+        render: function ( data, type, row ) {
+          if ( data == 0 ) { return '<a href="javascript:void(0);" id="active" data-toggle="tooltip" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ __("default.label.no") }} </span></a>'; }
+          if ( data == 1 ) { return '<a href="javascript:void(0);" id="inactive" data-toggle="tooltip" data-id="' + row.id + '"><span class="label label-info label-inline"> {{ __("default.label.yes") }} </span></a>'; }
+          if ( data == 2 ) { return '<a href="javascript:void(0);" id="active" data-toggle="tooltip" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ __("default.label.no") }} </span></a>'; }
+        }
+      },
       {
         data: 'action',
         orderable: false,
@@ -135,6 +160,11 @@
       [1, 'asc']
     ]
   });
+
+  $('#export_print').on('click', function(e) { e.preventDefault(); table.button(0).trigger(); });
+  $('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
+  $('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
+  $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
 </script>
 
 <script>
@@ -174,6 +204,212 @@
       $('#toolbar_delete').collapse('hide');
       $('#collapse_bulk').collapse('hide');
     }
+  });
+</script>
+
+<script>
+  $("#table-refresh").on("click", function() {
+    KTApp.block('#exilednoname_body', {
+      overlayColor: '#000000',
+      state: 'primary',
+      message: "{{ __('default.label.please-wait') }} ..."
+    });
+    setTimeout(function() {
+      KTApp.unblock('#exilednoname_body');
+      $('#collapse_bulk').collapse('hide');
+      $('.filter-form').val('');
+      table.search( '' ).columns().search( '' ).draw();
+      table.ajax.reload();
+    }, 2000);
+  });
+</script>
+
+<script>
+  $('body').on('click', '#active', function () {
+    var id = $(this).data("id");
+    $.ajax({
+      type: "get", url: "{{ URL::current() }}/active/"+id, processing: true, serverSide: true,
+      success: function (data) {
+        KTApp.block('#exilednoname_body', {
+          overlayColor: '#000000',
+          state: 'info',
+          message: '{{ __('default.label.processing') }} ...'
+        });
+        setTimeout(function() {
+          KTApp.unblock('#exilednoname_body');
+          var oTable = $('#exilednoname_table').dataTable();
+          oTable.fnDraw(false);
+          toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+          toastr.success("{{ __('default.notification.success.item-active') }}");
+        }, 2000);
+      },
+      error: function (data) {
+        toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+        toastr.error("{{ __('default.notification.error./') }}");
+      }
+    });
+  });
+</script>
+
+<script>
+  $('body').on('click', '#inactive', function () {
+    var id = $(this).data("id");
+    $.ajax({
+      type: "get", url: "{{ URL::current() }}/inactive/"+id, processing: true, serverSide: true,
+      success: function (data) {
+        KTApp.block('#exilednoname_body', {
+          overlayColor: '#000000',
+          state: 'info',
+          message: '{{ __('default.label.processing') }} ...'
+        });
+        setTimeout(function() {
+          KTApp.unblock('#exilednoname_body');
+          var oTable = $('#exilednoname_table').dataTable();
+          oTable.fnDraw(false);
+          toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+          toastr.success("{{ __('default.notification.success.item-inactive') }}");
+        }, 2000);
+      },
+      error: function (data) {
+        toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+        toastr.error("{{ __('default.notification.error./') }}");
+      }
+    });
+  });
+</script>
+
+<script>
+  $('body').on('click', '.delete', function () {
+    var id = $(this).data("id");
+    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.delete') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false }).then(function(result) {
+      if (result.value) {
+        $.ajax({
+          type: "get", url: "{{ URL::current() }}/delete/"+id,
+          success: function (data) {
+            KTApp.block('#exilednoname_body', {
+              overlayColor: '#000000',
+              state: 'info',
+              message: '{{ __('default.label.processing') }} ...'
+            });
+            setTimeout(function() {
+              KTApp.unblock('#exilednoname_body');
+              var oTable = $('#exilednoname_table').dataTable();
+              oTable.fnDraw(false);
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.success("{{ __('default.notification.success.item-deleted') }}");
+            }, 2000);
+          },
+          error: function (data) {
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.error("{{ __('default.notification.error./') }}");
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<script>
+  $('.selected-active').on('click', function(e) {
+    var exilednonameArr = [];
+    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
+    var strEXILEDNONAME = exilednonameArr.join(",");
+    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-active') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
+      if (result.value) {
+        $.ajax({
+          url: "{{ URL::current() }}/selected-active", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
+          success: function (data) {
+            KTApp.block('#exilednoname_body', {
+              overlayColor: '#000000',
+              state: 'info',
+              message: '{{ __('default.label.processing') }} ...'
+            });
+            setTimeout(function() {
+              KTApp.unblock('#exilednoname_body');
+              var oTable = $('#exilednoname_table').dataTable();
+              $('#toolbar_delete').collapse('hide');
+              $('#collapse_bulk').collapse('hide');
+              oTable.fnDraw(false);
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.success("{{ __('default.notification.success.selected-active') }}");
+            }, 2000);
+          },
+          error: function (data) {
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.error("{{ __('default.notification.error./') }}");
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<script>
+  $('.selected-inactive').on('click', function(e) {
+    var exilednonameArr = [];
+    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
+    var strEXILEDNONAME = exilednonameArr.join(",");
+    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-inactive') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
+      if (result.value) {
+        $.ajax({
+          url: "{{ URL::current() }}/selected-inactive", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
+          success: function (data) {
+            KTApp.block('#exilednoname_body', {
+              overlayColor: '#000000',
+              state: 'info',
+              message: '{{ __('default.label.processing') }} ...'
+            });
+            setTimeout(function() {
+              KTApp.unblock('#exilednoname_body');
+              var oTable = $('#exilednoname_table').dataTable();
+              $('#toolbar_delete').collapse('hide');
+              $('#collapse_bulk').collapse('hide');
+              oTable.fnDraw(false);
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.success("{{ __('default.notification.success.selected-inactive') }}");
+            }, 2000);
+          },
+          error: function (data) {
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.error("{{ __('default.notification.error./') }}");
+          }
+        });
+      }
+    });
+  });
+</script>
+
+<script>
+  $('.selected-delete').on('click', function(e) {
+    var exilednonameArr = [];
+    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
+    var strEXILEDNONAME = exilednonameArr.join(",");
+    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-delete') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
+      if (result.value) {
+        $.ajax({
+          url: "{{ URL::current() }}/selected-delete", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
+          success: function (data) {
+            KTApp.block('#exilednoname_body', {
+              overlayColor: '#000000',
+              state: 'info',
+              message: '{{ __('default.label.processing') }} ...'
+            });
+            setTimeout(function() {
+              KTApp.unblock('#exilednoname_body');
+              var oTable = $('#exilednoname_table').dataTable();
+              $('#collapse_bulk').collapse('hide');
+              oTable.fnDraw(false);
+              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+              toastr.success("{{ __('default.notification.success.selected-delete') }}");
+            }, 2000);
+          },
+          error: function (data) {
+            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+            toastr.error("{{ __('default.notification.error./') }}");
+          }
+        });
+      }
+    });
   });
 </script>
 @endpush

@@ -3,7 +3,7 @@
 @section('content')
 <div class="row">
   <div class="col-lg-12">
-    <div class="card card-custom" data-card="true" id="kt_card_1">
+    <div class="card card-custom" data-card="true">
       <div class="card-header">
         <div class="card-title">
           <h3 class="card-label"> Create </h3>
@@ -23,19 +23,21 @@
       <div class="card-body">
 
         @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
+        <div class="alert alert-danger">
+          <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            <li>{{ $error }}</li>
             @endforeach
-        </ul>
-    </div>
-@endif
+          </ul>
+        </div>
+        @endif
+
         <form method="POST" id="exilednoname-form" action="{{ URL::current() }}/../" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
           {{ csrf_field() }}
           <input class="form-control" name="created_by" type="hidden" value="{{ Auth::User()->id }}">
           @include($path . 'form', ['formMode' => 'create'])
         </form>
+        
       </div>
     </div>
   </div>
