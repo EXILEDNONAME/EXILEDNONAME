@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StorePostRequest extends FormRequest
 {
@@ -22,7 +23,7 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
       return [
-      'name' => 'required|max:3',
+      'name' => 'required|max:3|unique:system_application_table_generals',
   ];
     }
 }

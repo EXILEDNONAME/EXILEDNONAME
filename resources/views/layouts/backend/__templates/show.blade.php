@@ -2,8 +2,9 @@
 
 @section('content')
 <div class="row">
-  <div class="col-lg-9">
-    <div class="card card-custom" data-card="true" id="kt_card_1">
+
+  <div class="col-lg-8">
+      <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
       <div class="card-header">
         <div class="card-title">
           <h3 class="card-label"> {{ __('default.label.details') }} </h3>
@@ -45,16 +46,6 @@
           <div class="table-responsive">
             <table width="100%" class="table table-bordered table-checkable" id="exilednoname_table">
               <input class="form-control" name="id" type="hidden" value="{{ $data->id }}">
-              @if (!empty($datetime) && $datetime == 'true')
-              <tr class="text-nowrap">
-                <td class="align-middle font-weight-bold" width="300"> {{ __('default.label.date-start') }} </td>
-                <td class="align-middle"> {{ \Carbon\Carbon::parse($data->date_start)->format('d F Y, H:i') }} </td>
-              </tr>
-              <tr class="text-nowrap">
-                <td class="align-middle font-weight-bold" width="300"> {{ __('default.label.date-end') }} </td>
-                <td class="align-middle"> {{ \Carbon\Carbon::parse($data->date_end)->format('d F Y, H:i') }} </td>
-              </tr>
-              @endif
               @stack('content')
               <tr class="text-nowrap">
                 <td class="align-middle font-weight-bold" width="300"> {{ __('default.label.active') }} </td>
@@ -64,16 +55,6 @@
                   @endif
                 </td>
               </tr>
-              @if ( !empty($status) && $status == 'true')
-              <tr class="text-nowrap">
-                <td class="align-middle font-weight-bold"> Status </td>
-                <td class="align-middle">
-                  @if ( $data->status == 1 ) {{ __('default.label.success') }}
-                  @else {{ __('default.label.pending') }}
-                  @endif
-                </td>
-              </tr>
-              @endif
               <tr class="text-nowrap">
                 <td class="align-middle font-weight-bold"> {{ __('default.label.created-by') }} </td>
                 <td class="align-middle">
@@ -81,16 +62,6 @@
                   - System -
                   @else
                   {{ \DB::table('users')->where('id', $data->created_by)->first()->name }}
-                  @endif
-                </td>
-              </tr>
-              <tr class="text-nowrap">
-                <td class="align-middle font-weight-bold"> {{ __('default.label.updated-by') }} </td>
-                <td class="align-middle">
-                  @if ($data->updated_by == 0 || $data->updated_by == NULL)
-                  - System -
-                  @else
-                  {{ \DB::table('users')->where('id', $data->updated_by)->first()->name }}
                   @endif
                 </td>
               </tr>
@@ -109,39 +80,105 @@
 
     </div>
   </div>
-  <div class="col-lg-3">
-    <div class="card card-custom" data-card="true" id="kt_card_1">
+
+  <div class="col-lg-4">
+    <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
       <div class="card-header">
         <div class="card-title">
-          <h3 class="card-label"> Show </h3>
+          <h3 class="card-label"> Activities </h3>
         </div>
         <div class="card-toolbar">
-          <a href="{{ $url }}" class="btn btn-sm btn-outline-primary font-weight-bolder mr-1">
-            <i class="ki ki-long-arrow-back icon-xs"></i>
-            {{ __('default.label.back') }}
-          </a>
+          <a data-toggle="modal" class="btn btn-sm btn-icon btn-outline-primary mr-2" onclick="printData('printDataActivities')"><i class="fas fa-print"></i></a>
         </div>
       </div>
 
+      <div id="printDataActivities">
       <div class="card-body">
-        <form method="POST" id="exilednoname-form" action="{{ URL::current() }}/../" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
-          {{ csrf_field() }}
-        <div class="form-group row">
-          <label class="col-lg-3 col-form-label"> Name </label>
-          <div class="col-lg-9">
-            <input name="name" type="name" class="form-control" />
+
+        <div class="example-preview">
+          <div class="timeline timeline-2">
+            <div class="timeline-bar"></div>
+
+            @php $activity = activities($model)->where('subject_id', $data->id)->take(7); @endphp
+            @if (!empty($activity) && !empty($activity->count()))
+            @foreach($activity as $item)
+            <div class="timeline-item">
+
+              @foreach($item['properties'] as $data_object)
+              @if ($item->description == 'created')
+              <span class="timeline-badge bg-success"></span>
+              <div class="timeline-content d-flex align-items-center justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, {{ $item->causer->name }} </span><br>
+                  @if (!empty($item->causer->name) && !empty($data_object['name']))
+                  {{ __('default.activity.item-created') }} <span class="font-weight-bolder"> {{ mb_strimwidth($data_object['name'], 0, 10, ' ...') }} </span>
+                  @else
+                  {{ __('default.activity.item-created') }} ...
+                  @endif
+                </span>
+              </div>
+              @endif
+              @endforeach
+
+
+              @if ($item->description == 'updated')
+              @if ($item['properties']['attributes']['deleted_at'] == NULL && !empty($item['properties']['old']['deleted_at']))
+              <span class="timeline-badge bg-info"></span>
+              <div class="timeline-content d-flex align-items-center justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, {{ $item->causer->name }} </span><br>
+                  @if (!empty($item->causer->name) && !empty($data_object['name']))
+                  {{ __('default.activity.item-restored') }} <span class="font-weight-bolder"> {{ mb_strimwidth($data_object['name'], 0, 10, ' ...') }} </span>
+                  @else
+                  {{ __('default.activity.item-restored') }} ...
+                  @endif
+                </span>
+              </div>
+              @else
+              <span class="timeline-badge bg-warning"></span>
+              <div class="timeline-content d-flex align-items-center justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, {{ $item->causer->name }} </span><br>
+                  @if (!empty($data_object['name']))
+                  {{ __('default.activity.item-updated') }} <span class="font-weight-bolder"> {{ mb_strimwidth($item['properties']['old']['name'], 0, 10, ' ...') }} </span> to <span class="font-weight-bolder"> {{ mb_strimwidth($item['properties']['attributes']['name'], 0, 10, ' ...') }} </span>
+                  @else
+                  {{ __('default.activity.item-updated') }} ...
+                  @endif
+                </span>
+              </div>
+              @endif
+              @endif
+
+              @foreach($item['properties'] as $data_object)
+              @if ($item->description == 'deleted')
+              <span class="timeline-badge bg-danger"></span>
+              <div class="timeline-content d-flex align-items-center justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, {{ $item->causer->name }} </span><br>
+                  @if (!empty($data_object['name']))
+                  {{ __('default.activity.item-deleted') }} <b>{{ $data_object['name'] }}</b>
+                  @else
+                  {{ __('default.activity.item-deleted') }} ...
+                  @endif
+                </span>
+              </div>
+              @endif
+              @endforeach
+
+            </div>
+            @endforeach
+            @else
+            <span class="text-muted"> {{ trans('default.activity.no-recent-activities') }} ... </span>
+            @endif
+
           </div>
         </div>
-        <div class="form-group row">
-          <label class="col-lg-3 col-form-label"> Description </label>
-          <div class="col-lg-9">
-            <input name="description" type="name" class="form-control" />
-          </div>
-        </div>
-      </form>
+
       </div>
     </div>
+    </div>
   </div>
+
 </div>
 
 <div class="modal fade" id="qrcode_modal" tabindex="-1" role="dialog" aria-hidden="true" style="display: none;">
@@ -169,6 +206,14 @@
 @push('js')
 <script>
 function printData(divName) {
+  var printContents = document.getElementById(divName).innerHTML;
+  var originalContents = document.body.innerHTML;
+  document.body.innerHTML = printContents;
+  window.print();
+  document.body.innerHTML = originalContents;
+}
+
+function printDataActivities(divName) {
   var printContents = document.getElementById(divName).innerHTML;
   var originalContents = document.body.innerHTML;
   document.body.innerHTML = printContents;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
   @include('layouts.backend.__includes.head')
   <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
     @include('layouts.backend.__includes.logo-mobile')
@@ -29,13 +29,9 @@
       </div>
     </div>
 
-    @include('layouts.backend.__includes.panel-user')
-    @include('layouts.backend.__includes.panel-cart')
-    @include('layouts.backend.__includes.panel-quick')
-    @include('layouts.backend.__includes.panel-chat')
-    @include('layouts.backend.__includes.panel-demo')
+    <!-- @!include('layouts.backend.__includes.panel-chat') -->
     @include('layouts.backend.__includes.scroll-top')
-    <!-- @!include('layouts.backend.__includes.sticky-toolbar') -->
+    @include('layouts.backend.__includes.sticky-toolbar')
     @include('layouts.backend.__includes.js')
 
   </body>

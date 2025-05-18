@@ -16,6 +16,7 @@ return new class extends Migration {
       $table->text('description')->nullable();
       $table->integer('active')->default(1);
       $table->integer('status')->default(1);
+      $table->integer('created_by')->nullable()->default('0');
       $table->timestamps();
       $table->softDeletes();
     });

@@ -2,45 +2,77 @@
 
 return [
 
+  'activity' => [
+    'item-created'                  => 'Created',
+    'item-deleted'                  => 'Deleted',
+    'item-restored'                 => 'Restored',
+    'item-updated'                  => 'Updated',
+    'no-recent-activities'          => 'No Recent Activities',
+  ],
+
   'label' => [
     'action'                        => 'Action',
-    'active'                => 'Active',
+    'active'                        => 'Active',
     'activities'                    => 'Activities',
     'back'                          => 'Back',
+    'charts'                        => 'Charts',
     'close'                         => 'Close',
-    'create'                => 'Create',
-    'created-by'                    => 'Created By',
+    'create'                        => 'Create',
+    'created'                       => 'Created',
+    'updated'                       => 'Updated',
+    'deleted'                       => 'Deleted',
     'created-at'                    => 'Created At',
-    'updated-by'                    => 'Updated By',
-    'updated-at'                    => 'Updated At',
-    'export' => [
-      'copy'                => 'Copy',
-      'excel'               => 'Excel',
-      'pdf'                 => 'PDF',
-      'print'               => 'Print',
-    ],
+    'created-by'                    => 'Created By',
+    'edit'                          => 'Edit',
     'delete' => [
-      '/'                   => 'Delete'
+      '/'                           => 'Delete',
+      'permanent'                   => 'Delete Permanent',
+    ],
+    'export' => [
+      'copy'                        => 'Copy',
+      'excel'                       => 'Excel',
+      'pdf'                         => 'PDF',
+      'print'                       => 'Print',
+      'description' => [
+        'copy'                      => 'Copy as Text',
+        'excel'                     => 'Export to Excel',
+        'pdf'                       => 'Export to PDF',
+        'print'                     => 'Print',
+      ],
     ],
     'details'                       => 'Details',
     'filter' => [
-      '/'                   => 'Filter'
+      '/'                           => 'Filter'
     ],
-    'main'                  => 'Main',
-    'please-wait'           => 'Please Wait',
-    'processing'            => 'Processing',
+    'logout'                        => 'Logout',
+    'logout-session'                => 'Logout This Session',
+    'main'                          => 'Main',
+    'no'                            => 'No',
+    'please-wait'                   => 'Please Wait',
+    'processing'                    => 'Processing',
+    'profile' => [
+      'account-information'         => 'Account Information',
+    ],
     'qr-code'                       => 'QR Code',
-    'refresh'               => 'Refresh',
+    'redirect-login'                => 'Logout This Session, and will be redirected to the login page',
+    'refresh'                       => 'Refresh',
+    'reset'                         => 'Reset',
+    'restore'                       => 'Restore',
+    'restored'                      => 'Restored',
     'save'                          => 'Save',
-    'selected-active'       => 'Selected Set Active',
-    'selected-inactive'     => 'Selected Set Inactive',
-    'selected-delete'       => 'Selected Delete',
+    'sessions'                      => 'Sessions',
+    'selected-active'               => 'Selected Set Active',
+    'selected-delete'               => 'Selected Delete',
+    'selected-delete-permanent'     => 'Selected Delete Permanent',
+    'selected-restore'              => 'Selected Restore',
+    'selected-inactive'             => 'Selected Set Inactive',
     'trash'                         => 'Trash',
     'update'                        => 'Update',
-    'view'                  => 'View',
-    'edit'                  => 'Edit',
-    'yes'                   => 'Yes',
-    'no'                    => 'No',
+    'updated-at'                    => 'Updated At',
+    'updated-by'                    => 'Updated By',
+    'view'                          => 'View',
+    'yes'                           => 'Yes',
+
   ],
 
   'notification' => [
@@ -48,23 +80,34 @@ return [
     'confirm' => [
       'are-you-sure'                => 'Are You Sure',
       'delete'                      => 'Delete This Item',
+      'delete-permanent'            => 'Delete Permanent This Item',
+      'restore'                     => 'Restore This Item',
       'selected-active'             => 'Activate All Item Selected',
       'selected-inactive'           => 'Inactivate All Item Selected',
       'selected-delete'             => 'Delete All Item Selected',
+      'selected-restore'            => 'Restore All Item Selected',
     ],
 
     'success' => [
       'item-active'                 => 'Successfully Item Activated',
       'item-deleted'                => 'Successfully Item Deleted',
+      'item-delete-permanent'       => 'Successfully Item Delete Permanently',
       'item-inactive'               => 'Successfully Item Inactivated',
+      'item-restore'                => 'Successfully Item Restored',
       'selected-active'             => 'All Items Have Been Activated',
       'selected-inactive'           => 'All Items Have Been Inactivated',
       'selected-delete'             => 'All Items Have Been Deleted',
     ],
 
+
+
     'error' => [
       '/'                           => 'There is something wrong :(',
     ],
+  ],
+
+  'select' => [
+    'active'                        => 'Select Active',
   ],
 
 ];

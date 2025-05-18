@@ -4,7 +4,7 @@
 
       <li class="menu-item {{ (request()->is('dashboard')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard') }}" class="menu-link"><i class="menu-icon fas fa-desktop"></i><span class="menu-text"> Dashboard </span></a></li>
       <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/messages') }}" class="menu-link"><i class="menu-icon fas fa-envelope-open-text"></i><span class="menu-text"> Messages </span></a></li>
-      <li class="menu-item {{ (request()->is('dashboard/notifications*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/notifications') }}" class="menu-link"><i class="menu-icon fas fa-bell"></i><span class="menu-text"> Messages </span></a></li>
+      <li class="menu-item {{ (request()->is('dashboard/notifications*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/notifications') }}" class="menu-link"><i class="menu-icon fas fa-bell"></i><span class="menu-text"> Notifications </span></a></li>
 
       <li class="menu-section">
         <h4 class="menu-text"> Applications </h4>
@@ -25,6 +25,12 @@
       </li>
 
       <li class="menu-section ">
+        <h4 class="menu-text"> EXTENSIONS </h4>
+        <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+      </li>
+      <li class="menu-item {{ (request()->is('dashboard/file-manager*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/file-manager') }}" class="menu-link"><i class="menu-icon fas fa-hdd"></i><span class="menu-text"> File Manager </span></a></li>
+
+      <li class="menu-section ">
         <h4 class="menu-text"> SETTINGS </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
       </li>
@@ -42,6 +48,41 @@
         </div>
       </li>
       <li class="menu-item"><a class="menu-link" id="logout"><i class="menu-icon fas fa-sign-out-alt"></i><span class="menu-text"> {{ __('default.label.logout') }} </span></a></li>
+
+      <li class="menu-section ">
+        <h4 class="menu-text"> ADMINISTRATIVES </h4>
+        <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
+      </li>
+      <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administrative/applications*')) ? 'menu-item-open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon fab fa-xing"></i>
+          <span class="menu-text"> Applications </span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="menu-submenu">
+          <ul class="menu-subnav">
+            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administrative/applications/customizations*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administrative/applications/customizations') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Customizations </span></a></li>
+            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administrative/applications/optimizations*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administrative/applications/optimizations') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Optimizations </span></a></li>
+            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administrative/applications/settings*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administrative/applications/settings') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Settings </span></a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="menu-item menu-item-submenu {{ (request()->is('dashboard')) ? 'menu-item-open' : '' }}">
+        <a href="javascript:void(0);" class="menu-link menu-toggle">
+          <i class="menu-icon fas fa-user-shield"></i>
+          <span class="menu-text"> Managements </span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="menu-submenu">
+          <ul class="menu-subnav">
+            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administratives/managements/permissions*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administratives/managements/permissions') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Permissions </span></a></li>
+            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administratives/managements/roles*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administratives/managements/roles') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Roles </span></a></li>
+            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administratives/managements/users*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administratives/managements/users') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Users </span></a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="menu-item {{ (request()->is('dashboard/administratives/sessions*')) ? 'menu-item-active' : '' }}"><a href="/dashboard/administratives/sessions" class="menu-link"><i class="menu-icon fas fa-history"></i><span class="menu-text"> Sessions </span></a></li>
+      <li class="menu-item"><a class="menu-link"><i class="menu-icon fas fa-chart-line"></i><span class="menu-text"> Statistics </span></a></li>
 
     </ul>
   </div>

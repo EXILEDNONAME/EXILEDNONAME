@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Http\Requests\StorePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use Redirect, Response;
+use Spatie\Activitylog\Models\Activity;
 
 class GeneralController extends Controller {
 
@@ -96,7 +98,7 @@ class GeneralController extends Controller {
   **************************************************
   **/
 
-  public function update(Request $request, $id) {
+  public function update(UpdatePostRequest $request, $id) {
     $data = $this->model::findOrFail($id);
     $update = $request->all();
     $data->update($update);
@@ -187,5 +189,77 @@ class GeneralController extends Controller {
     $this->model::whereIn('id',explode(",",$data))->delete();
     return Response::json($data);
   }
+
+  /**
+  **************************************************
+  * @return ACTIVITIES
+  **************************************************
+  **/
+
+  public function activity() {
+    $url = $this->url;
+    $model = $this->model;
+    $data = Activity::where('subject_type', $this->model)->orderby('updated_at', 'desc')->get();
+    if (request()->ajax()) {
+      return DataTables::of($data)
+      ->editColumn('subjects', function($order) { if(!empty($order->properties['attributes']['name'])) { return $order->properties['attributes']['name']; } else { return ''; }})
+      ->editColumn('causer_id', function($order) { return $order->causer->name; })
+      ->editColumn('updated_at', function($order) { return \Carbon\Carbon::parse($order->updated_at)->format('d F Y, H:i'); })
+      ->editColumn('description', function ($order) { return nl2br(e($order->description)); })
+      ->rawColumns(['description'])
+      ->addIndexColumn()->make(true);
+    }
+    return view($this->path . 'activity', compact('data', 'model', 'url'));
+  }
+
+  /**
+  **************************************************
+  * @return TRASH
+  **************************************************
+  **/
+
+  public function trash() {
+    $url = $this->url;
+    $data = $this->model::onlyTrashed()->get();
+    if(request()->ajax()) {
+      return DataTables::of($data)
+      ->editColumn('deleted_at', function($order) { return \Carbon\Carbon::parse($order->deleted_at)->format('d F Y, H:i'); })
+      ->rawColumns(['description'])
+      ->addIndexColumn()
+      ->make(true);
+    }
+    return view($this->path . 'trash', compact('data', 'url'));
+  }
+
+  /**
+  **************************************************
+  * @return RESTORE
+  **************************************************
+  **/
+
+  public function restore($id) {
+    $data = $this->model::withTrashed()->findOrFail($id);
+    if ($data->trashed()) {
+      $data->restore();
+      $data = $this->model::where('id', $id)->update(['deleted_at' => NULL]);
+      return Response::json($data);
+    } else { return Response::json($data);}
+  }
+
+  /**
+  **************************************************
+  * @return DELETE-PERMANENT
+  **************************************************
+  **/
+
+  public function delete_permanent($id) {
+    $data = $this->model::withTrashed()->findOrFail($id);
+    if(!$data->trashed()) { return Response::json($data); }
+    else {
+      $data->forceDelete();
+      return Response::json($data);
+    }
+  }
+
 
 }

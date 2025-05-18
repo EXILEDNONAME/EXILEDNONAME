@@ -21,23 +21,11 @@
         </div>
       </div>
       <div class="card-body">
-
-        @if ($errors->any())
-        <div class="alert alert-danger">
-          <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-          </ul>
-        </div>
-        @endif
-
         <form method="POST" id="exilednoname-form" action="{{ URL::current() }}/../" accept-charset="UTF-8" class="form-horizontal" enctype="multipart/form-data">
           {{ csrf_field() }}
           <input class="form-control" name="created_by" type="hidden" value="{{ Auth::User()->id }}">
           @include($path . 'form', ['formMode' => 'create'])
         </form>
-        
       </div>
     </div>
   </div>

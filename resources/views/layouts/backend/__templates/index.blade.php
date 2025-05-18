@@ -7,7 +7,7 @@
 @section('content')
 <div class="row">
   <div class="col-lg-12">
-    <div class="card card-custom" data-card="true" id="kt_card_1">
+    <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
       <div class="card-header">
         <div class="card-title">
           <h3 class="card-label"> {{ __('default.label.main') }} </h3>
@@ -67,21 +67,142 @@
           </div>
         </div>
 
-        <table class="table table-separate table-head-custom table-checkable" id="exilednoname_table">
-          <thead>
-            <tr>
-              <th class="no-export"> </th>
-              <th> No. </th>
-              @yield('table-header')
-              <th class="no-export"> {{ __('default.label.active') }} </th>
-              <th class="no-export"> </th>
-            </tr>
-          </thead>
-        </table>
+        <div class="table-responsive">
+          <table class="table table-separate table-head-custom table-checkable" id="exilednoname_table">
+            <thead>
+              <tr>
+                <th class="no-export"> </th>
+                <th> No. </th>
+                @yield('table-header')
+                <th class="no-export"> {{ __('default.label.active') }} </th>
+                <th class="no-export"> </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+
       </div>
     </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-lg-4">
+    <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
+      <div class="card-header">
+        <h4 class="card-title">
+          <span class="card-label"> {{ __('default.label.activities') }} </span>
+        </h4>
+        <div class="card-toolbar">
+          <a id="activity-refresh" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.refresh') }}"><i class="fas fa-sync-alt"></i></a>
+          <a href="#" class="btn btn-icon btn-xs btn-hover-light-primary mr-1" data-card-tool="toggle"><i class="fas fa-caret-down"></i></a>
+        </div>
+      </div>
+      <div class="card-body" id="exilednoname_activity">
+        <div class="example-preview">
+          <div class="timeline timeline-2">
+            <div class="timeline-bar"></div>
+
+            @php $activity = activities($model)->take(7); @endphp
+            @if (!empty($activity) && !empty($activity->count()))
+            @foreach($activity as $item)
+            <div class="timeline-item">
+
+              @foreach($item['properties'] as $data_object)
+              @if ($item->description == 'created')
+              <span class="timeline-badge bg-success" data-toggle="tooltip" data-original-title="{{ __('default.activity.item-created') }}" data-placement="bottom"></span>
+              <div class="timeline-content d-flex align-items-center justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, {{ $item->causer->name }} </span><br>
+                  @if (!empty($item->causer->name) && !empty($data_object['name']))
+                  {{ __('default.activity.item-created') }} <span class="font-weight-bolder"> {{ mb_strimwidth($data_object['name'], 0, 10, ' ...') }} </span>
+                  @else
+                  {{ __('default.activity.item-created') }} ...
+                  @endif
+                </span>
+                <span class="text-right"><a href="{{ URL::Current() }}/{{ $item->subject_id }}"><i class="far fa-arrow-alt-circle-right text-muted"></i></a></span>
+              </div>
+              @endif
+              @endforeach
+
+              @if ($item->description == 'updated')
+              @if ($item['properties']['attributes']['deleted_at'] == NULL && $item['properties']['old']['deleted_at'] == NULL)
+              <span class="timeline-badge bg-warning" data-toggle="tooltip" data-original-title="{{ __('default.activity.item-updated') }}" data-placement="bottom"></span>
+              <div class="timeline-content d-flex align-items-center justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, {{ $item->causer->name }} </span><br>
+                  @if (!empty($data_object['name']))
+                  {{ __('default.activity.item-updated') }} <b>{{ $data_object['name'] }}</b>
+                  @else
+                  {{ __('default.activity.item-updated') }} ...
+                  @endif
+                </span>
+                <span class="text-right"><a href="{{ URL::Current() }}/{{ $item->subject_id }}"><i class="far fa-arrow-alt-circle-right text-muted"></i></a></span>
+              </div>
+              @else
+              <span class="timeline-badge bg-info" data-toggle="tooltip" data-original-title="{{ __('default.activity.item-restored') }}" data-placement="bottom"></span>
+              <div class="timeline-content d-flex align-items-center justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, {{ $item->causer->name }} </span><br>
+                  @if (!empty($data_object['name']))
+                  {{ __('default.activity.item-restored') }} <b>{{ $data_object['name'] }}</b>
+                  @else
+                  {{ __('default.activity.item-restored') }} ...
+                  @endif
+                </span>
+                <span class="text-right"><a href="{{ URL::Current() }}/{{ $item->subject_id }}"><i class="far fa-arrow-alt-circle-right text-muted"></i></a></span>
+              </div>
+              @endif
+              @endif
+
+              @foreach($item['properties'] as $data_object)
+              @if ($item->description == 'deleted')
+              <span class="timeline-badge bg-danger" data-toggle="tooltip" data-original-title="{{ __('default.activity.item-deleted') }}" data-placement="bottom"></span>
+              <div class="timeline-content d-flex align-items-center justify-content-between">
+                <span class="mr-3">
+                  <span class="text-muted"> {{ $item->created_at->diffForHumans() }}, {{ $item->causer->name }} </span><br>
+                  @if (!empty($data_object['name']))
+                  {{ __('default.activity.item-deleted') }} <b>{{ $data_object['name'] }}</b>
+                  @else
+                  {{ __('default.activity.item-deleted') }} ...
+                  @endif
+                </span>
+              </div>
+              @endif
+              @endforeach
+
+            </div>
+            @endforeach
+            @else
+            <span class="text-muted"> {{ trans('default.activity.no-recent-activities') }} ... </span>
+            @endif
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-8">
+    <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
+      <div class="card-header">
+        <div class="card-title">
+          <h3 class="card-label">
+            {{ __('default.label.charts') }}
+          </h3>
+        </div>
+        <div class="card-toolbar">
+          <a id="chart-refresh" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.refresh') }}"><i class="fas fa-sync-alt"></i></a>
+          <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle"><i class="fas fa-caret-down"></i></a>
+        </div>
+      </div>
+      <div class="card-body" id="exilednoname_chart">
+        <div id="charts"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 @push('js')
@@ -89,6 +210,20 @@
 <script src="/assets/backend/js/pages/crud/forms/widgets/bootstrap-datepicker.js?v=7.0.6"></script>
 <script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js?v=7.0.6"></script>
 <script>
+  $(document).ready(function() {
+    $('#toast-container').fadeOut(5000);
+    KTApp.block('#exilednoname_body', { overlayColor: '#000000', state: 'primary', message: "{{ __('default.label.please-wait') }} ..." });
+    KTApp.block('#exilednoname_activity', { overlayColor: '#000000', state: 'primary', message: "{{ __('default.label.please-wait') }} ..." });
+    KTApp.block('#exilednoname_chart', { overlayColor: '#000000', state: 'primary', message: "{{ __('default.label.please-wait') }} ..."
+    });
+    setTimeout(function() {
+      KTApp.unblock('#exilednoname_body');
+      KTApp.unblock('#exilednoname_chart');
+      KTApp.unblock('#exilednoname_activity');
+    }, 2000);
+  });
+  
+  "use strict";
   var table = $('#exilednoname_table').DataTable({
     serverSide: true,
     searching: true,
@@ -167,249 +302,18 @@
   $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
 </script>
 
-<script>
-  table.on('change', '.group-checkable', function() {
-    var set = $(this).closest('table').find('td:first-child .checkable');
-    var checked = $(this).is(':checked');
-    $(set).each(function() {
-      if (checked) {
-        $(this).prop('checked', true);
-        table.rows($(this).closest('tr')).select();
-        var checkedNodes = table.rows('.selected').nodes();
-        var count = checkedNodes.length;
-        $('#exilednoname_selected').html(count);
-        if (count > 0) {
-          $('#toolbar_delete').collapse('show');
-          $('#collapse_bulk').collapse('show');
-        }
-      } else {
-        $(this).prop('checked', false);
-        table.rows($(this).closest('tr')).deselect();
-        $('#toolbar_delete').collapse('hide');
-        $('#collapse_bulk').collapse('hide');
-      }
-    });
-  });
-</script>
+@include('layouts.backend.__extension.javascript.checkable')
+@include('layouts.backend.__extension.javascript.checkable-group')
+@include('layouts.backend.__extension.javascript.table-refresh')
+@include('layouts.backend.__extension.javascript.activity-refresh')
+@include('layouts.backend.__extension.javascript.chart-refresh')
 
-<script>
-  table.on('change', '.checkable', function() {
-    var checkedNodes = table.rows('.selected').nodes();
-    var count = checkedNodes.length;
-    $('#exilednoname_selected').html(count);
-    if (count > 0) {
-      $('#toolbar_delete').collapse('show');
-      $('#collapse_bulk').collapse('show');
-    } else {
-      $('#toolbar_delete').collapse('hide');
-      $('#collapse_bulk').collapse('hide');
-    }
-  });
-</script>
+@include('layouts.backend.__extension.javascript.active')
+@include('layouts.backend.__extension.javascript.inactive')
+@include('layouts.backend.__extension.javascript.delete')
+@include('layouts.backend.__extension.javascript.selected-active')
+@include('layouts.backend.__extension.javascript.selected-inactive')
+@include('layouts.backend.__extension.javascript.selected-delete')
+@include('layouts.backend.__extension.javascript.chart')
 
-<script>
-  $("#table-refresh").on("click", function() {
-    KTApp.block('#exilednoname_body', {
-      overlayColor: '#000000',
-      state: 'primary',
-      message: "{{ __('default.label.please-wait') }} ..."
-    });
-    setTimeout(function() {
-      KTApp.unblock('#exilednoname_body');
-      $('#collapse_bulk').collapse('hide');
-      $('.filter-form').val('');
-      table.search( '' ).columns().search( '' ).draw();
-      table.ajax.reload();
-    }, 2000);
-  });
-</script>
-
-<script>
-  $('body').on('click', '#active', function () {
-    var id = $(this).data("id");
-    $.ajax({
-      type: "get", url: "{{ URL::current() }}/active/"+id, processing: true, serverSide: true,
-      success: function (data) {
-        KTApp.block('#exilednoname_body', {
-          overlayColor: '#000000',
-          state: 'info',
-          message: '{{ __('default.label.processing') }} ...'
-        });
-        setTimeout(function() {
-          KTApp.unblock('#exilednoname_body');
-          var oTable = $('#exilednoname_table').dataTable();
-          oTable.fnDraw(false);
-          toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-          toastr.success("{{ __('default.notification.success.item-active') }}");
-        }, 2000);
-      },
-      error: function (data) {
-        toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-        toastr.error("{{ __('default.notification.error./') }}");
-      }
-    });
-  });
-</script>
-
-<script>
-  $('body').on('click', '#inactive', function () {
-    var id = $(this).data("id");
-    $.ajax({
-      type: "get", url: "{{ URL::current() }}/inactive/"+id, processing: true, serverSide: true,
-      success: function (data) {
-        KTApp.block('#exilednoname_body', {
-          overlayColor: '#000000',
-          state: 'info',
-          message: '{{ __('default.label.processing') }} ...'
-        });
-        setTimeout(function() {
-          KTApp.unblock('#exilednoname_body');
-          var oTable = $('#exilednoname_table').dataTable();
-          oTable.fnDraw(false);
-          toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-          toastr.success("{{ __('default.notification.success.item-inactive') }}");
-        }, 2000);
-      },
-      error: function (data) {
-        toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-        toastr.error("{{ __('default.notification.error./') }}");
-      }
-    });
-  });
-</script>
-
-<script>
-  $('body').on('click', '.delete', function () {
-    var id = $(this).data("id");
-    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.delete') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false }).then(function(result) {
-      if (result.value) {
-        $.ajax({
-          type: "get", url: "{{ URL::current() }}/delete/"+id,
-          success: function (data) {
-            KTApp.block('#exilednoname_body', {
-              overlayColor: '#000000',
-              state: 'info',
-              message: '{{ __('default.label.processing') }} ...'
-            });
-            setTimeout(function() {
-              KTApp.unblock('#exilednoname_body');
-              var oTable = $('#exilednoname_table').dataTable();
-              oTable.fnDraw(false);
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.success("{{ __('default.notification.success.item-deleted') }}");
-            }, 2000);
-          },
-          error: function (data) {
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.error("{{ __('default.notification.error./') }}");
-          }
-        });
-      }
-    });
-  });
-</script>
-
-<script>
-  $('.selected-active').on('click', function(e) {
-    var exilednonameArr = [];
-    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
-    var strEXILEDNONAME = exilednonameArr.join(",");
-    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-active') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
-      if (result.value) {
-        $.ajax({
-          url: "{{ URL::current() }}/selected-active", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
-          success: function (data) {
-            KTApp.block('#exilednoname_body', {
-              overlayColor: '#000000',
-              state: 'info',
-              message: '{{ __('default.label.processing') }} ...'
-            });
-            setTimeout(function() {
-              KTApp.unblock('#exilednoname_body');
-              var oTable = $('#exilednoname_table').dataTable();
-              $('#toolbar_delete').collapse('hide');
-              $('#collapse_bulk').collapse('hide');
-              oTable.fnDraw(false);
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.success("{{ __('default.notification.success.selected-active') }}");
-            }, 2000);
-          },
-          error: function (data) {
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.error("{{ __('default.notification.error./') }}");
-          }
-        });
-      }
-    });
-  });
-</script>
-
-<script>
-  $('.selected-inactive').on('click', function(e) {
-    var exilednonameArr = [];
-    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
-    var strEXILEDNONAME = exilednonameArr.join(",");
-    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-inactive') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
-      if (result.value) {
-        $.ajax({
-          url: "{{ URL::current() }}/selected-inactive", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
-          success: function (data) {
-            KTApp.block('#exilednoname_body', {
-              overlayColor: '#000000',
-              state: 'info',
-              message: '{{ __('default.label.processing') }} ...'
-            });
-            setTimeout(function() {
-              KTApp.unblock('#exilednoname_body');
-              var oTable = $('#exilednoname_table').dataTable();
-              $('#toolbar_delete').collapse('hide');
-              $('#collapse_bulk').collapse('hide');
-              oTable.fnDraw(false);
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.success("{{ __('default.notification.success.selected-inactive') }}");
-            }, 2000);
-          },
-          error: function (data) {
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.error("{{ __('default.notification.error./') }}");
-          }
-        });
-      }
-    });
-  });
-</script>
-
-<script>
-  $('.selected-delete').on('click', function(e) {
-    var exilednonameArr = [];
-    $(".checkable:checked").each(function() { exilednonameArr.push($(this).attr('data-id')); });
-    var strEXILEDNONAME = exilednonameArr.join(",");
-    Swal.fire({ title: "{{ __('default.notification.confirm.are-you-sure') }}?", text: "{{ __('default.notification.confirm.selected-delete') }}", icon: "warning", showCancelButton: true, confirmButtonText: '{{ __("default.label.yes") }}', cancelButtonText: '{{ __("default.label.no") }}', reverseButtons: false}).then(function(result) {
-      if (result.value) {
-        $.ajax({
-          url: "{{ URL::current() }}/selected-delete", type: 'get', headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}, data: 'EXILEDNONAME='+strEXILEDNONAME,
-          success: function (data) {
-            KTApp.block('#exilednoname_body', {
-              overlayColor: '#000000',
-              state: 'info',
-              message: '{{ __('default.label.processing') }} ...'
-            });
-            setTimeout(function() {
-              KTApp.unblock('#exilednoname_body');
-              var oTable = $('#exilednoname_table').dataTable();
-              $('#collapse_bulk').collapse('hide');
-              oTable.fnDraw(false);
-              toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-              toastr.success("{{ __('default.notification.success.selected-delete') }}");
-            }, 2000);
-          },
-          error: function (data) {
-            toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
-            toastr.error("{{ __('default.notification.error./') }}");
-          }
-        });
-      }
-    });
-  });
-</script>
 @endpush
