@@ -50,6 +50,22 @@
       </div>
       <div class="card-body" id="exilednoname_body">
 
+        @if ($message = Session::get('success'))
+        <div id="toast-container" class="toast-bottom-right">
+          <div class="toast toast-success" aria-live="polite">
+            <div class="toast-message">{{ $message }}</div>
+          </div>
+        </div>
+        @endif
+
+        @if ($message = Session::get('error'))
+        <div id="toast-container" class="toast-bottom-right">
+          <div class="toast toast-error" aria-live="polite">
+            <div class="toast-message">{{ $message }}</div>
+          </div>
+        </div>
+        @endif
+
         <div class="accordion" id="accordion-filter">
           <div id="collapse-filter" class="collapse hide" data-parent="#accordion-filter">
             <div class="mb-2">
@@ -222,7 +238,7 @@
       KTApp.unblock('#exilednoname_activity');
     }, 2000);
   });
-  
+
   "use strict";
   var table = $('#exilednoname_table').DataTable({
     serverSide: true,

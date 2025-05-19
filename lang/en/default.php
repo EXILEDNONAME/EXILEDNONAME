@@ -94,6 +94,7 @@ return [
       'item-delete-permanent'       => 'Successfully Item Delete Permanently',
       'item-inactive'               => 'Successfully Item Inactivated',
       'item-restore'                => 'Successfully Item Restored',
+      'item-updated'                => 'Successfully Item Updated',
       'selected-active'             => 'All Items Have Been Activated',
       'selected-inactive'           => 'All Items Have Been Inactivated',
       'selected-delete'             => 'All Items Have Been Deleted',
@@ -103,6 +104,10 @@ return [
 
     'error' => [
       '/'                           => 'There is something wrong :(',
+      'password-confirm'            => 'New Password should be same as your confirmed password. Please retype new password.',
+      'password-current'            => 'Your current password does not matches with the password you provided. Please try again.',
+      'password-new'                => 'New Password cannot be same as your current password. Please choose a different password.',
+      'restrict'                    => 'Access Restriction',
     ],
   ],
 

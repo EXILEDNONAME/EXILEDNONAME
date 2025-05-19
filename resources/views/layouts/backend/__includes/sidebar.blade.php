@@ -67,7 +67,7 @@
           </ul>
         </div>
       </li>
-      <li class="menu-item menu-item-submenu {{ (request()->is('dashboard')) ? 'menu-item-open' : '' }}">
+      <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administratives/managements*')) ? 'menu-item-open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon fas fa-user-shield"></i>
           <span class="menu-text"> Managements </span>
