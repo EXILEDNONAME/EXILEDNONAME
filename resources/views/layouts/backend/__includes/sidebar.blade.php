@@ -53,7 +53,7 @@
         <h4 class="menu-text"> ADMINISTRATIVES </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
       </li>
-      <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administrative/applications*')) ? 'menu-item-open' : '' }}">
+      <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administratives/applications*')) ? 'menu-item-open' : '' }}">
         <a href="javascript:void(0);" class="menu-link menu-toggle">
           <i class="menu-icon fab fa-xing"></i>
           <span class="menu-text"> Applications </span>
@@ -61,9 +61,9 @@
         </a>
         <div class="menu-submenu">
           <ul class="menu-subnav">
-            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administrative/applications/customizations*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administrative/applications/customizations') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Customizations </span></a></li>
-            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administrative/applications/optimizations*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administrative/applications/optimizations') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Optimizations </span></a></li>
-            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administrative/applications/settings*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administrative/applications/settings') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Settings </span></a></li>
+            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administratives/applications/customizations*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administratives/applications/customizations') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Customizations </span></a></li>
+            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administratives/applications/optimizations*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administratives/applications/optimizations') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Optimizations </span></a></li>
+            <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administratives/applications/settings*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/administratives/applications/settings') }}" class="menu-link"><span class="menu-text"><i class="menu-bullet menu-bullet-dot"><span></span></i> Settings </span></a></li>
           </ul>
         </div>
       </li>
