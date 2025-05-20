@@ -6,8 +6,14 @@ use App\Http\Controllers\Controller;
 use DataTables;
 use Illuminate\Http\Request;
 use Redirect, Response;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
 class SessionController extends Controller {
+
+  public static function middleware(): array {
+    return ['auth'];
+  }
 
   function __construct() {
     $this->model = 'App\Models\Backend\__System\Administrative\Session';

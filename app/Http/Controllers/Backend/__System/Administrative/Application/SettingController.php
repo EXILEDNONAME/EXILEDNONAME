@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend\__System\Administrative\Application;
 
-use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Redirect, Response;
@@ -11,12 +10,9 @@ use Illuminate\Routing\Controllers\Middleware;
 
 class SettingController extends Controller implements HasMiddleware {
 
-  public static function middleware(): array
-    {
-        return [
-            'auth',
-        ];
-    }
+  public static function middleware(): array {
+    return ['auth'];
+  }
 
   /**
   **************************************************

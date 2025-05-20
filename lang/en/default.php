@@ -103,6 +103,7 @@ return [
       'selected-inactive'           => 'All Items Have Been Inactivated',
       'selected-delete'             => 'All Items Have Been Deleted',
       'setting-updated'             => 'Successfully Setting Updated',
+      'table-reset'                 => 'Resetting Table Sessions',
     ],
 
 
