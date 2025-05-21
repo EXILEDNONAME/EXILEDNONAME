@@ -13,6 +13,7 @@
         "barryvdh/laravel-elfinder": "^0.5.4",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
+        "league/flysystem-ftp": "^3.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-html": "^3.3",

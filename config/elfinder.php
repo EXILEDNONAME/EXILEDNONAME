@@ -2,8 +2,8 @@
 
 return array(
 
-  'dir' => ['Files'],
-  'disks' => ['Files'],
+  'dir' => ['Files', 'Online'],
+  'disks' => ['Files', 'Online'],
 
   'route' => [
     'prefix' => 'dashboard/file-manager',
