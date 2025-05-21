@@ -1,8 +1,15 @@
+# REQUIREMENT
+- PHP Version 8.2.4 (php, file, glob, data, http, ftp, compress.zlib, compress.bzip2, https, ftps, zip, phar)
+- Node.js v18.14.2
+
 # INSTALL
 - composer install
 - npm install
 - php artisan migrate:refresh --seed
 - php artisan storage:link
+
+- Copy .env.example. to .env
+- Setting Database
 
 # STRUCTURES
 - (x) Dashboard
