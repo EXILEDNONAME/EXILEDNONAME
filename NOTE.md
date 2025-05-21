@@ -5,16 +5,19 @@
 - php artisan storage:link
 
 # STRUCTURES
-- Dashboard
+- (x) Dashboard
+- (x) Datatables
+- (x) Sessions
+- (x) File Manager
+- (x) Managements
+- (X) Administrative Apps
 - Messages
 - Notifications
-- Datatables
-- (x) Sessions
 
 # TO DO
-- (x) File Manager
-- Managements
-- Administrative Apps
+- Generate Datatables
+- Check Login For User Verified / Inactive
+- Page Register, Login & Forgot Password
 
 <!-- CONTROLLER CONSTRUCT -->
 $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
