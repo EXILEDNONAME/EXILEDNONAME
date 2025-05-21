@@ -94,7 +94,6 @@
     setTimeout(function() {
       KTApp.unblock('#exilednoname_body');
     }, 2000);
-  });
 
   "use strict";
   var table = $('#exilednoname_table').DataTable({

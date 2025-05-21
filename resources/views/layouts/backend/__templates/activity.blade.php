@@ -79,7 +79,6 @@
     setTimeout(function() {
       KTApp.unblock('#exilednoname_body');
     }, 2000);
-  });
 
   "use strict";
   var table = $('#exilednoname_table').DataTable({
@@ -204,8 +203,6 @@
   $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(4).trigger(); });
 </script>
 
-@include('layouts.backend.__extension.javascript.checkable')
-@include('layouts.backend.__extension.javascript.checkable-group')
 @include('layouts.backend.__extension.javascript.table-refresh')
 
 @endpush

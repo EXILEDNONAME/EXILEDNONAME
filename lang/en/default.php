@@ -93,6 +93,7 @@ return [
 
     'success' => [
       'item-active'                 => 'Successfully Item Activated',
+      'item-created'                => 'Successfully Item Created',
       'item-deleted'                => 'Successfully Item Deleted',
       'item-delete-permanent'       => 'Successfully Item Delete Permanently',
       'item-inactive'               => 'Successfully Item Inactivated',
@@ -102,6 +103,7 @@ return [
       'selected-active'             => 'All Items Have Been Activated',
       'selected-inactive'           => 'All Items Have Been Inactivated',
       'selected-delete'             => 'All Items Have Been Deleted',
+      'selected-restore'            => 'All Items Have Been Restored',
       'setting-updated'             => 'Successfully Setting Updated',
       'table-reset'                 => 'Resetting Table Sessions',
     ],
