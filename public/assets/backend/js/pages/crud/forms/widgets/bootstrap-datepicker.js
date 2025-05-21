@@ -14,9 +14,18 @@ var KTBootstrapDatepicker = function () {
             rightArrow: '<i class="la la-angle-right"></i>'
         }
     }
-    
+
     // Private functions
     var demos = function () {
+
+      $('#ex_datepicker_datetime').datepicker({
+        orientation: "bottom auto",
+        rtl: KTUtil.isRTL(),
+        todayHighlight: true,
+        format: 'yyyy-mm-dd',
+        templates: arrows
+      });
+      
         // minimum setup
         $('#kt_datepicker_1, #kt_datepicker_1_validate').datepicker({
             rtl: KTUtil.isRTL(),
@@ -33,7 +42,7 @@ var KTBootstrapDatepicker = function () {
             templates: arrows
         });
 
-        // input group layout 
+        // input group layout
         $('#kt_datepicker_2, #kt_datepicker_2_validate').datepicker({
             rtl: KTUtil.isRTL(),
             todayHighlight: true,
@@ -49,7 +58,7 @@ var KTBootstrapDatepicker = function () {
             templates: arrows
         });
 
-        // enable clear button 
+        // enable clear button
         $('#kt_datepicker_3, #kt_datepicker_3_validate').datepicker({
             rtl: KTUtil.isRTL(),
             todayBtn: "linked",
@@ -67,7 +76,7 @@ var KTBootstrapDatepicker = function () {
             templates: arrows
         });
 
-        // orientation 
+        // orientation
         $('#kt_datepicker_4_1').datepicker({
             rtl: KTUtil.isRTL(),
             orientation: "top left",
@@ -114,11 +123,11 @@ var KTBootstrapDatepicker = function () {
     return {
         // public functions
         init: function() {
-            demos(); 
+            demos();
         }
     };
 }();
 
-jQuery(document).ready(function() {    
+jQuery(document).ready(function() {
     KTBootstrapDatepicker.init();
 });

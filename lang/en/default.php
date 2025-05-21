@@ -14,13 +14,15 @@ return [
     'action'                        => 'Action',
     'active'                        => 'Active',
     'activities'                    => 'Activities',
+    'account-informations'          => 'Account Informations',
     'back'                          => 'Back',
+    'change-password'               => 'Change Password',
     'charts'                        => 'Charts',
     'close'                         => 'Close',
     'create'                        => 'Create',
     'created'                       => 'Created',
     'customizations'                => 'Customizations',
-    'updated'                       => 'Updated',
+    'date'                          => 'Date',
     'deleted'                       => 'Deleted',
     'created-at'                    => 'Created At',
     'created-by'                    => 'Created By',
@@ -72,6 +74,7 @@ return [
     'start'                         => 'Start',
     'trash'                         => 'Trash',
     'update'                        => 'Update',
+    'updated'                       => 'Updated',
     'updated-at'                    => 'Updated At',
     'updated-by'                    => 'Updated By',
     'view'                          => 'View',
@@ -102,6 +105,8 @@ return [
       'item-restore'                => 'Successfully Item Restored',
       'item-updated'                => 'Successfully Item Updated',
       'optimizing'                  => 'Optimizing Data',
+      'password-changed'            => 'Password has been Changed',
+      'profile-updated'             => 'Successfully Update Profile',
       'selected-active'             => 'All Items Have Been Activated',
       'selected-inactive'           => 'All Items Have Been Inactivated',
       'selected-delete'             => 'All Items Have Been Deleted',
@@ -123,6 +128,9 @@ return [
 
   'select' => [
     'active'                        => 'Select Active',
+    'date-start'                    => 'Select Date Start',
+    'date-end'                      => 'Select Date End',
+    'date'                          => 'Select Date',
   ],
 
 ];

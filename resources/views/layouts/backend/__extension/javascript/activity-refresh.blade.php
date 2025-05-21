@@ -1,3 +1,4 @@
+@if (!empty($activities) && $activities == 'true')
 <script>
   $("#activity-refresh").on("click", function() {
     KTApp.block('#exilednoname_activity', {
@@ -14,3 +15,4 @@
     }, 2000);
   });
 </script>
+@endif

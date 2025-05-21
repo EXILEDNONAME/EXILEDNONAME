@@ -68,6 +68,8 @@
 
         <div class="accordion" id="accordion-filter">
           <div id="collapse-filter" class="collapse hide" data-parent="#accordion-filter">
+
+            @if (empty($active) || $active == 'true')
             <div class="mb-2">
               <div class="col-lg-12 my-2 my-md-0">
                 <div class="d-flex align-items-center">
@@ -79,6 +81,26 @@
                 </div>
               </div>
             </div>
+            @endif
+
+            @if (empty($date) || $date == 'true')
+            <div class="mb-2">
+              <div class="col-lg-12 my-2 my-md-0">
+                <div class="d-flex align-items-center">
+                  <div class="input-daterange input-group" id="ex_datepicker_datetime">
+                    <input type="text" id="date_start" class="form-control filter-form text-center" name="date_start" placeholder="- {{ __('default.select.date') }} -" autocomplete="off" readonly>
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i class="la la-ellipsis-h"></i>
+                      </span>
+                    </div>
+                    <input type="text" id="date_end" class="form-control filter-form text-center" name="date_end" placeholder="- {{ __('default.select.date') }} -" autocomplete="off" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endif
+
             <hr>
           </div>
         </div>
@@ -89,8 +111,9 @@
               <tr>
                 <th class="no-export"> </th>
                 <th> No. </th>
+                @if (empty($date) || $date == 'true') <th> {{ __('default.label.date') }} </th> @endif
                 @yield('table-header')
-                <th class="no-export"> {{ __('default.label.active') }} </th>
+                @if (empty($active) || $active == 'true') <th class="no-export"> {{ __('default.label.active') }} </th> @endif
                 <th class="no-export"> </th>
               </tr>
             </thead>
@@ -102,7 +125,10 @@
   </div>
 </div>
 
+
 <div class="row">
+
+  @if (!empty($activities) && $activities == 'true')
   <div class="col-lg-4">
     <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
       <div class="card-header">
@@ -198,7 +224,9 @@
       </div>
     </div>
   </div>
+  @endif
 
+  @if (!empty($charts) && $charts == 'true')
   <div class="col-lg-8">
     <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
       <div class="card-header">
@@ -217,25 +245,26 @@
       </div>
     </div>
   </div>
+  @endif
+
 </div>
 
 @endsection
 
 @push('js')
-<script src="/assets/backend/js/pages/crud/forms/widgets/bootstrap-datetimepicker.js?v=7.0.6"></script>
-<script src="/assets/backend/js/pages/crud/forms/widgets/bootstrap-datepicker.js?v=7.0.6"></script>
-<script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js?v=7.0.6"></script>
+<script src="/assets/backend/js/pages/crud/forms/widgets/bootstrap-datetimepicker.js"></script>
+<script src="/assets/backend/js/pages/crud/forms/widgets/bootstrap-datepicker.js"></script>
+<script src="/assets/backend/plugins/custom/datatables/datatables.bundle.js"></script>
 <script>
   $(document).ready(function() {
     $('#toast-container').fadeOut(5000);
     KTApp.block('#exilednoname_body', { overlayColor: '#000000', state: 'primary', message: "{{ __('default.label.please-wait') }} ..." });
-    KTApp.block('#exilednoname_activity', { overlayColor: '#000000', state: 'primary', message: "{{ __('default.label.please-wait') }} ..." });
-    KTApp.block('#exilednoname_chart', { overlayColor: '#000000', state: 'primary', message: "{{ __('default.label.please-wait') }} ..."
-    });
+    @if (!empty($activities) && $activities == 'true') KTApp.block('#exilednoname_activity', { overlayColor: '#000000', state: 'primary', message: "{{ __('default.label.please-wait') }} ..." }); @endif
+    @if (!empty($charts) && $charts == 'true') KTApp.block('#exilednoname_chart', { overlayColor: '#000000', state: 'primary', message: "{{ __('default.label.please-wait') }} ..." }); @endif
     setTimeout(function() {
       KTApp.unblock('#exilednoname_body');
-      KTApp.unblock('#exilednoname_chart');
-      KTApp.unblock('#exilednoname_activity');
+      @if (!empty($activities) && $activities == 'true') KTApp.unblock('#exilednoname_activity'); @endif
+      @if (!empty($charts) && $charts == 'true') KTApp.unblock('#exilednoname_chart'); @endif
     }, 2000);
   });
 
@@ -250,6 +279,12 @@
     },
     ajax: {
       url: "{{ URL::current() }}",
+      "data" : function (ex) {
+        @if (empty($date) || $date == 'true')
+        ex.date_start = $('#date_start').val();
+        ex.date_end = $('#date_end').val();
+        @endif
+      }
     },
     headerCallback: function(thead, data, start, end, display) {
       thead.getElementsByTagName('th')[0].innerHTML = `
@@ -278,7 +313,17 @@
         data: 'autonumber', orderable: false, searchable: false, 'className': 'align-middle text-center', 'width': '1',
         render: function(data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }
       },
+      @if (empty($date) || $date == 'true')
+      {
+        data: 'date', orderable: true, 'className': 'align-middle text-nowrap', 'width': '1',
+        render: function ( data, type, row ) {
+          if (data == null) { return '<center> - </center>'}
+          else { return data; }
+        }
+      },
+      @endif
       @yield('table-body')
+      @if (empty($active) || $active == 'true')
       {
         data: 'active', orderable: true, 'className': 'align-middle text-center', 'width': '1',
         render: function ( data, type, row ) {
@@ -287,6 +332,7 @@
           if ( data == 2 ) { return '<a href="javascript:void(0);" id="active" data-toggle="tooltip" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ __("default.label.no") }} </span></a>'; }
         }
       },
+      @endif
       {
         data: 'action',
         orderable: false,
@@ -316,6 +362,62 @@
   $('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
   $('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
   $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
+</script>
+
+<script>
+@if (empty($active) || $active == 'true')
+$('.filter_active').change(function () {
+  var card = new KTCard('exilednoname_card');
+  KTApp.block(card.getSelf(), {
+    overlayColor: '#ffffff',
+    type: 'loader',
+    state: 'primary',
+    message: '{{ __('default.label.processing') }} ...',
+    opacity: 0.3,
+    size: 'lg'
+  });
+  setTimeout(function() {
+    KTApp.unblock(card.getSelf());
+  }, 500);
+  table.column(-2).search( $(this).val() ).draw();
+});
+@endif
+</script>
+
+<script>
+@if (empty($date) || $date == 'true')
+$('#date_start').change(function () {
+  var card = new KTCard('exilednoname_card');
+  KTApp.block('#exilednoname_body', {
+    overlayColor: '#ffffff',
+    type: 'loader',
+    state: 'primary',
+    message: '{{ __('default.label.processing') }} ...',
+    opacity: 0.3,
+    size: 'lg'
+  });
+  setTimeout(function() {
+    KTApp.unblock('#exilednoname_body');
+    table.draw();
+  }, 500);
+});
+
+$('#date_end').change(function () {
+  var card = new KTCard('exilednoname_card');
+  KTApp.block('#exilednoname_body', {
+    overlayColor: '#ffffff',
+    type: 'loader',
+    state: 'primary',
+    message: '{{ __('default.label.processing') }} ...',
+    opacity: 0.3,
+    size: 'lg'
+  });
+  setTimeout(function() {
+    KTApp.unblock('#exilednoname_body');
+    table.draw();
+  }, 500);
+});
+@endif
 </script>
 
 @include('layouts.backend.__extension.javascript.checkable')

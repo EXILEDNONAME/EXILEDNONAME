@@ -1,3 +1,4 @@
+@if (!empty($charts) && $charts == 'true')
 <script>
   $("#chart-refresh").on("click", function() {
     KTApp.block('#exilednoname_chart', {
@@ -14,3 +15,4 @@
     }, 2000);
   });
 </script>
+@endif

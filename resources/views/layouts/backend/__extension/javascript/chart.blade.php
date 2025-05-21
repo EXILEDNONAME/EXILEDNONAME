@@ -1,3 +1,4 @@
+@if (!empty($charts) && $charts == 'true')
 <script>
   "use strict";
 
@@ -85,3 +86,4 @@
     ChartEXILEDNONAME.init();
   });
 </script>
+@endif
