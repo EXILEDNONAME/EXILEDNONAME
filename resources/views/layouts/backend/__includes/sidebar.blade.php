@@ -3,8 +3,8 @@
     <ul class="menu-nav">
 
       <li class="menu-item {{ (request()->is('dashboard')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard') }}" class="menu-link"><i class="menu-icon fas fa-desktop"></i><span class="menu-text"> Dashboard </span></a></li>
-      <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/messages') }}" class="menu-link"><i class="menu-icon fas fa-envelope-open-text"></i><span class="menu-text"> Messages </span></a></li>
-      <li class="menu-item {{ (request()->is('dashboard/notifications*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/notifications') }}" class="menu-link"><i class="menu-icon fas fa-bell"></i><span class="menu-text"> Notifications </span></a></li>
+      <!-- <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/messages') }}" class="menu-link"><i class="menu-icon fas fa-envelope-open-text"></i><span class="menu-text"> Messages </span></a></li> -->
+      <!-- <li class="menu-item {{ (request()->is('dashboard/notifications*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/notifications') }}" class="menu-link"><i class="menu-icon fas fa-bell"></i><span class="menu-text"> Notifications </span></a></li> -->
 
       <li class="menu-section">
         <h4 class="menu-text"> Applications </h4>

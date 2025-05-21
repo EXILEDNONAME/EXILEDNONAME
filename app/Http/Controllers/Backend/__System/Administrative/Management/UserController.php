@@ -3,13 +3,19 @@
 namespace App\Http\Controllers\Backend\__System\Administrative\Management;
 
 use App\Http\Controllers\Controller;
-use DataTables;
-use Illuminate\Http\Request;
-use Redirect, Response;
+use App\Http\Traits\Backend\__System\Controllers\Datatable\DefaultController;
+use App\Http\Traits\Backend\__System\Controllers\Datatable\ExtensionController;
+use Illuminate\Routing\Controllers\HasMiddleware;
+
 use App\Http\Requests\Backend\__System\Administrative\Management\User\StoreRequest;
 use App\Http\Requests\Backend\__System\Administrative\Management\User\UpdateRequest;
 
-class UserController extends Controller {
+class UserController extends Controller implements HasMiddleware {
+
+  public static function middleware(): array { return ['auth', 'role:master-administrator']; }
+
+  use DefaultController;
+  use ExtensionController;
 
   function __construct() {
     $this->model = 'App\Models\User';
@@ -17,44 +23,6 @@ class UserController extends Controller {
     $this->url = '/dashboard/administratives\managements\users';
     if (request('date_start') && request('date_end')) { $this->data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->get(); }
     else { $this->data = $this->model::get(); }
-  }
-
-  public function index() {
-    $model = $this->model;
-    if (request()->ajax()) {
-      return DataTables::of($this->data)
-      ->editColumn('date_start', function ($order) { return empty($order->date_start) ? NULL : \Carbon\Carbon::parse($order->date_start)->format('d F Y, H:i'); })
-      ->editColumn('date_end', function ($order) { return empty($order->date_end) ? NULL : \Carbon\Carbon::parse($order->date_end)->format('d F Y, H:i'); })
-      ->editColumn('description', function ($order) { return nl2br(e($order->description)); })
-      ->rawColumns(['description'])
-      ->addIndexColumn()->make(true);
-    }
-    return view($this->path . 'index', compact('model'));
-  }
-
-  /**
-  **************************************************
-  * @return SHOW
-  **************************************************
-  **/
-
-  public function show($id) {
-    $url = $this->url;
-    $model = $this->model;
-    $data = $this->model::findOrFail($id);
-    return view($this->path . 'show', compact('data', 'model', 'url'));
-  }
-
-  /**
-  **************************************************
-  * @return CREATE
-  **************************************************
-  **/
-
-  public function create() {
-    $url = $this->url;
-    $path = $this->path;
-    return view($this->path . 'create', compact('path', 'url'));
   }
 
   /**
@@ -70,20 +38,6 @@ class UserController extends Controller {
     }
     $this->model::create($store);
     return redirect($this->url)->with('success', __('default.notification.success.item-created'));
-  }
-
-  /**
-  **************************************************
-  * @return EDIT
-  **************************************************
-  **/
-
-  public function edit($id) {
-    $url = $this->url;
-    $path = $this->path;
-    $model = $this->model;
-    $data = $this->model::findOrFail($id);
-    return view($this->path . 'edit', compact('path', 'data', 'model', 'url'));
   }
 
   /**
@@ -140,7 +94,7 @@ class UserController extends Controller {
 
   /**
   **************************************************
-  * @return SELECTED-DELETE
+  * @return SELECTED_DELETE
   **************************************************
   **/
 

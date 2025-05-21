@@ -1,4 +1,5 @@
 @extends('layouts.backend.__templates.show')
+@section('title', 'Datatable Generals')
 
 @push('content')
 <tr>

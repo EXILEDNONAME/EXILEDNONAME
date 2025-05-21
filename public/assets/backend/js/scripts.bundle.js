@@ -324,9 +324,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 }
 
 // Initialize KTApp class on document ready
-$(document).ready(function() {
-    KTApp.init(KTAppSettings);
-});
+
 
 "use strict";
 
@@ -7285,18 +7283,7 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 					var bField = b[field];
 
 					switch (type) {
-						case 'date':
-							if (typeof moment === 'undefined') {
-								throw new Error('Moment.js is required.');
-							}
-							var diff = moment(aField, format).diff(moment(bField, format));
-							if (sort === 'asc') {
-								return diff > 0 ? 1 : diff < 0 ? -1 : 0;
-							} else {
-								return diff < 0 ? 1 : diff > 0 ? -1 : 0;
-							}
-							break;
-
+						
 						case 'number':
 							if (isNaN(parseFloat(aField)) && aField != null) {
 								aField = Number(aField.replace(/[^0-9\.-]+/g, ''));

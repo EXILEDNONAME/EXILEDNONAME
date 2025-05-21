@@ -1,4 +1,5 @@
 @extends('layouts.backend.__templates.show')
+@section('title', 'Management Users')
 
 @push('content')
 <tr>

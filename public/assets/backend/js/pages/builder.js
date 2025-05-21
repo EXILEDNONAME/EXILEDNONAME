@@ -38,7 +38,7 @@ var KTLayoutBuilder = function() {
 					builder_export: 1,
 					export_type: 'partial',
 					demo: demo,
-					theme: 'metronic',
+					theme: 'exilednoname',
 				},
 			}).done(function(r) {
 				var result = JSON.parse(r);

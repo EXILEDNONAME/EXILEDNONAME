@@ -25,14 +25,14 @@ var KTBootstrapDatetimepicker = function () {
         $('#kt_datetimepicker_5').datetimepicker();
 
         // Demo 6
-        $('#kt_datetimepicker_6').datetimepicker({
-            defaultDate: '11/1/2020',
-            disabledDates: [
-                moment('12/25/2020'),
-                new Date(2020, 11 - 1, 21),
-                '11/22/2022 00:53'
-            ]
-        });
+        // $('#kt_datetimepicker_6').datetimepicker({
+        //     defaultDate: '11/1/2020',
+        //     disabledDates: [
+        //         moment('12/25/2020'),
+        //         new Date(2020, 11 - 1, 21),
+        //         '11/22/2022 00:53'
+        //     ]
+        // });
 
         // Demo 7
         $('#kt_datetimepicker_7_1').datetimepicker();

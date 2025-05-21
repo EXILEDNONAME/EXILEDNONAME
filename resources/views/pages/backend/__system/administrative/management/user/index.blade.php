@@ -1,4 +1,5 @@
 @extends('layouts.backend.__templates.index')
+@section('title', 'Management Users')
 
 @section('table-header')
 <th> Name </th>

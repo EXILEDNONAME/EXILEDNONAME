@@ -5,14 +5,14 @@ namespace App\Http\Controllers\Backend\__System\Application\Datatable;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Backend\__System\Controllers\Datatable\DefaultController;
 use App\Http\Traits\Backend\__System\Controllers\Datatable\ExtensionController;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
 use App\Http\Requests\StoreRequest;
 use App\Http\Requests\UpdateRequest;
 
-class GeneralController extends Controller {
+class GeneralController extends Controller implements HasMiddleware {
 
-  use DefaultController;
-  use ExtensionController;
+  public static function middleware(): array { return ['auth', 'role:master-administrator']; }
 
   function __construct() {
     $this->model = 'App\Models\Backend\__System\Application\Datatable\General';
@@ -21,6 +21,9 @@ class GeneralController extends Controller {
     if (request('date_start') && request('date_end')) { $this->data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->get(); }
     else { $this->data = $this->model::get(); }
   }
+
+  use DefaultController;
+  use ExtensionController;
 
   /**
   **************************************************

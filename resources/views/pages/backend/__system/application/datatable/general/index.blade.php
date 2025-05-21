@@ -1,4 +1,5 @@
-@extends('layouts.backend.__templates.index')
+@extends('layouts.backend.__templates.index', ['page' => 'datatable-index'])
+@section('title', 'Datatable Generals')
 
 @section('table-header')
 <th> Name </th>

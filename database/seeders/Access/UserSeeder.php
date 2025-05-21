@@ -10,6 +10,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 class UserSeeder extends Seeder {
 
   public function run(): void {
+    
     $user = [
       [
         'name'        => 'Administrator',
@@ -21,5 +22,21 @@ class UserSeeder extends Seeder {
       ],
       ];
     User::insert($user);
+
+    $model_has_roles = [
+      [
+        'role_id'        => '1',
+        'model_type'     => 'App\Models\User',
+        'model_id'       => '1',
+      ],
+      [
+        // master-administrator
+        'role_id'        => '2',
+        'model_type'     => 'App\Models\User',
+        'model_id'       => '2',
+      ],
+    ];
+    \DB::table('model_has_roles')->insert($model_has_roles);
+
   }
 }

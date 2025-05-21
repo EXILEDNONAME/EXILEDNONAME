@@ -17,7 +17,8 @@ class DatabaseSeeder extends Seeder
     $this->call(Setting\CustomizationSeeder::class);
     $this->call(Setting\OptimizationSeeder::class);
     $this->call(Setting\SettingSeeder::class);
-    
+
+    $this->call(Access\RoleSeeder::class);
     $this->call(Access\UserSeeder::class);
   }
 }

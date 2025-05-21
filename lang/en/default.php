@@ -19,6 +19,7 @@ return [
     'close'                         => 'Close',
     'create'                        => 'Create',
     'created'                       => 'Created',
+    'customizations'                => 'Customizations',
     'updated'                       => 'Updated',
     'deleted'                       => 'Deleted',
     'created-at'                    => 'Created At',
@@ -92,6 +93,7 @@ return [
     ],
 
     'success' => [
+      'customization-updated'       => 'Successfully Customization Updated',
       'item-active'                 => 'Successfully Item Activated',
       'item-created'                => 'Successfully Item Created',
       'item-deleted'                => 'Successfully Item Deleted',

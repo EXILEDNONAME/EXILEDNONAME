@@ -106,13 +106,13 @@ var table = $('#exilednoname_table').DataTable({
 
   ],
   order: [
-    [1, 'asc']
+    [0, 'asc']
   ]
 });
 
 </script>
-@include('layouts.backend.__extension.javascript.checkable')
-@include('layouts.backend.__extension.javascript.checkable-group')
+
 @include('layouts.backend.__extension.javascript.table-refresh')
 @include('layouts.backend.__extension.javascript.start-optimizing')
+
 @endpush

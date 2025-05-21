@@ -37,7 +37,7 @@
     <!--end::Main-->
 
 
-    <script>var HOST_URL = "https://preview.keenthemes.com/metronic/theme/html/tools/preview";</script>
+    <script>var HOST_URL = "#";</script>
     <!--begin::Global Config(global config for global JS scripts)-->
     <script>
       var KTAppSettings = { };
