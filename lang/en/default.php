@@ -63,6 +63,7 @@ return [
     'reset'                         => 'Reset',
     'restore'                       => 'Restore',
     'restored'                      => 'Restored',
+    'select'                        => 'Select',
     'selected-active'               => 'Selected Set Active',
     'selected-delete'               => 'Selected Delete',
     'selected-delete-permanent'     => 'Selected Delete Permanent',

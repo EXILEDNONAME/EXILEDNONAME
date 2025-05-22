@@ -43,7 +43,8 @@
             <thead>
               <tr>
                 <th> No. </th>
-                <th> User </th>
+                <th class="text-nowrap text-center" width="1"> Avatar </th>
+                <th class="text-nowrap"> User </th>
                 <th class="text-nowrap" width="1"> IP Address </th>
                 <th> Client </th>
                 <th> Last Activity </th>
@@ -95,6 +96,7 @@ var table = $('#exilednoname_table').DataTable({
       render: function(data, type, row, meta) { return meta.row + meta.settings._iDisplayStart + 1; }
     },
 
+    { data: 'avatar', orderable: false, 'className': 'align-middle text-center', 'width': '1', },
     { data: 'user_id' },
     { data: 'ip_address' },
     { data: 'user_agent' },
@@ -102,7 +104,7 @@ var table = $('#exilednoname_table').DataTable({
 
   ],
   order: [
-    [1, 'asc']
+    [0, 'asc']
   ]
 });
 </script>

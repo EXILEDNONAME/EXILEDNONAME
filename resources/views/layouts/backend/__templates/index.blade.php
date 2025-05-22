@@ -101,6 +101,8 @@
             </div>
             @endif
 
+            @stack('filter-header')
+
             <hr>
           </div>
         </div>
@@ -362,63 +364,12 @@
   $('#export_copy').on('click', function(e) { e.preventDefault(); table.button(1).trigger(); });
   $('#export_excel').on('click', function(e) { e.preventDefault(); table.button(2).trigger(); });
   $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
+
+  @stack('filter-data')
 </script>
 
-<script>
-@if (empty($active) || $active == 'true')
-$('.filter_active').change(function () {
-  var card = new KTCard('exilednoname_card');
-  KTApp.block(card.getSelf(), {
-    overlayColor: '#ffffff',
-    type: 'loader',
-    state: 'primary',
-    message: '{{ __('default.label.processing') }} ...',
-    opacity: 0.3,
-    size: 'lg'
-  });
-  setTimeout(function() {
-    KTApp.unblock(card.getSelf());
-  }, 500);
-  table.column(-2).search( $(this).val() ).draw();
-});
-@endif
-</script>
-
-<script>
-@if (empty($date) || $date == 'true')
-$('#date_start').change(function () {
-  var card = new KTCard('exilednoname_card');
-  KTApp.block('#exilednoname_body', {
-    overlayColor: '#ffffff',
-    type: 'loader',
-    state: 'primary',
-    message: '{{ __('default.label.processing') }} ...',
-    opacity: 0.3,
-    size: 'lg'
-  });
-  setTimeout(function() {
-    KTApp.unblock('#exilednoname_body');
-    table.draw();
-  }, 500);
-});
-
-$('#date_end').change(function () {
-  var card = new KTCard('exilednoname_card');
-  KTApp.block('#exilednoname_body', {
-    overlayColor: '#ffffff',
-    type: 'loader',
-    state: 'primary',
-    message: '{{ __('default.label.processing') }} ...',
-    opacity: 0.3,
-    size: 'lg'
-  });
-  setTimeout(function() {
-    KTApp.unblock('#exilednoname_body');
-    table.draw();
-  }, 500);
-});
-@endif
-</script>
+@include('layouts.backend.__extension.javascript.filter-active')
+@include('layouts.backend.__extension.javascript.filter-date')
 
 @include('layouts.backend.__extension.javascript.checkable')
 @include('layouts.backend.__extension.javascript.checkable-group')

@@ -6,7 +6,8 @@
   <title>
     @php $title = DB::table('system_settings')->first(); @endphp
     @if (request()->is('dashboard')) {{ $title->application_name; }} - Dashboard
-    @elseif (request()->is('login')){{ $title->application_name; }}
+    @elseif (request()->is('login')) {{ $title->application_name; }}
+    @elseif (request()->is('register')) {{ $title->application_name; }}
     @else {{ $title->application_name; }} - @stack('title')
     @endif
   </title>
@@ -42,17 +43,17 @@
               @csrf
 
               <div class="form-group">
-                <input class="form-control h-auto text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" type="text" placeholder="Account" name="email" autocomplete="off" required/>
+                <input class="form-control h-auto text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" type="text" placeholder="Account" name="login" autocomplete="off" required/>
               </div>
               <div class="form-group">
                 <input class="form-control h-auto text-white bg-white-o-5 rounded-pill border-0 py-4 px-8" type="password" placeholder="Password" name="password" required/>
               </div>
 
               <center>
-                @error('email')
+                @error('login')
                 <ce
                 <div class="fv-plugins-message-container mt-0">
-                  <div data-field="password" class="fv-help-block"><strong>{{ $message }}</strong></div>
+                  <div data-field="login" class="fv-help-block"><strong>{{ $message }}</strong></div>
                 </div>
                 <br>
                 @enderror

@@ -7,8 +7,8 @@ use App\Http\Traits\Backend\__System\Controllers\Datatable\DefaultController;
 use App\Http\Traits\Backend\__System\Controllers\Datatable\ExtensionController;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
-use App\Http\Requests\StoreRequest;
-use App\Http\Requests\UpdateRequest;
+use App\Http\Requests\Backend\__System\Application\Datatable\General\StoreRequest;
+use App\Http\Requests\Backend\__System\Application\Datatable\General\UpdateRequest;
 
 class GeneralController extends Controller implements HasMiddleware {
 

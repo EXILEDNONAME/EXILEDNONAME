@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Backend\__System\Application\Monitoring;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -23,7 +23,7 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
       return [
-        'name' => ['required', 'max:3', Rule::unique('system_application_table_generals')->ignore($this->id)],
+        'name' => ['required', Rule::unique('system_application_table_generals')->ignore($this->id)],
   ];
     }
 }

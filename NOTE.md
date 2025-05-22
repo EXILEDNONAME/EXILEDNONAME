@@ -18,11 +18,14 @@
 - (x) File Manager
 - (x) Managements
 - (X) Administrative Apps
+- (x) Filter Relation Datatables
 - Messages
 - Notifications
 
 # TO DO
-- Generate Datatables
+- Selected Delete Save to Activities
+- Page Invoices Menu Side
+- Generator Simple Datatables
 - Check Login For User Verified / Inactive
 - Page Register, Login & Forgot Password
 

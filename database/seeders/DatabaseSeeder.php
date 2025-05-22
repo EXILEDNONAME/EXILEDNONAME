@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
   */
   public function run(): void
   {
+    $this->call(__System\Dummy\DatatableGenerals::class);
 
     $this->call(Setting\CustomizationSeeder::class);
     $this->call(Setting\OptimizationSeeder::class);

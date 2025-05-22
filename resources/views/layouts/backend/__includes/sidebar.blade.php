@@ -6,6 +6,7 @@
       <!-- <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/messages') }}" class="menu-link"><i class="menu-icon fas fa-envelope-open-text"></i><span class="menu-text"> Messages </span></a></li> -->
       <!-- <li class="menu-item {{ (request()->is('dashboard/notifications*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/notifications') }}" class="menu-link"><i class="menu-icon fas fa-bell"></i><span class="menu-text"> Notifications </span></a></li> -->
 
+      @role('master-administrator')
       <li class="menu-section">
         <h4 class="menu-text"> Applications </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
@@ -23,14 +24,17 @@
           </ul>
         </div>
       </li>
+      <li class="menu-item {{ (request()->is('dashboard/applications/invoices*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/applications/invoices') }}" class="menu-link"><i class="menu-icon fas fa-receipt"></i><span class="menu-text"> Invoices </span></a></li>
+      <li class="menu-item {{ (request()->is('dashboard/applications/monitorings*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/applications/monitorings') }}" class="menu-link"><i class="menu-icon fas fa-wave-square"></i><span class="menu-text"> Monitorings </span></a></li>
+      @endrole
 
-      <li class="menu-section ">
+      <li class="menu-section">
         <h4 class="menu-text"> EXTENSIONS </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
       </li>
       <li class="menu-item {{ (request()->is('dashboard/file-manager*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/file-manager') }}" class="menu-link"><i class="menu-icon fas fa-hdd"></i><span class="menu-text"> File Manager </span></a></li>
 
-      <li class="menu-section ">
+      <li class="menu-section">
         <h4 class="menu-text"> SETTINGS </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
       </li>
@@ -49,7 +53,8 @@
       </li>
       <li class="menu-item"><a class="menu-link" id="logout"><i class="menu-icon fas fa-sign-out-alt"></i><span class="menu-text"> {{ __('default.label.logout') }} </span></a></li>
 
-      <li class="menu-section ">
+      @role('master-administrator')
+      <li class="menu-section">
         <h4 class="menu-text"> ADMINISTRATIVES </h4>
         <i class="menu-icon ki ki-bold-more-hor icon-md"></i>
       </li>
@@ -82,7 +87,7 @@
         </div>
       </li>
       <li class="menu-item {{ (request()->is('dashboard/administratives/sessions*')) ? 'menu-item-active' : '' }}"><a href="/dashboard/administratives/sessions" class="menu-link"><i class="menu-icon fas fa-history"></i><span class="menu-text"> Sessions </span></a></li>
-      <li class="menu-item"><a class="menu-link"><i class="menu-icon fas fa-chart-line"></i><span class="menu-text"> Statistics </span></a></li>
+      @endrole
 
     </ul>
   </div>

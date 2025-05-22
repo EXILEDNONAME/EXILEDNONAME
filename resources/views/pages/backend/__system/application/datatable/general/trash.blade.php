@@ -1,4 +1,5 @@
 @extends('layouts.backend.__templates.trash')
+@section('title', 'Datatable Generals')
 
 @section('table-header')
 <th> Name </th>
