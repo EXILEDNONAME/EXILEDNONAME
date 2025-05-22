@@ -81,7 +81,7 @@ class CrudCommand extends Command
     }
 
     $primaryKey = $this->option('pk');
-    $viewPath = ($this->option('view-path')) ? trim($this->option('view-path')) . '\\' : 'pages\backend\main';
+    $viewPath = ($this->option('view-path')) ? trim($this->option('view-path')) . '\\' : 'pages\backend\__main';
 
     $foreignKeys = $this->option('foreign-keys');
 
@@ -140,13 +140,12 @@ class CrudCommand extends Command
     }
 
     // Updating the Http/routes.php file
-    $routeFile = app_path('Http/routes.php');
+    $routeFile = base_path('routes/web.php');
 
     if (\App::VERSION() >= '5.3') {
       $routeFile = base_path('routes/web.php');
     }
 
-    if (file_exists($routeFile) && (strtolower($this->option('route')) === 'yes')) {
       $this->controller = ($controllerNamespace != '') ? $controllerNamespace . $name . 'Controller' : $name . 'Controller';
 
       $isAdded = File::append($routeFile, "\n" . implode("\n", $this->addRoutes()));
@@ -156,7 +155,8 @@ class CrudCommand extends Command
       } else {
         $this->info('Unable to add the route to ' . $routeFile);
       }
-    }
+
+      \Artisan::call('optimize:clear');
   }
 
   /**
@@ -174,7 +174,7 @@ class CrudCommand extends Command
     Route::group([
       'as' => 'main.$this->routeName.',
       'prefix' => 'dashboard/$this->routeName',
-      'namespace' => 'Backend\Main',
+      'namespace' => 'App\Http\Controllers\Backend\__Main',
     ], function(){
       Route::get('active/{id}', '$routeControllerName@active')->name('active');
       Route::get('inactive/{id}', '$routeControllerName@inactive')->name('inactive');

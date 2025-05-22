@@ -54,7 +54,7 @@ class CrudModelCommand extends GeneratorCommand
   */
   protected function getDefaultNamespace($rootNamespace)
   {
-    return $rootNamespace . '\\' . 'Models\Backend\Main';
+    return $rootNamespace . '\\' . 'Models\Backend\__Main';
   }
 
   /**
