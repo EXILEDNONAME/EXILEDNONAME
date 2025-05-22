@@ -1,0 +1,5 @@
+@extends('layouts.backend.datatable.__show', ['status' => 'false', 'daterange' => 'false'])
+@push('title', '%%crudNameTitle%%')
+
+@push('content-body')%%formBodyHtmlForShowView%%
+@endpush

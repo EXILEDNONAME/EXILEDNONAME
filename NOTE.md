@@ -29,6 +29,8 @@
 - Check Login For User Verified / Inactive
 - Page Register, Login & Forgot Password
 
+php artisan crud:generate Posts --fields_from_file="./resources/cruds/exilednoname.json" --view-path=admin --controller-namespace=App\\Http\\Controllers\\Admin --route-group=admin
+
 <!-- CONTROLLER CONSTRUCT -->
 $this->middleware('permission:product-list|product-create|product-edit|product-delete', ['only' => ['index','show']]);
 $this->middleware('permission:product-create', ['only' => ['create','store']]);
