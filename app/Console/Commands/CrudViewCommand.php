@@ -66,6 +66,7 @@ class CrudViewCommand extends Command {
     'modelName',
     'modelNameCap',
     'viewName',
+    'viewNameSingular',
     'routePrefix',
     'routePrefixCap',
     'routeGroup',
@@ -87,6 +88,7 @@ class CrudViewCommand extends Command {
   protected $modelName = '';
   protected $modelNameCap = '';
   protected $viewName = '';
+  protected $viewNameSingular = '';
   protected $routePrefix = '';
   protected $routePrefixCap = '';
   protected $routeGroup = '';
@@ -123,16 +125,17 @@ class CrudViewCommand extends Command {
     $this->routePrefix = ($this->option('route-group')) ? $this->option('route-group') : '';
     $this->routePrefixCap = ucfirst($this->routePrefix);
     $this->viewName = Str::snake($this->argument('name'), '-');
+    $this->viewNameSingular = Str::singular(Str::snake($this->argument('name'), '-'));
 
     $viewDirectory = config('view.paths')[0] . '/';
     if ($this->option('view-path')) {
       $this->userViewPath = $this->option('view-path');
-      $path = $viewDirectory . $this->userViewPath . '/' . $this->viewName . '/';
+      $path = $viewDirectory . $this->userViewPath . '/' . $this->viewNameSingular . '/';
     } else {
-      $path = $viewDirectory . $this->viewName . '/';
+      $path = $viewDirectory . $this->viewNameSingular . '/';
     }
 
-    $this->viewTemplateDir = isset($this->userViewPath) ? $this->userViewPath . '.' . $this->viewName : $this->viewName;
+    $this->viewTemplateDir = isset($this->userViewPath) ? $this->userViewPath . '.' . $this->viewNameSingular : $this->viewNameSingular;
 
     if (!File::isDirectory($path)) {
       File::makeDirectory($path, 0755, true);
@@ -206,7 +209,7 @@ class CrudViewCommand extends Command {
 private function defaultTemplating()
 {
   return [
-    'index' => ['formHeadingHtml', 'formBodyHtml', 'crudName', 'crudNameCap', 'crudNameTitle', 'modelName', 'viewName', 'routeGroup', 'primaryKey'],
+    'index' => ['formHeadingHtml', 'formBodyHtml', 'crudName', 'crudNameCap', 'crudNameTitle', 'modelName', 'viewName', 'viewNameSingular', 'routeGroup', 'primaryKey'],
     'form' => ['formFieldsHtml'],
     'create' => ['crudName', 'crudNameCap', 'crudNameTitle', 'modelName', 'modelNameCap', 'viewName', 'routeGroup', 'viewTemplateDir'],
     'edit' => ['crudName', 'crudNameSingular', 'crudNameCap', 'crudNameTitle', 'modelNameCap', 'modelName', 'viewName', 'routeGroup', 'primaryKey', 'viewTemplateDir'],
