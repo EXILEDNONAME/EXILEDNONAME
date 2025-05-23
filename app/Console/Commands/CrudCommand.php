@@ -169,27 +169,24 @@ class CrudCommand extends Command
     $name = $this->argument('name');
     $routeControllerName = Str::singular($name) . 'Controller';
 
-    return ["
-    // TABLES
-    Route::group([
-      'as' => 'main.$this->routeName.',
-      'prefix' => 'dashboard/$this->routeName',
-      'namespace' => 'App\Http\Controllers\Backend\__Main',
-    ], function(){
-      Route::get('active/{id}', '$routeControllerName@active')->name('active');
-      Route::get('inactive/{id}', '$routeControllerName@inactive')->name('inactive');
-      Route::get('restore/{id}', '$routeControllerName@restore')->name('restore');
-      Route::get('restoreall', '$routeControllerName@restoreall')->name('restore-all');
-      Route::get('delete-permanent/{id}', '$routeControllerName@delete_permanent')->name('delete-permanent');
-      Route::get('delete-permanentall', '$routeControllerName@delete_permanentall')->name('delete-permanentall');
-      Route::get('delete/{id}', '$routeControllerName@delete')->name('delete');
-      Route::get('deleteall', '$routeControllerName@deleteall')->name('delete-all');
-      Route::get('activities', '$routeControllerName@activity')->name('activity');
-      Route::get('trash', '$routeControllerName@trash')->name('trash');
-      Route::resource('/', '$routeControllerName')->parameters(['' => 'id']);
-    });
-    "];
-  }
+    return ["Route::group([
+  'as' => 'main.$this->routeName.',
+  'prefix' => 'dashboard/$this->routeName',
+  'namespace' => 'App\Http\Controllers\Backend\__Main',
+], function(){
+  Route::get('active/{id}', '$routeControllerName@active')->name('active');
+  Route::get('inactive/{id}', '$routeControllerName@inactive')->name('inactive');
+  Route::get('restore/{id}', '$routeControllerName@restore')->name('restore');
+  Route::get('restoreall', '$routeControllerName@restoreall')->name('restore-all');
+  Route::get('delete-permanent/{id}', '$routeControllerName@delete_permanent')->name('delete-permanent');
+  Route::get('delete-permanentall', '$routeControllerName@delete_permanentall')->name('delete-permanentall');
+  Route::get('delete/{id}', '$routeControllerName@delete')->name('delete');
+  Route::get('deleteall', '$routeControllerName@deleteall')->name('delete-all');
+  Route::get('activities', '$routeControllerName@activity')->name('activity');
+  Route::get('trash', '$routeControllerName@trash')->name('trash');
+  Route::resource('/', '$routeControllerName')->parameters(['' => 'id']);
+});"];
+}
 
   /**
   * Process the JSON Fields.
