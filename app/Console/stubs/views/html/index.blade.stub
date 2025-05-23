@@ -1,4 +1,4 @@
-@extends('layouts.backend.__templates.index', ['page' => 'index', 'status' => 'false', 'daterange' => 'false', 'activity' => 'true', 'graph' => 'true'])
+@extends('layouts.backend.__templates.index', ['page' => 'datatable-index', 'date' => 'false', 'activities' => 'true', 'charts' => 'true'])
 @push('title', '%%crudNameTitle%%')
 
 @push('table-header')

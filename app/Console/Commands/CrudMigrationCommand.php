@@ -167,7 +167,7 @@ class CrudMigrationCommand extends GeneratorCommand
     // Append column modifier
     $schemaFields .= $item['modifier'];
     $schemaFields .= ";\n" . $tabIndent . $tabIndent . $tabIndent;
-  }
+  }  
 
   // add indexes and unique indexes as necessary
   foreach ($fieldsToIndex as $fldData) {
