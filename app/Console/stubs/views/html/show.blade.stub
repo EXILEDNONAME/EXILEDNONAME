@@ -1,5 +1,5 @@
 @extends('layouts.backend.__templates.show', ['status' => 'false', 'daterange' => 'false'])
 @push('title', '%%crudNameTitle%%')
 
-@push('content-body')%%formBodyHtmlForShowView%%
+@push('content')%%formBodyHtmlForShowView%%
 @endpush

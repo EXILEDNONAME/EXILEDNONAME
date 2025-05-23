@@ -1,8 +1,8 @@
 @extends('layouts.backend.__templates.index', ['page' => 'datatable-index', 'date' => 'false', 'activities' => 'true', 'charts' => 'true'])
-@push('title', '%%crudNameTitle%%')
+@section('title', '%%crudNameTitle%%')
 
-@push('table-header')
-%%formHeadingHtml%%@endpush
+@section('table-header')
+%%formHeadingHtml%%@endsection
 
-@push('table-body')
-%%formBodyHtml%%@endpush
+@section('table-body')
+%%formBodyHtml%%@endsection
