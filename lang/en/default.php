@@ -116,8 +116,6 @@ return [
       'table-reset'                 => 'Resetting Table Sessions',
     ],
 
-
-
     'error' => [
       '/'                           => 'There is something wrong :(',
       'password-confirm'            => 'New Password should be same as your confirmed password. Please retype new password.',
