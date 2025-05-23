@@ -1,4 +1,4 @@
-@extends('layouts.backend.datatable.__trash')
+@extends('layouts.backend.__templates.trash')
 @push('title', '%%crudNameTitle%%')
 
 @push('table-header')
