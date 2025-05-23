@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend\__System\Application\Datatable;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Backend\__System\Controllers\Datatable\DefaultController;
 use App\Http\Traits\Backend\__System\Controllers\Datatable\ExtensionController;
+use DataTables;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
 use App\Http\Requests\Backend\__System\Application\Datatable\General\StoreRequest;
