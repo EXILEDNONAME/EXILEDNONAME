@@ -5,6 +5,7 @@ namespace DummyNamespace;
 use App\Http\Controllers\Controller;
 use App\Http\Traits\Backend\__System\Controllers\Datatable\DefaultController;
 use App\Http\Traits\Backend\__System\Controllers\Datatable\ExtensionController;
+use DataTables;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
 use App\Http\Requests\Backend\__Main\{{modelName}}\StoreRequest;
@@ -16,7 +17,7 @@ class {{modelName}}Controller extends Controller implements HasMiddleware {
 
   public function __construct() {
     $this->model = 'App\Models\Backend\__Main\{{modelName}}';
-    $this->path = 'pages.backend.__main.{{viewName}}.';
+    $this->path = 'pages.backend.__main.{{viewNameSingular}}.';
     $this->url = '/dashboard/{{viewName}}';
     if (request('date_start') && request('date_end')) { $this->data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->get(); }
     else { $this->data = $this->model::get(); }

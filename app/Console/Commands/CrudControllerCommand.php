@@ -98,6 +98,7 @@ class CrudControllerCommand extends GeneratorCommand
         $routePrefixCap = ucfirst($routePrefix);
         $perPage = intval($this->option('pagination'));
         $viewName = Str::snake($this->option('crud-name'), '-');
+        $viewNameSingular = Str::singular(Str::snake($this->option('crud-name'), '-'));
         $fields = $this->option('fields');
         $validations = rtrim($this->option('validations'), ';');
 
@@ -166,6 +167,7 @@ EOD;
         return $this->replaceNamespace($stub, $name)
             ->replaceViewPath($stub, $viewPath)
             ->replaceViewName($stub, $viewName)
+            ->replaceViewNameSingular($stub, $viewNameSingular)
             ->replaceCrudName($stub, $crudName)
             ->replaceCrudNameSingular($stub, $crudNameSingular)
             ->replaceModelName($stub, $modelName)
@@ -192,6 +194,21 @@ EOD;
     protected function replaceViewName(&$stub, $viewName)
     {
         $stub = str_replace('{{viewName}}', $viewName, $stub);
+
+        return $this;
+    }
+
+    /**
+     * Replace the viewName fo the given stub.
+     *
+     * @param string $stub
+     * @param string $viewName
+     *
+     * @return $this
+     */
+    protected function replaceViewNameSingular(&$stub, $viewNameSingular)
+    {
+        $stub = str_replace('{{viewNameSingular}}', $viewNameSingular, $stub);
 
         return $this;
     }
