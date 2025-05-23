@@ -340,7 +340,7 @@ protected function createFormField($item)
   $start = $this->delimiter[0];
   $end = $this->delimiter[1];
 
-  $required = $item['required'] ? 'required' : '';
+  $required = $item['required'] ? '->required()' : '';
 
   $markup = File::get($this->viewDirectoryPath . 'form-fields/form-field.blade.stub');
   $markup = str_replace($start . 'required' . $end, $required, $markup);

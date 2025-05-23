@@ -41,6 +41,10 @@
     {
       "field": "title",
       "rules": "required|max:10"
+    },
+    {
+      "field": "user_id",
+      "rules": "required"
     }
   ]
 }

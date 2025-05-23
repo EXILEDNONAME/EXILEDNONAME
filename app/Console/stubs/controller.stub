@@ -26,6 +26,10 @@ class {{modelName}}Controller extends Controller implements HasMiddleware {
   use DefaultController;
   use ExtensionController;
 
+  {{controllerRelation}}
+
+  {{relationsRules}}
+
   /**
   **************************************************
   * @return STORE
