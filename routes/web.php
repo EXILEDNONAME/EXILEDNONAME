@@ -13,3 +13,7 @@ include(base_path(). '/routes/backend/__system/administrative.php');
 include(base_path(). '/routes/backend/__system/application.php');
 include(base_path(). '/routes/backend/__system/dashboard.php');
 include(base_path(). '/routes/backend/__system/profile.php');
+
+Route::get('/password/reset', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');

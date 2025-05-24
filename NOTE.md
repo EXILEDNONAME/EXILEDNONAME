@@ -20,6 +20,7 @@
 - (X) Administrative Apps
 - (x) Filter Relation Datatables
 - (x) Create Page Online Sheets
+- (x) Check Login For User Verified / Inactive
 - Messages
 - Notifications
 
@@ -27,7 +28,6 @@
 - (x) Generator Simple Datatables
 - Selected Delete Save to Activities
 - Create Page Invoices With Menu Side
-- Check Login For User Verified / Inactive
 - Page Register, Login & Forgot Password
 
 php artisan crud:generate AccessPoints --fields_from_file="./resources/cruds/exilednoname.json"
