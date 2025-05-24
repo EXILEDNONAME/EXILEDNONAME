@@ -23,9 +23,10 @@
 - Notifications
 
 # TO DO
+- (x) Generator Simple Datatables
 - Selected Delete Save to Activities
-- Page Invoices Menu Side
-- Generator Simple Datatables
+- Create Page Invoices With Menu Side
+- Create Page Online Sheets
 - Check Login For User Verified / Inactive
 - Page Register, Login & Forgot Password
 
