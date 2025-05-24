@@ -3,8 +3,6 @@
     <ul class="menu-nav">
 
       <li class="menu-item {{ (request()->is('dashboard')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard') }}" class="menu-link"><i class="menu-icon fas fa-desktop"></i><span class="menu-text"> Dashboard </span></a></li>
-      <!-- <li class="menu-item {{ (request()->is('dashboard/messages*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/messages') }}" class="menu-link"><i class="menu-icon fas fa-envelope-open-text"></i><span class="menu-text"> Messages </span></a></li> -->
-      <!-- <li class="menu-item {{ (request()->is('dashboard/notifications*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/notifications') }}" class="menu-link"><i class="menu-icon fas fa-bell"></i><span class="menu-text"> Notifications </span></a></li> -->
 
       @role('master-administrator')
       <li class="menu-section">
@@ -24,7 +22,6 @@
           </ul>
         </div>
       </li>
-      <li class="menu-item {{ (request()->is('dashboard/applications/invoices*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/applications/invoices') }}" class="menu-link"><i class="menu-icon fas fa-receipt"></i><span class="menu-text"> Invoices </span></a></li>
       <li class="menu-item {{ (request()->is('dashboard/applications/monitorings*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/applications/monitorings') }}" class="menu-link"><i class="menu-icon fas fa-wave-square"></i><span class="menu-text"> Monitorings </span></a></li>
       @endrole
 
