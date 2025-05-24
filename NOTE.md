@@ -22,11 +22,13 @@
 - (x) Create Page Online Sheets
 - (x) Check Login For User Verified / Inactive
 - (x) Page Register, Login & Forgot Password
-- Messages
-- Notifications
 
 # TO DO
 - (x) Generator Simple Datatables
+- Create Page Messages
+- Create Page Notifications
+- Create Page Generator
+- Create Landing Page Controller
 - Selected Delete Save to Activities
 - Create Page Invoices With Menu Side
 
