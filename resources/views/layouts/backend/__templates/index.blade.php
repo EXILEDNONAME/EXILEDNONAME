@@ -13,9 +13,11 @@
           <h3 class="card-label"> {{ __('default.label.main') }} </h3>
         </div>
         <div class="card-toolbar">
-          <a href="{{ URL::Current() }}/create" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.create') }}"><i class="fas fa-plus"></i></a>
-          <a id="table-refresh" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.refresh') }}"><i class="fas fa-sync-alt"></i></a>
-          <div data-toggle="collapse" data-target="#collapse-filter" aria-expanded="true"><a class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.filter./') }}"><i class="fas fa-filter"></i></a></div>
+
+          @if ($page == 'datatable-index')
+          <a href="{{ URL::Current() }}/create" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" title="{{ __('default.label.create') }}"><i class="fas fa-plus"></i></a>
+          <a id="table-refresh" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" title="{{ __('default.label.refresh') }}"><i class="fas fa-sync-alt"></i></a>
+          <div data-toggle="collapse" data-target="#collapse-filter" aria-expanded="true"><a class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" title="{{ __('default.label.filter./') }}"><i class="fas fa-filter"></i></a></div>
           <div class="dropdown dropdown-inline" bis_skin_checked="1">
             <button type="button" class="btn btn-clean btn-xs btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <i class="fas fa-download"></i>
@@ -46,6 +48,26 @@
               </div>
             </div>
           </div>
+          @endif
+
+          @if ($page == 'datatable-index-sheet')
+          <a id="table-sync" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" title="{{ __('default.label.synchronization') }}"><i class="fas fa-sync-alt"></i></a>
+          <div class="dropdown dropdown-inline" bis_skin_checked="1">
+            <button type="button" class="btn btn-clean btn-xs btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-download"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" bis_skin_checked="1">
+              <ul class="navi navi-hover py-5">
+                <li class="navi-item" data-toggle="tooltip" data-original-title="{{ __('default.label.export.description.copy') }}"><a href="javascript:void(0);" class="navi-link" id="export_copy"><i class="navi-icon fa fa-copy"></i> {{ __('default.label.export.copy') }} </a></li>
+                <li class="navi-item" data-toggle="tooltip" data-original-title="{{ __('default.label.export.description.excel') }}"><a href="javascript:void(0);" class="navi-link" id="export_excel"><i class="navi-icon fa fa-file-excel"></i> {{ __('default.label.export.excel') }} </a></li>
+                <li class="navi-item" data-toggle="tooltip" data-original-title="{{ __('default.label.export.description.pdf') }}"><a href="javascript:void(0);" class="navi-link" id="export_pdf"><i class="navi-icon fa fa-file-pdf"></i> {{ __('default.label.export.pdf') }} </a></li>
+                <li class="navi-item" data-toggle="tooltip" data-original-title="{{ __('default.label.export.description.print') }}"><a href="javascript:void(0);" class="navi-link" id="export_print"><i class="navi-icon fa fa-print"></i> {{ __('default.label.export.print') }} </a></li>
+              </ul>
+            </div>
+          </div>
+          <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle"><i class="fas fa-caret-down"></i></a>
+          @endif
+
         </div>
       </div>
       <div class="card-body" id="exilednoname_body">
@@ -116,7 +138,9 @@
                 @if (empty($date) || $date == 'true') <th> {{ __('default.label.date') }} </th> @endif
                 @yield('table-header')
                 @if (empty($active) || $active == 'true') <th class="no-export"> {{ __('default.label.active') }} </th> @endif
+                @if ($page != 'datatable-index-sheet')
                 <th class="no-export"> </th>
+                @endif
               </tr>
             </thead>
           </table>
@@ -335,6 +359,7 @@
         }
       },
       @endif
+      @if ($page != 'datatable-index-sheet')
       {
         data: 'action',
         orderable: false,
@@ -354,6 +379,7 @@
           '</div>';
         },
       },
+      @endif
     ],
     order: [
       [1, 'asc']
@@ -366,6 +392,48 @@
   $('#export_pdf').on('click', function(e) { e.preventDefault(); table.button(3).trigger(); });
 
   @stack('filter-data')
+</script>
+
+<script>
+  $('body').on('click', '#table-sync', function () {
+    $.ajax({
+      type: "get", url: "{{ URL::current() }}/synchronization", processing: true, serverSide: true,
+      success: function (data) {
+        KTApp.block('#exilednoname_body', {
+          overlayColor: '#000000',
+          state: 'info',
+          message: '{{ __('default.label.processing') }} ...'
+        });
+        setTimeout(function() {
+          KTApp.unblock('#exilednoname_body');
+          var oTable = $('#exilednoname_table').dataTable();
+          oTable.fnDraw(false);
+          toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+          toastr.success("{{ __('default.notification.success.synchronizationed') }}");
+        }, 2000);
+      },
+      error: function (data) {
+        toastr.options = { "positionClass": "toast-bottom-right", "closeButton": true, };
+        toastr.error("{{ __('default.notification.error./') }}");
+      }
+    });
+  });
+
+
+  // $("#table-sync").on("click", function() {
+  //   KTApp.block('#exilednoname_body', {
+  //     overlayColor: '#000000',
+  //     state: 'primary',
+  //     message: "{{ __('default.label.please-wait') }} ..."
+  //   });
+  //   setTimeout(function() {
+  //     KTApp.unblock('#exilednoname_body');
+  //     $('#collapse_bulk').collapse('hide');
+  //     $('.filter-form').val('');
+  //     table.search( '' ).columns().search( '' ).draw();
+  //     table.ajax.reload();
+  //   }, 2000);
+  // });
 </script>
 
 @include('layouts.backend.__extension.javascript.filter-active')

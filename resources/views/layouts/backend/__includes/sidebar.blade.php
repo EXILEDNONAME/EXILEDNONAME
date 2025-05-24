@@ -23,6 +23,7 @@
         </div>
       </li>
       <li class="menu-item {{ (request()->is('dashboard/applications/monitorings*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/applications/monitorings') }}" class="menu-link"><i class="menu-icon fas fa-wave-square"></i><span class="menu-text"> Monitorings </span></a></li>
+      <li class="menu-item {{ (request()->is('dashboard/applications/sheets*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/applications/sheets') }}" class="menu-link"><i class="menu-icon fas fa-file-import"></i><span class="menu-text"> Sheets </span></a></li>
       @endrole
 
       <li class="menu-section">

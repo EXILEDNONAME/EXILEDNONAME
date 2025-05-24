@@ -10,12 +10,12 @@
           <h3 class="card-label"> {{ __('default.label.details') }} </h3>
         </div>
         <div class="card-toolbar">
-          <a href="{{ $url }}" class="btn btn-sm btn-outline-primary font-weight-bolder mr-2">
+          <a href="{{ $url }}" class="btn btn-sm btn-outline-primary font-weight-bolder mr-2" title="{{ __('default.label.back') }}">
             <i class="ki ki-long-arrow-back icon-xs"></i>
             {{ __('default.label.back') }}
           </a>
-          <a data-toggle="modal" class="btn btn-sm btn-icon btn-outline-primary mr-2" data-target="#qrcode_modal"><i class="fas fa-qrcode"></i></a>
-          <a data-toggle="modal" class="btn btn-sm btn-icon btn-outline-primary mr-2" onclick="printData('printData')"><i class="fas fa-print"></i></a>
+          <a data-toggle="modal" class="btn btn-sm btn-icon btn-outline-primary mr-2" data-target="#qrcode_modal" title="{{ __('default.label.qr-code') }}"><i class="fas fa-qrcode"></i></a>
+          <a data-toggle="modal" class="btn btn-sm btn-icon btn-outline-primary mr-2" title="{{ __('default.label.print') }}" onclick="printData('printData')"><i class="fas fa-print"></i></a>
           <div class="btn-group">
             <button type="button" class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
             <div class="dropdown-menu dropdown-menu-sm dropdown-menu-right">
@@ -85,10 +85,10 @@
     <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
       <div class="card-header">
         <div class="card-title">
-          <h3 class="card-label"> Activities </h3>
+          <h3 class="card-label"> {{ __('default.label.activities') }} </h3>
         </div>
         <div class="card-toolbar">
-          <a data-toggle="modal" class="btn btn-sm btn-icon btn-outline-primary mr-2" onclick="printData('printDataActivities')"><i class="fas fa-print"></i></a>
+          <a data-toggle="modal" class="btn btn-sm btn-icon btn-outline-primary mr-2" onclick="printData('printDataActivities')" title="{{ __('default.label.print') }}"><i class="fas fa-print"></i></a>
         </div>
       </div>
 

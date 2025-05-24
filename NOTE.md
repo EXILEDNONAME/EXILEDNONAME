@@ -19,6 +19,7 @@
 - (x) Managements
 - (X) Administrative Apps
 - (x) Filter Relation Datatables
+- (x) Create Page Online Sheets
 - Messages
 - Notifications
 
@@ -26,7 +27,6 @@
 - (x) Generator Simple Datatables
 - Selected Delete Save to Activities
 - Create Page Invoices With Menu Side
-- Create Page Online Sheets
 - Check Login For User Verified / Inactive
 - Page Register, Login & Forgot Password
 

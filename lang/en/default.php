@@ -53,6 +53,7 @@ return [
     'no'                            => 'No',
     'optimizations'                 => 'Optimizations',
     'please-wait'                   => 'Please Wait',
+    'print'                         => 'Print',
     'processing'                    => 'Processing',
     'profile' => [
       'account-information'         => 'Account Information',
@@ -70,6 +71,7 @@ return [
     'selected-restore'              => 'Selected Restore',
     'selected-inactive'             => 'Selected Set Inactive',
     'save'                          => 'Save',
+    'synchronization'               => 'Synchronization',
     'sessions'                      => 'Sessions',
     'settings'                      => 'Settings',
     'start'                         => 'Start',
@@ -104,6 +106,7 @@ return [
       'item-delete-permanent'       => 'Successfully Item Delete Permanently',
       'item-inactive'               => 'Successfully Item Inactivated',
       'item-restore'                => 'Successfully Item Restored',
+      'synchronizationed'           => 'Successfully Synchronizationed',
       'item-updated'                => 'Successfully Item Updated',
       'optimizing'                  => 'Optimizing Data',
       'password-changed'            => 'Password has been Changed',
