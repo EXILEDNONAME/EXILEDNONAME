@@ -21,6 +21,7 @@
 - (x) Filter Relation Datatables
 - (x) Create Page Online Sheets
 - (x) Check Login For User Verified / Inactive
+- (x) Page Register, Login & Forgot Password
 - Messages
 - Notifications
 
@@ -28,7 +29,6 @@
 - (x) Generator Simple Datatables
 - Selected Delete Save to Activities
 - Create Page Invoices With Menu Side
-- Page Register, Login & Forgot Password
 
 php artisan crud:generate AccessPoints --fields_from_file="./resources/cruds/exilednoname.json"
 
