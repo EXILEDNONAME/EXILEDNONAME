@@ -9,16 +9,11 @@ use Spatie\Activitylog\Traits\LogsActivity;
 
 class Sheet extends Model {
 
-  use HasFactory, LogsActivity;
+  use HasFactory;
 
   protected $table = 'system_application_sheets';
   protected $primaryKey = 'id';
   protected $guarded = ['id'];
   protected static $logAttributes = ['*'];
-  protected static $recordEvents = ['created', 'deleted', 'updated'];
-
-  public function getActivitylogOptions(): LogOptions {
-    return LogOptions::defaults()->logOnly(['*']);
-  }
 
 }
