@@ -74,17 +74,5 @@ Route::group([
   'middleware' => ['auth', 'web']
 ], function () {
   Route::get('synchronization', 'SheetController@synchronization')->name('synchronization');
-  Route::get('active/{id}', 'SheetController@active')->name('active');
-  Route::get('activities', 'SheetController@activity')->name('activity');
-  Route::get('inactive/{id}', 'SheetController@inactive')->name('inactive');
-  Route::get('delete/{id}', 'SheetController@delete')->name('delete');
-  Route::get('delete-permanent/{id}', 'SheetController@delete_permanent')->name('delete-permanent');
-  Route::get('restore/{id}', 'SheetController@restore')->name('restore');
-  Route::get('trash', 'SheetController@trash')->name('trash');
-  Route::get('selected-active', 'SheetController@selected_active')->name('selected-active');
-  Route::get('selected-inactive', 'SheetController@selected_inactive')->name('selected-inactive');
-  Route::get('selected-delete', 'SheetController@selected_delete')->name('selected-delete');
-  Route::get('selected-delete-permanent', 'SheetController@selected_delete_permanent')->name('selected-delete-permanent');
-  Route::get('selected-restore', 'SheetController@selected_restore')->name('selected-restore');
-  Route::resource('/', 'SheetController')->parameters(['' => 'id']);
+  Route::get('/', 'SheetController@index')->name('index');
 });

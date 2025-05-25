@@ -14,7 +14,7 @@
         </div>
         <div class="card-toolbar">
 
-          @if ($page == 'datatable-index')
+          @if (!empty($page) && $page == 'datatable-index')
           <a href="{{ URL::Current() }}/create" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" title="{{ __('default.label.create') }}"><i class="fas fa-plus"></i></a>
           <a id="table-refresh" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" title="{{ __('default.label.refresh') }}"><i class="fas fa-sync-alt"></i></a>
           <div data-toggle="collapse" data-target="#collapse-filter" aria-expanded="true"><a class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" title="{{ __('default.label.filter./') }}"><i class="fas fa-filter"></i></a></div>
@@ -50,7 +50,7 @@
           </div>
           @endif
 
-          @if ($page == 'datatable-index-sheet')
+          @if (!empty($page) && $page == 'datatable-index-sheet')
           <a id="table-sync" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" title="{{ __('default.label.synchronization') }}"><i class="fas fa-sync-alt"></i></a>
           <div class="dropdown dropdown-inline" bis_skin_checked="1">
             <button type="button" class="btn btn-clean btn-xs btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -138,7 +138,7 @@
                 @if (empty($date) || $date == 'true') <th> {{ __('default.label.date') }} </th> @endif
                 @yield('table-header')
                 @if (empty($active) || $active == 'true') <th class="no-export"> {{ __('default.label.active') }} </th> @endif
-                @if ($page != 'datatable-index-sheet')
+                @if (!empty($page) && $page != 'datatable-index-sheet')
                 <th class="no-export"> </th>
                 @endif
               </tr>
@@ -359,7 +359,7 @@
         }
       },
       @endif
-      @if ($page != 'datatable-index-sheet')
+      @if (!empty($page) && $page != 'datatable-index-sheet')
       {
         data: 'action',
         orderable: false,

@@ -82,7 +82,7 @@
                     Remember me
                   </label>
                 </div>
-                <a href="/password/reset" class="text-white font-weight-bold">Forget Password ?</a>
+                <a href="{{ route('password.request') }}" class="text-white font-weight-bold">Forget Password ?</a>
               </div>
               <div class="form-group text-center mt-10">
                 <button type="submit" class="btn btn-pill btn-primary opacity-90 px-15 py-3">Sign In</button>

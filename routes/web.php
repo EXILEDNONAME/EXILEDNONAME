@@ -20,4 +20,9 @@ include(base_path(). '/routes/backend/__system/application.php');
 include(base_path(). '/routes/backend/__system/dashboard.php');
 include(base_path(). '/routes/backend/__system/profile.php');
 
-Route::get('/password/reset', function () { return view('auth.forgot-password'); })->middleware('guest')->name('password.request');
+Route::get('/dashboard/applications', function () { return redirect('/dashboard')->with('error', __('default.notification.error.url-notfound')); });
+Route::get('/dashboard/applications/datatables', function () { return redirect('/dashboard')->with('error', __('default.notification.error.url-notfound')); });
+Route::get('/dashboard/settings', function () { return redirect('/dashboard')->with('error', __('default.notification.error.url-notfound')); });
+Route::get('/dashboard/administratives', function () { return redirect('/dashboard')->with('error', __('default.notification.error.url-notfound')); });
+Route::get('/dashboard/administratives/applications', function () { return redirect('/dashboard')->with('error', __('default.notification.error.url-notfound')); });
+Route::get('/dashboard/administratives/managements', function () { return redirect('/dashboard')->with('error', __('default.notification.error.url-notfound')); });
