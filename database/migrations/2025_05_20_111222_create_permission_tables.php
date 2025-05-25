@@ -28,6 +28,8 @@ return new class extends Migration
             $table->timestamps();
 
             $table->unique(['name', 'guard_name']);
+            $table->softDeletes();
+            $table->integer('active')->default(1);
         });
 
         Schema::create($tableNames['roles'], static function (Blueprint $table) use ($teams, $columnNames) {
@@ -45,6 +47,8 @@ return new class extends Migration
             } else {
                 $table->unique(['name', 'guard_name']);
             }
+            $table->softDeletes();
+            $table->integer('active')->default(1);
         });
 
         Schema::create($tableNames['model_has_permissions'], static function (Blueprint $table) use ($tableNames, $columnNames, $pivotPermission, $teams) {
@@ -68,6 +72,8 @@ return new class extends Migration
                 $table->primary([$pivotPermission, $columnNames['model_morph_key'], 'model_type'],
                     'model_has_permissions_permission_model_type_primary');
             }
+            $table->softDeletes();
+            $table->integer('active')->default(1);
 
         });
 
@@ -92,6 +98,8 @@ return new class extends Migration
                 $table->primary([$pivotRole, $columnNames['model_morph_key'], 'model_type'],
                     'model_has_roles_role_model_type_primary');
             }
+            $table->softDeletes();
+            $table->integer('active')->default(1);
         });
 
         Schema::create($tableNames['role_has_permissions'], static function (Blueprint $table) use ($tableNames, $pivotRole, $pivotPermission) {

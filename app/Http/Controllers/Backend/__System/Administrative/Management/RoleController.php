@@ -8,10 +8,10 @@ use App\Http\Traits\Backend\__System\Controllers\Datatable\ExtensionController;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Redirect, Response;
 
-use App\Http\Requests\Backend\__System\Administrative\Management\User\StoreRequest;
-use App\Http\Requests\Backend\__System\Administrative\Management\User\UpdateRequest;
+use App\Http\Requests\Backend\__System\Administrative\Management\Role\StoreRequest;
+use App\Http\Requests\Backend\__System\Administrative\Management\Role\UpdateRequest;
 
-class UserController extends Controller implements HasMiddleware {
+class RoleController extends Controller implements HasMiddleware {
 
   public static function middleware(): array { return ['auth', 'role:master-administrator']; }
 
@@ -19,9 +19,9 @@ class UserController extends Controller implements HasMiddleware {
   use ExtensionController;
 
   function __construct() {
-    $this->model = 'App\Models\User';
-    $this->path = 'pages.backend.__system.administrative.management.user.';
-    $this->url = '/dashboard/administratives\managements\users';
+    $this->model = 'App\Models\Role';
+    $this->path = 'pages.backend.__system.administrative.management.role.';
+    $this->url = '/dashboard/administratives\managements\roles';
     if (request('date_start') && request('date_end')) { $this->data = $this->model::orderby('date_start', 'desc')->whereBetween('date_start', [request('date_start'), request('date_end')])->get(); }
     else { $this->data = $this->model::get(); }
   }
@@ -34,9 +34,7 @@ class UserController extends Controller implements HasMiddleware {
 
   public function store(StoreRequest $request) {
     $store = $request->all();
-    if(!(strcmp($request->get('password'), $request->get('confirm-password'))) == 0){
-      return redirect()->back()->with('error', __('default.notification.error.password-confirm'));
-    }
+    $store['guard_name'] = 'web';
     $this->model::create($store);
     return redirect($this->url)->with('success', __('default.notification.success.item-created'));
   }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Backend\__System\Administrative\Management\User;
+namespace App\Http\Requests\Backend\__System\Administrative\Management\Role;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
@@ -11,7 +11,7 @@ Validator::extend('validateWithoutSpaces', function ($attribute, $value, $parame
   return !Str::contains($value, ' '); // Checks for spaces
 });
 
-class UpdateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
   /**
   * Determine if the user is authorized to make this request.
@@ -29,9 +29,7 @@ class UpdateRequest extends FormRequest
   public function rules(): array
   {
     return [
-      'phone' => ['required', Rule::unique('users')->ignore($this->id)],
-      'username' => ['required', 'validateWithoutSpaces', Rule::unique('users')->ignore($this->id)],
-      'email' => ['required', Rule::unique('users')->ignore($this->id)],
+      'name' => 'required|validateWithoutSpaces|unique:roles',
     ];
   }
 

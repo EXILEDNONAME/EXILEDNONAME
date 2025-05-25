@@ -98,7 +98,7 @@
                   <select data-column="-2" class="form-control filter-form filter_active">
                     <option value=""> - {{ __('default.select.active') }} - </option>
                     <option value="1"> {{ __('default.label.yes') }} </option>
-                    <option value="2"> {{ __('default.label.no') }} </option>
+                    <option value="0"> {{ __('default.label.no') }} </option>
                   </select>
                 </div>
               </div>
@@ -355,7 +355,7 @@
         render: function ( data, type, row ) {
           if ( data == 0 ) { return '<a href="javascript:void(0);" id="active" data-toggle="tooltip" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ __("default.label.no") }} </span></a>'; }
           if ( data == 1 ) { return '<a href="javascript:void(0);" id="inactive" data-toggle="tooltip" data-id="' + row.id + '"><span class="label label-info label-inline"> {{ __("default.label.yes") }} </span></a>'; }
-          if ( data == 2 ) { return '<a href="javascript:void(0);" id="active" data-toggle="tooltip" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ __("default.label.no") }} </span></a>'; }
+          if ( data == 0 ) { return '<a href="javascript:void(0);" id="active" data-toggle="tooltip" data-id="' + row.id + '"><span class="label label-dark label-inline"> {{ __("default.label.no") }} </span></a>'; }
         }
       },
       @endif

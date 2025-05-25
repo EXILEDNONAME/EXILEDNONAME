@@ -43,6 +43,28 @@ Route::group([
   Route::resource('/', 'UserController')->parameters(['' => 'id']);
 });
 
+// ADMINISTRATIVE - MANAGEMENT ROLES
+Route::group([
+  'as' => 'dashboard.system.administrative.management.roles.',
+  'prefix' => 'dashboard/administratives/managements/roles',
+  'namespace' => 'App\Http\Controllers\Backend\__System\Administrative\Management',
+  'middleware' => 'auth',
+], function () {
+  Route::get('active/{id}', 'RoleController@active')->name('active');
+  Route::get('activities', 'RoleController@activity')->name('activity');
+  Route::get('inactive/{id}', 'RoleController@inactive')->name('inactive');
+  Route::get('delete/{id}', 'RoleController@delete')->name('delete');
+  Route::get('delete-permanent/{id}', 'RoleController@delete_permanent')->name('delete-permanent');
+  Route::get('restore/{id}', 'RoleController@restore')->name('restore');
+  Route::get('trash', 'RoleController@trash')->name('trash');
+  Route::get('selected-active', 'RoleController@selected_active')->name('selected-active');
+  Route::get('selected-inactive', 'RoleController@selected_inactive')->name('selected-inactive');
+  Route::get('selected-delete', 'RoleController@selected_delete')->name('selected-delete');
+  Route::get('selected-delete-permanent', 'RoleController@selected_delete_permanent')->name('selected-delete-permanent');
+  Route::get('selected-restore', 'RoleController@selected_restore')->name('selected-restore');
+  Route::resource('/', 'RoleController')->parameters(['' => 'id']);
+});
+
 // ADMINISTRATIVE - SESSIONS
 Route::group([
   'as' => 'dashboard.system.administrative.sessions.',
