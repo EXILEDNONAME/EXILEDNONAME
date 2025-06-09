@@ -68,6 +68,8 @@
           <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle"><i class="fas fa-caret-down"></i></a>
           @endif
 
+          @stack('toolbar-button')
+
         </div>
       </div>
       <div class="card-body" id="exilednoname_body">
@@ -156,14 +158,14 @@
 
   @if (!empty($activities) && $activities == 'true')
   <div class="col-lg-4">
-    <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
+    <div class="card card-custom gutter-b" data-card="true" id="exilednoname_activities">
       <div class="card-header">
         <h4 class="card-title">
           <span class="card-label"> {{ __('default.label.activities') }} </span>
         </h4>
         <div class="card-toolbar">
           <a id="activity-refresh" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.refresh') }}"><i class="fas fa-sync-alt"></i></a>
-          <a href="#" class="btn btn-icon btn-xs btn-hover-light-primary mr-1" data-card-tool="toggle"><i class="fas fa-caret-down"></i></a>
+          <a href="javascript:void(0);" class="btn btn-icon btn-xs btn-hover-light-primary" data-card-tool="toggle"><i class="fas fa-caret-down"></i></a>
         </div>
       </div>
       <div class="card-body" id="exilednoname_activity">
@@ -254,7 +256,7 @@
 
   @if (!empty($charts) && $charts == 'true')
   <div class="col-lg-8">
-    <div class="card card-custom gutter-b" data-card="true" id="exilednoname_card">
+    <div class="card card-custom gutter-b" data-card="true" id="exilednoname_charts">
       <div class="card-header">
         <div class="card-title">
           <h3 class="card-label">
