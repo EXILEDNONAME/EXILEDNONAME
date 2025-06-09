@@ -5,20 +5,17 @@ namespace App\Http\Traits\Backend\__System\Controllers\Datatable\Extension;
 use Illuminate\Http\Request;
 use Redirect, Response;
 
-trait SelectedDeleteController {
+trait SelectedDeletePermanentController {
 
   /**
   **************************************************
-  * @return SELECTED-DELETE
+  * @return SELECTED-DELETE-PERMANENT
   **************************************************
   **/
 
-  public function selected_delete(Request $request) {
+  public function selected_delete_permanent(Request $request) {
     $data = $request->EXILEDNONAME;
-    $data2 = $this->model::whereIn('id',explode(",",$data))->get();
-    foreach ($data2 as $data3) {
-      $this->model::destroy($data3->id);
-    }
+    $this->model::whereIn('id',explode(",",$data))->forceDelete();
     return Response::json($data);
   }
 

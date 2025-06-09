@@ -95,6 +95,7 @@ return [
       'selected-active'             => 'Activate All Item Selected',
       'selected-inactive'           => 'Inactivate All Item Selected',
       'selected-delete'             => 'Delete All Item Selected',
+      'selected-delete-permanent'   => 'Delete Permanent All Item Selected',
       'selected-restore'            => 'Restore All Item Selected',
     ],
 
@@ -114,6 +115,7 @@ return [
       'selected-active'             => 'All Items Have Been Activated',
       'selected-inactive'           => 'All Items Have Been Inactivated',
       'selected-delete'             => 'All Items Have Been Deleted',
+      'selected-delete-permanent'   => 'All Items Have Been Delete Permanently',
       'selected-restore'            => 'All Items Have Been Restored',
       'setting-updated'             => 'Successfully Setting Updated',
       'table-reset'                 => 'Resetting Table Sessions',

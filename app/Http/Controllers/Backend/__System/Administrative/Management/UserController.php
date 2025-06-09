@@ -7,6 +7,7 @@ use App\Http\Traits\Backend\__System\Controllers\Datatable\DefaultController;
 use App\Http\Traits\Backend\__System\Controllers\Datatable\ExtensionController;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Redirect, Response;
+use Illuminate\Http\Request;
 
 use App\Http\Requests\Backend\__System\Administrative\Management\User\StoreRequest;
 use App\Http\Requests\Backend\__System\Administrative\Management\User\UpdateRequest;
@@ -109,7 +110,10 @@ class UserController extends Controller implements HasMiddleware {
     }
     else {
       $data = $request->EXILEDNONAME;
-      $this->model::whereIn('id',explode(",",$data))->delete();
+      $data2 = $this->model::whereIn('id',explode(",",$data))->get();
+      foreach ($data2 as $data3) {
+        $this->model::destroy($data3->id);
+      }
       return Response::json($data);
     }
 

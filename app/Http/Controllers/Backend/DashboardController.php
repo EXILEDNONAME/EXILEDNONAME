@@ -6,13 +6,19 @@ use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class DashboardController extends Controller implements HasMiddleware {
 
   public static function middleware(): array { return ['auth']; }
 
   public function index() {
-    return view('pages.backend.dashboard');
+    // Storage::disk('public')->put('list.csv', file_get_contents('https://micypedia.id/api/v2?key=a4c5969039e713a8780270b0b25bb66e&action=services'));
+    $json = Storage::json(base_path('/storage/app/public/list.json'));
+    $data = json_decode($json);
+    return view('pages.backend.dashboard', compact('data'));
   }
 
   public function file_manager() {

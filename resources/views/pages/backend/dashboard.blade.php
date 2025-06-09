@@ -55,6 +55,11 @@
 
 
 </div>
+
+@foreach ($data as $item)
+    Service {{ $item->service }} - {{ $item->name }} <br>
+@endforeach
+
 @endsection
 
 @push('js')
