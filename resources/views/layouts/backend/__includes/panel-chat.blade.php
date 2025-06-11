@@ -9,7 +9,7 @@
             <!--begin::Dropdown Menu-->
             <div class="dropdown dropdown-inline">
               <button type="button" class="btn btn-clean btn-sm btn-icon btn-icon-md" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="svg-icon svg-icon-lg"><!--begin::Svg Icon | path:/assets/backend/media/svg/icons/Communication/Add-user.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                <span class="svg-icon svg-icon-lg"><!--begin::Svg Icon | path:{{ env('APP_URL') }}/assets/backend/media/svg/icons/Communication/Add-user.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                   <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                     <polygon points="0 0 24 0 24 24 0 24"/>
                     <path d="M18,8 L16,8 C15.4477153,8 15,7.55228475 15,7 C15,6.44771525 15.4477153,6 16,6 L18,6 L18,4 C18,3.44771525 18.4477153,3 19,3 C19.5522847,3 20,3.44771525 20,4 L20,6 L22,6 C22.5522847,6 23,6.44771525 23,7 C23,7.55228475 22.5522847,8 22,8 L20,8 L20,10 C20,10.5522847 19.5522847,11 19,11 C18.4477153,11 18,10.5522847 18,10 L18,8 Z M9,11 C6.790861,11 5,9.209139 5,7 C5,4.790861 6.790861,3 9,3 C11.209139,3 13,4.790861 13,7 C13,9.209139 11.209139,11 9,11 Z" fill="#000000" fill-rule="nonzero" opacity="0.3"/>
@@ -101,7 +101,7 @@
                 <div class="d-flex flex-column mb-5 align-items-start">
                   <div class="d-flex align-items-center">
                     <div class="symbol symbol-circle symbol-40 mr-3">
-                      <img alt="Pic" src="/assets/backend/media/users/300_12.jpg"/>
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_12.jpg"/>
                     </div>
                     <div>
                       <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
@@ -123,7 +123,7 @@
                       <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
                     </div>
                     <div class="symbol symbol-circle symbol-40 ml-3">
-                      <img alt="Pic" src="/assets/backend/media/users/300_21.jpg"/>
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_21.jpg"/>
                     </div>
                   </div>
                   <div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
@@ -137,7 +137,7 @@
                 <div class="d-flex flex-column mb-5 align-items-start">
                   <div class="d-flex align-items-center">
                     <div class="symbol symbol-circle symbol-40 mr-3">
-                      <img alt="Pic" src="/assets/backend/media/users/300_21.jpg"/>
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_21.jpg"/>
                     </div>
                     <div>
                       <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
@@ -158,7 +158,7 @@
                       <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
                     </div>
                     <div class="symbol symbol-circle symbol-40 ml-3">
-                      <img alt="Pic" src="/assets/backend/media/users/300_21.jpg"/>
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_21.jpg"/>
                     </div>
                   </div>
                   <div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
@@ -171,7 +171,7 @@
                 <div class="d-flex flex-column mb-5 align-items-start">
                   <div class="d-flex align-items-center">
                     <div class="symbol symbol-circle symbol-40 mr-3">
-                      <img alt="Pic" src="/assets/backend/media/users/300_12.jpg"/>
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_12.jpg"/>
                     </div>
                     <div>
                       <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
@@ -192,7 +192,7 @@
                       <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
                     </div>
                     <div class="symbol symbol-circle symbol-40 ml-3">
-                      <img alt="Pic" src="/assets/backend/media/users/300_21.jpg"/>
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_21.jpg"/>
                     </div>
                   </div>
                   <div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">
@@ -205,7 +205,7 @@
                 <div class="d-flex flex-column mb-5 align-items-start">
                   <div class="d-flex align-items-center">
                     <div class="symbol symbol-circle symbol-40 mr-3">
-                      <img alt="Pic" src="/assets/backend/media/users/300_12.jpg"/>
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_12.jpg"/>
                     </div>
                     <div>
                       <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
@@ -226,7 +226,7 @@
                       <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
                     </div>
                     <div class="symbol symbol-circle symbol-40 ml-3">
-                      <img alt="Pic" src="/assets/backend/media/users/300_21.jpg"/>
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_21.jpg"/>
                     </div>
                   </div>
                   <div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">

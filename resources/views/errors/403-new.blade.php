@@ -8,20 +8,20 @@
     <meta name="description" content=""/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"/>
-    <link href="/assets/backend/css/pages/error/error-6.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-    <link href="/assets/backend/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-    <link href="/assets/backend/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-    <link href="/assets/backend/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-    <link href="/assets/backend/css/themes/layout/header/base/light.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-    <link href="/assets/backend/css/themes/layout/header/menu/light.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-    <link href="/assets/backend/css/themes/layout/brand/dark.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-    <link href="/assets/backend/css/themes/layout/aside/dark.css?v=7.0.6" rel="stylesheet" type="text/css"/>
-    <link rel="shortcut icon" href="/assets/backend/media/logos/favicon.ico"/>
+    <link href="{{ env('APP_URL') }}/assets/backend/css/pages/error/error-6.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+    <link href="{{ env('APP_URL') }}/assets/backend/plugins/global/plugins.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+    <link href="{{ env('APP_URL') }}/assets/backend/plugins/custom/prismjs/prismjs.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+    <link href="{{ env('APP_URL') }}/assets/backend/css/style.bundle.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+    <link href="{{ env('APP_URL') }}/assets/backend/css/themes/layout/header/base/light.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+    <link href="{{ env('APP_URL') }}/assets/backend/css/themes/layout/header/menu/light.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+    <link href="{{ env('APP_URL') }}/assets/backend/css/themes/layout/brand/dark.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+    <link href="{{ env('APP_URL') }}/assets/backend/css/themes/layout/aside/dark.css?v=7.0.6" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="{{ env('APP_URL') }}/assets/backend/media/logos/favicon.ico"/>
   </head>
 
   <body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
     <div class="d-flex flex-column flex-root">
-      <div class="error error-6 d-flex flex-row-fluid bgi-size-cover bgi-position-center" style="background-image: url(/assets/backend/media/error/bg6.jpg);">
+      <div class="error error-6 d-flex flex-row-fluid bgi-size-cover bgi-position-center" style="background-image: url({{ env('APP_URL') }}/assets/backend/media/error/bg6.jpg);">
         <div class="d-flex flex-column flex-row-fluid text-center">
           <h1 class="error-title font-weight-boldest text-white mb-12" style="margin-top: 12rem;"> </h1>
           <p class="display-4 font-weight-bold text-white">
@@ -45,9 +45,9 @@
     <!--end::Global Config-->
 
     <!--begin::Global Theme Bundle(used by all pages)-->
-    <script src="/assets/backend/plugins/global/plugins.bundle.js?v=7.0.6"></script>
-    <script src="/assets/backend/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
-    <script src="/assets/backend/js/scripts.bundle.js?v=7.0.6"></script>
+    <script src="{{ env('APP_URL') }}/assets/backend/plugins/global/plugins.bundle.js?v=7.0.6"></script>
+    <script src="{{ env('APP_URL') }}/assets/backend/plugins/custom/prismjs/prismjs.bundle.js?v=7.0.6"></script>
+    <script src="{{ env('APP_URL') }}/assets/backend/js/scripts.bundle.js?v=7.0.6"></script>
     <!--end::Global Theme Bundle-->
 
 

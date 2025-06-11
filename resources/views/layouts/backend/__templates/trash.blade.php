@@ -2,7 +2,7 @@
 
 
 @push('head')
-<link href="{{ asset('/assets/backend/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('{{ env('APP_URL') }}/assets/backend/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet" type="text/css" />
 @endpush
 
 @section('content')
@@ -84,8 +84,8 @@
 @endsection
 
 @push('js')
-<script src="{{ asset('/assets/backend/plugins/custom/datatables/datatables.bundle.js') }}"></script>
-<script src="{{ asset('/assets/backend/js/pages/crud/forms/widgets/bootstrap-datepicker.js') }}"></script>
+<script src="{{ asset('{{ env('APP_URL') }}/assets/backend/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+<script src="{{ asset('{{ env('APP_URL') }}/assets/backend/js/pages/crud/forms/widgets/bootstrap-datepicker.js') }}"></script>
 <script>
   $(document).ready(function() {
     $('#toast-container').fadeOut(5000);
