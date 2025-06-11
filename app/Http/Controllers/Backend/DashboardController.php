@@ -16,7 +16,6 @@ class DashboardController extends Controller implements HasMiddleware {
 
   public function index() {
     // Storage::disk('public')->put('list.csv', file_get_contents('https://micypedia.id/api/v2?key=a4c5969039e713a8780270b0b25bb66e&action=services'));
-    $json = Storage::json(base_path('/storage/app/public/list.json'));
     $data = json_decode($json);
     return view('pages.backend.dashboard', compact('data'));
   }
