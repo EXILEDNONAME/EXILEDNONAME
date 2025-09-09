@@ -120,8 +120,8 @@
  */
 @font-face {
   font-family: "Ki";
-  src: url("../../plugins/global/fonts/keenthemes-icons/Ki.eot");
-  src: url("../../plugins/global/fonts/keenthemes-icons/Ki.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/keenthemes-icons/Ki.woff") format("woff"), url("../../plugins/global/fonts/keenthemes-icons/Ki.ttf") format("truetype"), url("../../plugins/global/fonts/keenthemes-icons/Ki.svg#Ki") format("svg");
+  src: url("fonts/keenthemes-icons/Ki.eot");
+  src: url("fonts/keenthemes-icons/Ki.eot?#iefix") format("embedded-opentype"), url("fonts/keenthemes-icons/Ki.woff") format("woff"), url("fonts/keenthemes-icons/Ki.ttf") format("truetype"), url("fonts/keenthemes-icons/Ki.svg#Ki") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -7584,24 +7584,24 @@ Build date: 2019-12-19 16:51:02
 }
 
 /*!
- *
+ * 
  * Super simple wysiwyg editor v0.8.18
  * https://summernote.org
- *
- *
+ * 
+ * 
  * Copyright 2013- Alan Hong. and other contributors
  * summernote may be freely distributed under the MIT license.
- *
+ * 
  * Date: 2020-05-20T16:47Z
- *
+ * 
  */
 @font-face {
   font-family: "summernote";
   font-style: normal;
   font-weight: 400;
   font-display: auto;
-  src: url("../../plugins/global/fonts/summernote/summernote.eot");
-  src: url("../../plugins/global/fonts/summernote/summernote.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/summernote/summernote.woff2") format("woff2"), url("../../plugins/global/fonts/summernote/summernote.woff") format("woff"), url("../../plugins/global/fonts/summernote/summernote.ttf") format("truetype");
+  src: url("fonts/summernote/summernote.eot");
+  src: url("fonts/summernote/summernote.eot?#iefix") format("embedded-opentype"), url("fonts/summernote/summernote.woff2") format("woff2"), url("fonts/summernote/summernote.woff") format("woff"), url("fonts/summernote/summernote.ttf") format("truetype");
 }
 [class^=note-icon]:before, [class*=" note-icon"]:before {
   display: inline-block;
@@ -20973,8 +20973,8 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: normal;
   font-display: auto;
-  src: url("../../plugins/global/fonts/line-awesome/la-brands-400.eot");
-  src: url("../../plugins/global/fonts/line-awesome/la-brands-400.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/line-awesome/la-brands-400.woff2") format("woff2"), url("../../plugins/global/fonts/line-awesome/la-brands-400.woff") format("woff"), url("../../plugins/global/fonts/line-awesome/la-brands-400.ttf") format("truetype"), url("../../plugins/global/fonts/line-awesome/la-brands-400.svg#lineawesome") format("svg");
+  src: url("fonts/line-awesome/la-brands-400.eot");
+  src: url("fonts/line-awesome/la-brands-400.eot?#iefix") format("embedded-opentype"), url("fonts/line-awesome/la-brands-400.woff2") format("woff2"), url("fonts/line-awesome/la-brands-400.woff") format("woff"), url("fonts/line-awesome/la-brands-400.ttf") format("truetype"), url("fonts/line-awesome/la-brands-400.svg#lineawesome") format("svg");
 }
 .lab {
   font-family: "Line Awesome Brands";
@@ -20985,8 +20985,8 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: auto;
-  src: url("../../plugins/global/fonts/line-awesome/la-regular-400.eot");
-  src: url("../../plugins/global/fonts/line-awesome/la-regular-400.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/line-awesome/la-regular-400.woff2") format("woff2"), url("../../plugins/global/fonts/line-awesome/la-regular-400.woff") format("woff"), url("../../plugins/global/fonts/line-awesome/la-regular-400.ttf") format("truetype"), url("../../plugins/global/fonts/line-awesome/la-regular-400.svg#lineawesome") format("svg");
+  src: url("fonts/line-awesome/la-regular-400.eot");
+  src: url("fonts/line-awesome/la-regular-400.eot?#iefix") format("embedded-opentype"), url("fonts/line-awesome/la-regular-400.woff2") format("woff2"), url("fonts/line-awesome/la-regular-400.woff") format("woff"), url("fonts/line-awesome/la-regular-400.ttf") format("truetype"), url("fonts/line-awesome/la-regular-400.svg#lineawesome") format("svg");
 }
 .lar {
   font-family: "Line Awesome Free";
@@ -20998,8 +20998,8 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 900;
   font-display: auto;
-  src: url("../../plugins/global/fonts/line-awesome/la-solid-900.eot");
-  src: url("../../plugins/global/fonts/line-awesome/la-solid-900.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/line-awesome/la-solid-900.woff2") format("woff2"), url("../../plugins/global/fonts/line-awesome/la-solid-900.woff") format("woff"), url("../../plugins/global/fonts/line-awesome/la-solid-900.ttf") format("truetype"), url("../../plugins/global/fonts/line-awesome/la-solid-900.svg#lineawesome") format("svg");
+  src: url("fonts/line-awesome/la-solid-900.eot");
+  src: url("fonts/line-awesome/la-solid-900.eot?#iefix") format("embedded-opentype"), url("fonts/line-awesome/la-solid-900.woff2") format("woff2"), url("fonts/line-awesome/la-solid-900.woff") format("woff"), url("fonts/line-awesome/la-solid-900.ttf") format("truetype"), url("fonts/line-awesome/la-solid-900.svg#lineawesome") format("svg");
 }
 .la,
 .las {
@@ -23787,8 +23787,8 @@ readers do not read off random characters that represent icons */
   */
 @font-face {
   font-family: "Flaticon";
-  src: url("../../plugins/global/fonts/flaticon/Flaticon.eot");
-  src: url("../../plugins/global/fonts/flaticon/Flaticon.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/flaticon/Flaticon.woff") format("woff"), url("../../plugins/global/fonts/flaticon/Flaticon.ttf") format("truetype"), url("../../plugins/global/fonts/flaticon/Flaticon.svg#Flaticon") format("svg");
+  src: url("fonts/flaticon/Flaticon.eot");
+  src: url("fonts/flaticon/Flaticon.eot?#iefix") format("embedded-opentype"), url("fonts/flaticon/Flaticon.woff") format("woff"), url("fonts/flaticon/Flaticon.ttf") format("truetype"), url("fonts/flaticon/Flaticon.svg#Flaticon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -24765,8 +24765,8 @@ readers do not read off random characters that represent icons */
   */
 @font-face {
   font-family: "Flaticon2";
-  src: url("../../plugins/global/fonts/flaticon2/Flaticon2.eot");
-  src: url("../../plugins/global/fonts/flaticon2/Flaticon2.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/flaticon2/Flaticon2.woff") format("woff"), url("../../plugins/global/fonts/flaticon2/Flaticon2.ttf") format("truetype"), url("../../plugins/global/fonts/flaticon2/Flaticon2.svg#Flaticon2") format("svg");
+  src: url("fonts/flaticon2/Flaticon2.eot");
+  src: url("fonts/flaticon2/Flaticon2.eot?#iefix") format("embedded-opentype"), url("fonts/flaticon2/Flaticon2.woff") format("woff"), url("fonts/flaticon2/Flaticon2.ttf") format("truetype"), url("fonts/flaticon2/Flaticon2.svg#Flaticon2") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -25703,8 +25703,8 @@ readers do not read off random characters that represent icons */
 
 @font-face {
   font-family: "socicon";
-  src: url("../../plugins/global/fonts/socicon/socicon.eot");
-  src: url("../../plugins/global/fonts/socicon/socicon.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/socicon/socicon.woff") format("woff"), url("../../plugins/global/fonts/socicon/socicon.ttf") format("truetype"), url("../../plugins/global/fonts/socicon/socicon.svg#socicon") format("svg");
+  src: url("fonts/socicon/socicon.eot");
+  src: url("fonts/socicon/socicon.eot?#iefix") format("embedded-opentype"), url("fonts/socicon/socicon.woff") format("woff"), url("fonts/socicon/socicon.ttf") format("truetype"), url("fonts/socicon/socicon.svg#socicon") format("svg");
   font-weight: normal;
   font-style: normal;
 }
@@ -32481,8 +32481,8 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("../../plugins/global/fonts/@fortawesome/fa-brands-400.eot");
-  src: url("../../plugins/global/fonts/@fortawesome/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/@fortawesome/fa-brands-400.woff2") format("woff2"), url("../../plugins/global/fonts/@fortawesome/fa-brands-400.woff") format("woff"), url("../../plugins/global/fonts/@fortawesome/fa-brands-400.ttf") format("truetype"), url("../../plugins/global/fonts/@fortawesome/fa-brands-400.svg#fontawesome") format("svg");
+  src: url("fonts/@fortawesome/fa-brands-400.eot");
+  src: url("fonts/@fortawesome/fa-brands-400.eot?#iefix") format("embedded-opentype"), url("fonts/@fortawesome/fa-brands-400.woff2") format("woff2"), url("fonts/@fortawesome/fa-brands-400.woff") format("woff"), url("fonts/@fortawesome/fa-brands-400.ttf") format("truetype"), url("fonts/@fortawesome/fa-brands-400.svg#fontawesome") format("svg");
 }
 .fab {
   font-family: "Font Awesome 5 Brands";
@@ -32493,8 +32493,8 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url("../../plugins/global/fonts/@fortawesome/fa-regular-400.eot");
-  src: url("../../plugins/global/fonts/@fortawesome/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/@fortawesome/fa-regular-400.woff2") format("woff2"), url("../../plugins/global/fonts/@fortawesome/fa-regular-400.woff") format("woff"), url("../../plugins/global/fonts/@fortawesome/fa-regular-400.ttf") format("truetype"), url("../../plugins/global/fonts/@fortawesome/fa-regular-400.svg#fontawesome") format("svg");
+  src: url("fonts/@fortawesome/fa-regular-400.eot");
+  src: url("fonts/@fortawesome/fa-regular-400.eot?#iefix") format("embedded-opentype"), url("fonts/@fortawesome/fa-regular-400.woff2") format("woff2"), url("fonts/@fortawesome/fa-regular-400.woff") format("woff"), url("fonts/@fortawesome/fa-regular-400.ttf") format("truetype"), url("fonts/@fortawesome/fa-regular-400.svg#fontawesome") format("svg");
 }
 .fab, .far {
   font-weight: 400;
@@ -32505,8 +32505,8 @@ readers do not read off random characters that represent icons */
   font-style: normal;
   font-weight: 900;
   font-display: block;
-  src: url("../../plugins/global/fonts/@fortawesome/fa-solid-900.eot");
-  src: url("../../plugins/global/fonts/@fortawesome/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("../../plugins/global/fonts/@fortawesome/fa-solid-900.woff2") format("woff2"), url("../../plugins/global/fonts/@fortawesome/fa-solid-900.woff") format("woff"), url("../../plugins/global/fonts/@fortawesome/fa-solid-900.ttf") format("truetype"), url("../../plugins/global/fonts/@fortawesome/fa-solid-900.svg#fontawesome") format("svg");
+  src: url("fonts/@fortawesome/fa-solid-900.eot");
+  src: url("fonts/@fortawesome/fa-solid-900.eot?#iefix") format("embedded-opentype"), url("fonts/@fortawesome/fa-solid-900.woff2") format("woff2"), url("fonts/@fortawesome/fa-solid-900.woff") format("woff"), url("fonts/@fortawesome/fa-solid-900.ttf") format("truetype"), url("fonts/@fortawesome/fa-solid-900.svg#fontawesome") format("svg");
 }
 .fa, .far, .fas {
   font-family: "Font Awesome 5 Free";

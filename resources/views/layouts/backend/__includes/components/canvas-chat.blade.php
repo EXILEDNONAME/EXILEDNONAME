@@ -181,79 +181,79 @@
                   </div>
                 </div>
                 <div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">You can unwatch this repository immediately by clicking here:
-                <a href="#">https://github.com</a></div>
-              </div>
-              <!--end::Message In-->
-              <!--begin::Message Out-->
-              <div class="d-flex flex-column mb-5 align-items-end">
-                <div class="d-flex align-items-center">
-                  <div>
-                    <span class="text-muted font-size-sm">Just now</span>
-                    <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
-                  </div>
-                  <div class="symbol symbol-circle symbol-40 ml-3">
-                    <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_21.jpg" />
-                  </div>
+                  <a href="#">https://github.com</a></div>
                 </div>
-                <div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Discover what students who viewed Learn Figma - UI/UX Design. Essential Training also viewed</div>
-              </div>
-              <!--end::Message Out-->
-              <!--begin::Message In-->
-              <div class="d-flex flex-column mb-5 align-items-start">
-                <div class="d-flex align-items-center">
-                  <div class="symbol symbol-circle symbol-40 mr-3">
-                    <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_12.jpg" />
+                <!--end::Message In-->
+                <!--begin::Message Out-->
+                <div class="d-flex flex-column mb-5 align-items-end">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <span class="text-muted font-size-sm">Just now</span>
+                      <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
+                    </div>
+                    <div class="symbol symbol-circle symbol-40 ml-3">
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_21.jpg" />
+                    </div>
                   </div>
-                  <div>
-                    <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
-                    <span class="text-muted font-size-sm">40 seconds</span>
-                  </div>
+                  <div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Discover what students who viewed Learn Figma - UI/UX Design. Essential Training also viewed</div>
                 </div>
-                <div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">Most purchased Business courses during this sale!</div>
-              </div>
-              <!--end::Message In-->
-              <!--begin::Message Out-->
-              <div class="d-flex flex-column mb-5 align-items-end">
-                <div class="d-flex align-items-center">
-                  <div>
-                    <span class="text-muted font-size-sm">Just now</span>
-                    <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
+                <!--end::Message Out-->
+                <!--begin::Message In-->
+                <div class="d-flex flex-column mb-5 align-items-start">
+                  <div class="d-flex align-items-center">
+                    <div class="symbol symbol-circle symbol-40 mr-3">
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_12.jpg" />
+                    </div>
+                    <div>
+                      <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">Matt Pears</a>
+                      <span class="text-muted font-size-sm">40 seconds</span>
+                    </div>
                   </div>
-                  <div class="symbol symbol-circle symbol-40 ml-3">
-                    <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_21.jpg" />
-                  </div>
+                  <div class="mt-2 rounded p-5 bg-light-success text-dark-50 font-weight-bold font-size-lg text-left max-w-400px">Most purchased Business courses during this sale!</div>
                 </div>
-                <div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Company BBQ to celebrate the last quater achievements and goals. Food and drinks provided</div>
+                <!--end::Message In-->
+                <!--begin::Message Out-->
+                <div class="d-flex flex-column mb-5 align-items-end">
+                  <div class="d-flex align-items-center">
+                    <div>
+                      <span class="text-muted font-size-sm">Just now</span>
+                      <a href="#" class="text-dark-75 text-hover-primary font-weight-bold font-size-h6">You</a>
+                    </div>
+                    <div class="symbol symbol-circle symbol-40 ml-3">
+                      <img alt="Pic" src="{{ env('APP_URL') }}/assets/backend/media/users/300_21.jpg" />
+                    </div>
+                  </div>
+                  <div class="mt-2 rounded p-5 bg-light-primary text-dark-50 font-weight-bold font-size-lg text-right max-w-400px">Company BBQ to celebrate the last quater achievements and goals. Food and drinks provided</div>
+                </div>
+                <!--end::Message Out-->
               </div>
-              <!--end::Message Out-->
+              <!--end::Messages-->
             </div>
-            <!--end::Messages-->
+            <!--end::Scroll-->
           </div>
-          <!--end::Scroll-->
-        </div>
-        <!--end::Body-->
-        <!--begin::Footer-->
-        <div class="card-footer align-items-center">
-          <!--begin::Compose-->
-          <textarea class="form-control border-0 p-0" rows="2" placeholder="Type a message"></textarea>
-          <div class="d-flex align-items-center justify-content-between mt-5">
-            <div class="mr-3">
-              <a href="#" class="btn btn-clean btn-icon btn-md mr-1">
-                <i class="flaticon2-photograph icon-lg"></i>
-              </a>
-              <a href="#" class="btn btn-clean btn-icon btn-md">
-                <i class="flaticon2-photo-camera icon-lg"></i>
-              </a>
+          <!--end::Body-->
+          <!--begin::Footer-->
+          <div class="card-footer align-items-center">
+            <!--begin::Compose-->
+            <textarea class="form-control border-0 p-0" rows="2" placeholder="Type a message"></textarea>
+            <div class="d-flex align-items-center justify-content-between mt-5">
+              <div class="mr-3">
+                <a href="#" class="btn btn-clean btn-icon btn-md mr-1">
+                  <i class="flaticon2-photograph icon-lg"></i>
+                </a>
+                <a href="#" class="btn btn-clean btn-icon btn-md">
+                  <i class="flaticon2-photo-camera icon-lg"></i>
+                </a>
+              </div>
+              <div>
+                <button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send py-2 px-6">Send</button>
+              </div>
             </div>
-            <div>
-              <button type="button" class="btn btn-primary btn-md text-uppercase font-weight-bold chat-send py-2 px-6">Send</button>
-            </div>
+            <!--begin::Compose-->
           </div>
-          <!--begin::Compose-->
+          <!--end::Footer-->
         </div>
-        <!--end::Footer-->
+        <!--end::Card-->
       </div>
-      <!--end::Card-->
     </div>
   </div>
-</div>

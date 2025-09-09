@@ -30,6 +30,7 @@
       <div class="dropdown dropdown-inline" data-toggle="tooltip" title="Quick actions" data-placement="left">
         <a href="#" class="btn btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="svg-icon svg-icon-success svg-icon-2x">
+            <!--begin::Svg Icon | path:{{ env('APP_URL') }}/assets/backend/media/svg/icons/Files/File-plus.svg-->
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
               <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
                 <polygon points="0 0 24 0 24 24 0 24" />
@@ -86,14 +87,14 @@
             <li class="navi-separator mt-3 opacity-70"></li>
             <li class="navi-footer py-4">
               <a class="btn btn-clean font-weight-bold btn-sm" href="#">
-              <i class="ki ki-plus icon-sm"></i>Add new</a>
-            </li>
-          </ul>
-          <!--end::Navigation-->
+                <i class="ki ki-plus icon-sm"></i>Add new</a>
+              </li>
+            </ul>
+            <!--end::Navigation-->
+          </div>
         </div>
+        <!--end::Dropdown-->
       </div>
-      <!--end::Dropdown-->
+      <!--end::Toolbar-->
     </div>
-    <!--end::Toolbar-->
   </div>
-</div>
