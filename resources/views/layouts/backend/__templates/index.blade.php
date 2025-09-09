@@ -81,20 +81,11 @@
                 <div class="d-flex align-items-center">
                   <select data-column="2" class="form-control filter-form filter_status">
                     <option value=""> - {{ __('default.select.status') }} - </option>
-
-                    @if (!empty($statusName))
-
-                    @php
-                    
-                    @endphp
-
                     @foreach ($attributes as $key => $label)
                     <option value="{{ $key }}">
                       {{ __('default.label.' . strtolower($label)) }}
                     </option>
                     @endforeach
-
-                    @endif
                   </select>
                 </div>
               </div>
