@@ -1,14 +1,6 @@
 <script>
     var EXILEDNONAME = {};
 </script>
-@if ($message = Session::get('success'))
-<script>
-    toastr.success('{{ $message }}');
-</script> @endif
-@if ($message = Session::get('error'))
-<script>
-    toastr.error('{{ $message }}');
-</script> @endif
 
 <script>
     fetch("{{ route('assets.lang') }}").then(response => {
@@ -44,3 +36,14 @@
 
 <script src="{{ mix('assets/backend/mix/js/app.js') }}"></script>
 @stack('js')
+
+@if ($message = Session::get('success'))
+<script>
+    toastr.success('{{ $message }}');
+</script>
+@endif
+@if ($message = Session::get('error'))
+<script>
+    toastr.error('{{ $message }}');
+</script>
+@endif

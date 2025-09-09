@@ -5,6 +5,8 @@ mix.scripts([
   'public/assets/backend/plugins/custom/prismjs/prismjs.bundle.js',
   'public/assets/backend/js/scripts.bundle.js',
   'public/assets/backend/js/pages/widgets.js',
+  'public/assets/backend/js/validation.js',
+  'public/assets/backend/js/toast-options.js',
 ], 'public/assets/backend/mix/js/app.js');
 
 mix.scripts([
@@ -33,5 +35,4 @@ mix.browserSync({
 
 mix.scripts([
   'public/assets/backend/plugins/custom/datatables/datatables.bundle.js',
-  'public/assets/backend/js/validation.js',
 ], 'public/assets/backend/mix/js/datatable.js');

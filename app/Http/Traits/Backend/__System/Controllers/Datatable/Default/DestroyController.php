@@ -1,17 +1,20 @@
 <?php
 
 namespace App\Http\Traits\Backend\__System\Controllers\Datatable\Default;
+
 use Illuminate\Support\Facades\Cache;
 
-trait DestroyController {
+trait DestroyController
+{
 
   /**
-  **************************************************
-  * @return DESTROY
-  **************************************************
-  **/
+   **************************************************
+   * @return DESTROY
+   **************************************************
+   **/
 
-  public function destroy($id) {
+  public function destroy($id)
+  {
     try {
       $this->model::destroy($id);
       Cache::forget($this->url);
@@ -20,5 +23,4 @@ trait DestroyController {
       return redirect($this->url)->with('error', __('default.notification.error'));
     }
   }
-
 }
