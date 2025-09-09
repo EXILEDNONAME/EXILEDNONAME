@@ -12,10 +12,10 @@
 					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
 						@include('layouts.backend.__includes.subheader')
 						<div class="d-flex flex-column-fluid">
-							<div class="container">
-								<p>Page content goes here...</p>
-							</div>
-						</div>
+              <div class="container-fluid">
+                @yield('content')
+              </div>
+            </div>
 					</div>
 					@include('layouts.backend.__includes.footer')
 				</div>

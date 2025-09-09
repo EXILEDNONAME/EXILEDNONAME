@@ -8,6 +8,7 @@ mix.scripts([
 ], 'public/assets/backend/mix/js/app.js');
 
 mix.scripts([
+  'public/assets/backend/plugins/custom/datatables/datatables.bundle.css',
   'public/assets/backend/plugins/global/plugins.bundle.css',
   'public/assets/backend/plugins/custom/prismjs/prismjs.bundle.css',
   'public/assets/backend/css/style.bundle.css',
@@ -29,3 +30,8 @@ mix.browserSync({
   ui: false,
   injectChanges: true
 });
+
+mix.scripts([
+  'public/assets/backend/plugins/custom/datatables/datatables.bundle.js',
+  'public/assets/backend/js/validation.js',
+], 'public/assets/backend/mix/js/datatable.js');
