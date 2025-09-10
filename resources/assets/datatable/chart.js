@@ -33,7 +33,7 @@ function generateData(count, yrange) {
 
 const apexChart = "#charts";
 
-if(this_url != '') {
+if(this_url != '' && charts == 'true') {
   fetch(this_url + '/chart')
   .then(response => response.json())
   .then(data => {

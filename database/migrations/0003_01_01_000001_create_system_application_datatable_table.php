@@ -31,7 +31,7 @@ return new class extends Migration {
       $table->timestamp('date_start')->nullable();
       $table->timestamp('date_end')->nullable();
       $table->timestamp('date')->nullable();
-      $table->foreign('id_table_general')->references('id')->on('system_application_table_generals')->onDelete('restrict')->onUpdate('restrict');
+      $table->foreign('id_table_general')->references('id')->on('system_application_table_generals')->onDelete('cascade')->onUpdate('cascade');
       $table->text('description')->nullable();
       $table->integer('active')->default(1);
       $table->integer('status')->default(1);

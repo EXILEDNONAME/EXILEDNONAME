@@ -14,7 +14,11 @@ trait DeletePermanentController {
   **************************************************
   **/
 
-  public function delete_permanent($id) {
+  public function delete_permanent($id = null) {
+    if (!$id) {
+        return redirect('/dashboard')->with('error', __('default.notification.error.restrict'));
+    }
+    
     if (Auth::User()->id != 1 && Auth::User()->id != 2 && $this->model::where('id', $id)->first()->created_by != Auth::User()->id) {
         $data = 'ACCESS RESTRICT!';
         return Response::json($data, 403);

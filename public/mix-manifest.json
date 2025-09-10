@@ -2,5 +2,7 @@
     "/assets/backend/mix/js/app.js": "/assets/backend/mix/js/app.js",
     "/assets/backend/mix/css/app.css": "/assets/backend/mix/css/app.css",
     "/assets/backend/mix/js/datatable-extensions.js": "/assets/backend/mix/js/datatable-extensions.js",
-    "/assets/backend/mix/js/datatable.js": "/assets/backend/mix/js/datatable.js"
+    "/assets/backend/mix/js/datatable.js": "/assets/backend/mix/js/datatable.js",
+    "/assets/backend/mix/js/datatable-optimization.js": "/assets/backend/mix/js/datatable-optimization.js",
+    "/assets/backend/mix/js/datatable-database.js": "/assets/backend/mix/js/datatable-database.js"
 }

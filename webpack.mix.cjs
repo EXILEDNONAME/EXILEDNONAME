@@ -5,11 +5,8 @@ mix.scripts([
   'public/assets/backend/plugins/custom/prismjs/prismjs.bundle.js',
   'public/assets/backend/js/scripts.bundle.js',
   'public/assets/backend/js/pages/widgets.js',
-  'public/assets/backend/js/validation.js',
-  'public/assets/backend/js/datepicker.js',
-  'public/assets/backend/js/datetimepicker.js',
-  'public/assets/backend/js/timepicker.js',
   'public/assets/backend/js/toast-options.js',
+  'public/assets/backend/js/logout.js',
 ], 'public/assets/backend/mix/js/app.js');
 
 mix.scripts([
@@ -38,8 +35,13 @@ mix.browserSync({
 
 mix.scripts([
   'public/assets/backend/plugins/custom/datatables/datatables.bundle.js',
+  'public/assets/backend/js/datepicker.js',
+  'public/assets/backend/js/datetimepicker.js',
+  'public/assets/backend/js/timepicker.js',
+  'public/assets/backend/js/validation.js',
 ], 'public/assets/backend/mix/js/datatable-extensions.js');
 
+// DATATABLE DEFAULT
 mix.scripts([
   'resources/assets/datatable/__main.js',
   'resources/assets/datatable/chart.js',
@@ -55,3 +57,18 @@ mix.scripts([
   'resources/assets/datatable/table_delete.js',
   'resources/assets/datatable/table_inactive.js',
 ], 'public/assets/backend/mix/js/datatable.js');
+
+// DATATABLE OPTIMIZATIONS
+mix.scripts([
+  'resources/assets/datatable-optimization/__main.js',
+  'resources/assets/datatable-optimization/refresh_table_default.js',
+  'resources/assets/datatable-optimization/table_optimizing.js',
+], 'public/assets/backend/mix/js/datatable-optimization.js');
+
+// DATATABLE DATABASES
+mix.scripts([
+  'resources/assets/datatable-database/__main.js',
+  'resources/assets/datatable-database/refresh_table_default.js',
+  'resources/assets/datatable-database/create_backup.js',
+  'resources/assets/datatable-database/table-reset.js',
+], 'public/assets/backend/mix/js/datatable-database.js');

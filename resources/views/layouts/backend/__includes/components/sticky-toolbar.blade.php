@@ -8,14 +8,14 @@
   <!--end::Item-->
   <!--begin::Item-->
   <li class="nav-item mb-2" data-toggle="tooltip" title="Layout Builder" data-placement="left">
-    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="https://preview.keenthemes.com/metronic/demo1/builder.html" target="_blank">
+    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-primary btn-hover-primary" href="https://exilednoname.com" target="_blank">
       <i class="flaticon2-gear"></i>
     </a>
   </li>
   <!--end::Item-->
   <!--begin::Item-->
   <li class="nav-item mb-2" data-toggle="tooltip" title="Documentation" data-placement="left">
-    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-warning btn-hover-warning" href="https://keenthemes.com/metronic/?page=docs" target="_blank">
+    <a class="btn btn-sm btn-icon btn-bg-light btn-icon-warning btn-hover-warning" href="https://exilednoname.com" target="_blank">
       <i class="flaticon2-telegram-logo"></i>
     </a>
   </li>
@@ -47,7 +47,7 @@
     <!--end::Wrapper-->
     <!--begin::Purchase-->
     <div class="offcanvas-footer">
-      <a href="https://1.envato.market/EA4JP" target="_blank" class="btn btn-block btn-danger btn-shadow font-weight-bolder text-uppercase">Buy Metronic Now!</a>
+      <a href="http://exilednoname.com" target="_blank" class="btn btn-block btn-danger btn-shadow font-weight-bolder text-uppercase"> EXILEDNONAME </a>
     </div>
     <!--end::Purchase-->
   </div>

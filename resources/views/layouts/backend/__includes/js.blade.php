@@ -21,6 +21,7 @@
 <script>
     var this_url = "{{ request()->getPathInfo(); }}";
     var active = "{{ !empty($active) && $active == 'true' ? 'true' : '' }}";
+    var charts = "{{ !empty($charts) && $charts == 'true' ? 'true' : '' }}";
     var date = "{{ !empty($date) && $date == 'true' ? 'true' : '' }}";
     var daterange = "{{ !empty($daterange) && $daterange == 'true' ? 'true' : '' }}";
     var file = "{{ !empty($file) && $file == 'true' ? 'true' : '' }}";

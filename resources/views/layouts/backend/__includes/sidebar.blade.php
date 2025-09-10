@@ -49,6 +49,7 @@
           </div>
         </li>
 
+        @role('master-administrator')
         <li class="menu-section">
           <h4 class="menu-text"> Administratives </h4>
         </li>
@@ -84,6 +85,7 @@
         <li class="menu-item {{ (request()->is('dashboard/administratives/databases*')) ? 'menu-item-active' : '' }}"><a href="/dashboard/administratives/databases" class="menu-link"><i class="menu-icon fas fa-database"></i><span class="menu-text"> Databases </span></a></li>
         <li class="menu-item {{ (request()->is('dashboard/administratives/sessions*')) ? 'menu-item-active' : '' }}"><a href="/dashboard/administratives/sessions" class="menu-link"><i class="menu-icon fas fa-history"></i><span class="menu-text"> Sessions </span></a></li>
         <li class="menu-item {{ (request()->is('dashboard/administratives/statistics*')) ? 'menu-item-active' : '' }}"><a href="/dashboard/administratives/statistics" class="menu-link"><i class="menu-icon fas fa-bug"></i><span class="menu-text"> Statistics </span></a></li>
+        @endrole
 
       </ul>
     </div>

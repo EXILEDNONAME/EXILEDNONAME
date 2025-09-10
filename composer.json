@@ -10,11 +10,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "barryvdh/laravel-elfinder": "^0.5.4",
+        "ifsnop/mysqldump-php": "^2.12",
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-activitylog": "^4.10",
         "spatie/laravel-html": "^3.12",
+        "spatie/laravel-permission": "^6.21",
         "yajra/laravel-datatables-oracle": "^12.4"
     },
     "require-dev": {

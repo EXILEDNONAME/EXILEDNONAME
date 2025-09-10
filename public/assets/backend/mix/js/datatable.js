@@ -170,7 +170,7 @@ function generateData(count, yrange) {
 
 const apexChart = "#charts";
 
-if(this_url != '') {
+if(this_url != '' && charts == 'true') {
   fetch(this_url + '/chart')
   .then(response => response.json())
   .then(data => {
@@ -248,22 +248,6 @@ $('.filter_table_active').change(function () {
 });
 
 $('#date').change(function () {
-  var card = new KTCard('exilednoname_card');
-  KTApp.block('#exilednoname_body', {
-    overlayColor: '#ffffff',
-    type: 'loader',
-    state: 'primary',
-    message: translations.default.label.processing + ' ...',
-    opacity: 0.3,
-    size: 'lg'
-  });
-  setTimeout(function() {
-    KTApp.unblock('#exilednoname_body');
-    $('#exilednoname_table').DataTable().draw();
-  }, 500);
-});
-
-$('#datetime').change(function () {
   var card = new KTCard('exilednoname_card');
   KTApp.block('#exilednoname_body', {
     overlayColor: '#ffffff',

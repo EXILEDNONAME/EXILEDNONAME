@@ -19348,3 +19348,365 @@ limitTo:["rows","columns","cells"],init:function(a,c,b){var d=this;b._eventNames
 c,b){var d=this;b._eventNamespace=".select"+w++;a.on(v(b),function(){var b=a.rows({selected:!0}).flatten().length+a.columns({selected:!0}).flatten().length+a.cells({selected:!0}).flatten().length;d.enable(1===b)});this.disable()},destroy:function(a,c,b){a.off(b._eventNamespace)}},selectAll:{text:r("selectAll","Select all"),className:"buttons-select-all",action:function(){this[this.select.items()+"s"]().select()}},selectNone:{text:r("selectNone","Deselect all"),className:"buttons-select-none",action:function(){q(this.settings()[0],
 !0)},init:function(a,c,b){var d=this;b._eventNamespace=".select"+w++;a.on(v(b),function(){var b=a.rows({selected:!0}).flatten().length+a.columns({selected:!0}).flatten().length+a.cells({selected:!0}).flatten().length;d.enable(0<b)});this.disable()},destroy:function(a,c,b){a.off(b._eventNamespace)}}});e.each(["Row","Column","Cell"],function(a,c){var b=c.toLowerCase();g.ext.buttons["select"+c+"s"]={text:r("select"+c+"s","Select "+b+"s"),className:"buttons-select-"+b+"s",action:function(){this.select.items(b)},
 init:function(a){var c=this;a.on("selectItems.dt.DT",function(a,d,e){c.active(e===b)})}}});e(m).on("preInit.dt.dtSelect",function(a,c){"dt"===a.namespace&&g.select.init(new g.Api(c))});return g.select});
+
+// Class definition
+
+var KTBootstrapDatepicker = function () {
+
+    var arrows;
+    if (KTUtil.isRTL()) {
+        arrows = {
+            leftArrow: '<i class="la la-angle-right"></i>',
+            rightArrow: '<i class="la la-angle-left"></i>'
+        }
+    } else {
+        arrows = {
+            leftArrow: '<i class="la la-angle-left"></i>',
+            rightArrow: '<i class="la la-angle-right"></i>'
+        }
+    }
+
+    // Private functions
+    var demos = function () {
+
+      $('#ex_datepicker_date').datepicker({
+        orientation: "bottom right",
+        rtl: KTUtil.isRTL(),
+        todayHighlight: true,
+        format: 'yyyy-mm-dd',
+        templates: arrows
+      });
+
+      $('#ex_datepicker_datetime').datepicker({
+        orientation: "bottom right",
+        rtl: KTUtil.isRTL(),
+        todayHighlight: true,
+        format: 'yyyy-mm-dd',
+        templates: arrows
+      });
+
+      $('#ex_datepicker_daterange').datepicker({
+        orientation: "bottom right",
+        rtl: KTUtil.isRTL(),
+        todayHighlight: true,
+        format: 'yyyy-mm-dd',
+        templates: arrows
+      });
+
+        // minimum setup
+        $('#kt_datepicker_1, #kt_datepicker_1_validate').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayHighlight: true,
+            orientation: "bottom left",
+            templates: arrows
+        });
+
+        // minimum setup for modal demo
+        $('#kt_datepicker_1_modal').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayHighlight: true,
+            orientation: "bottom left",
+            templates: arrows
+        });
+
+        // input group layout
+        $('#kt_datepicker_2, #kt_datepicker_2_validate').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayHighlight: true,
+            orientation: "bottom left",
+            templates: arrows
+        });
+
+        // input group layout for modal demo
+        $('#kt_datepicker_2_modal').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayHighlight: true,
+            orientation: "bottom left",
+            templates: arrows
+        });
+
+        // enable clear button
+        $('#kt_datepicker_3, #kt_datepicker_3_validate').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayBtn: "linked",
+            clearBtn: true,
+            todayHighlight: true,
+            templates: arrows
+        });
+
+        // enable clear button for modal demo
+        $('#kt_datepicker_3_modal').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayBtn: "linked",
+            clearBtn: true,
+            todayHighlight: true,
+            templates: arrows
+        });
+
+        // orientation
+        $('#kt_datepicker_4_1').datepicker({
+            rtl: KTUtil.isRTL(),
+            orientation: "top left",
+            todayHighlight: true,
+            templates: arrows
+        });
+
+        $('#kt_datepicker_4_2').datepicker({
+            rtl: KTUtil.isRTL(),
+            orientation: "top right",
+            todayHighlight: true,
+            templates: arrows
+        });
+
+        $('#kt_datepicker_4_3').datepicker({
+            rtl: KTUtil.isRTL(),
+            orientation: "bottom left",
+            todayHighlight: true,
+            templates: arrows
+        });
+
+        $('#kt_datepicker_4_4').datepicker({
+            rtl: KTUtil.isRTL(),
+            orientation: "bottom right",
+            todayHighlight: true,
+            templates: arrows
+        });
+
+        // range picker
+        $('#kt_datepicker_5').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayHighlight: true,
+            templates: arrows
+        });
+
+         // inline picker
+        $('#kt_datepicker_6').datepicker({
+            rtl: KTUtil.isRTL(),
+            todayHighlight: true,
+            templates: arrows
+        });
+    }
+
+    return {
+        // public functions
+        init: function() {
+            demos();
+        }
+    };
+}();
+
+jQuery(document).ready(function() {
+    KTBootstrapDatepicker.init();
+});
+
+// Class definition
+
+var KTBootstrapDatetimepicker = function () {
+  // Private functions
+  var baseDemos = function () {
+
+    $('#ex_datetimepicker').datetimepicker({
+      locale: 'en', format:'YYYY-MM-DD HH:mm',
+    });
+
+    // Demo 1
+    $('#kt_datetimepicker_1').datetimepicker();
+
+    // Demo 2
+    $('#kt_datetimepicker_2').datetimepicker({
+      locale: 'de'
+    });
+
+    // Demo 3
+    $('#kt_datetimepicker_3').datetimepicker({
+      format: 'L'
+    });
+
+    // Demo 4
+    $('#kt_datetimepicker_4').datetimepicker({
+      format: 'LT'
+    });
+
+    // Demo 5
+    $('#kt_datetimepicker_5').datetimepicker();
+
+    // Demo 6
+    $('#kt_datetimepicker_6').datetimepicker({
+      defaultDate: '11/1/2020',
+      disabledDates: [
+        moment('12/25/2020'),
+        new Date(2020, 11 - 1, 21),
+        '11/22/2022 00:53'
+      ]
+    });
+
+    // Demo 7
+    $('#kt_datetimepicker_7_1').datetimepicker();
+    $('#kt_datetimepicker_7_2').datetimepicker({
+      useCurrent: false
+    });
+
+    $('#kt_datetimepicker_7_1').on('change.datetimepicker', function (e) {
+      $('#kt_datetimepicker_7_2').datetimepicker('minDate', e.date);
+    });
+    $('#kt_datetimepicker_7_2').on('change.datetimepicker', function (e) {
+      $('#kt_datetimepicker_7_1').datetimepicker('maxDate', e.date);
+    });
+
+    // Demo 8
+    $('#kt_datetimepicker_8').datetimepicker({
+      inline: true,
+    });
+  }
+
+  var modalDemos = function () {
+    // Demo 9
+    $('#kt_datetimepicker_9').datetimepicker();
+
+    // Demo 10
+    $('#kt_datetimepicker_10').datetimepicker({
+      locale: 'de'
+    });
+
+    // Demo 11
+    $('#kt_datetimepicker_11').datetimepicker({
+      format: 'L'
+    });
+  }
+
+  var validationDemos = function () {
+    // Demo 12
+    $('#kt_datetimepicker_12').datetimepicker();
+
+    // Demo 13
+    $('#kt_datetimepicker_13').datetimepicker();
+  }
+
+  return {
+    // Public functions
+    init: function() {
+      baseDemos();
+      modalDemos();
+      validationDemos();
+    }
+  };
+}();
+
+jQuery(document).ready(function() {
+  KTBootstrapDatetimepicker.init();
+});
+
+// Class definition
+
+var KTBootstrapTimepicker = function () {
+
+    // Private functions
+    var demos = function () {
+        // minimum setup
+        $('#kt_timepicker_1, #kt_timepicker_1_modal').timepicker();
+
+        // minimum setup
+        $('#kt_timepicker_2, #kt_timepicker_2_modal').timepicker({
+            minuteStep: 1,
+            minuteStep: 1,
+            defaultTime: '',
+            showSeconds: true,
+            showMeridian: false,
+            snapToStep: true
+        });
+
+        // default time
+        $('#kt_timepicker_3, #kt_timepicker_3_modal').timepicker({
+            defaultTime: '11:45:20 AM',
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: true
+        });
+
+        // default time
+        $('#kt_timepicker_4, #kt_timepicker_4_modal').timepicker({
+            defaultTime: '10:30:20 AM',
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: true
+        });
+
+        // validation state demos
+        // minimum setup
+        $('#kt_timepicker_1_validate, #kt_timepicker_2_validate, #kt_timepicker_3_validate').timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false,
+            snapToStep: true
+        });
+    }
+
+    return {
+        // public functions
+        init: function() {
+            demos();
+        }
+    };
+}();
+
+jQuery(document).ready(function() {
+    KTBootstrapTimepicker.init();
+});
+
+$.ajaxSetup({
+  headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
+});
+
+$('#exilednoname-form').on('submit', function(e){
+  e.preventDefault();
+
+  let formData = new FormData(this);
+  var progressBar = $('#uploadProgress');
+  var bar = progressBar.find('.progress-bar');
+
+  $('#errors').html('');
+  $('#success').html('');
+
+  $.ajax({
+    xhr: function() {
+      var xhr = new window.XMLHttpRequest();
+      xhr.upload.addEventListener("progress", function(evt) {
+        if (evt.lengthComputable) {
+          var percentComplete = Math.round((evt.loaded / evt.total) * 100);
+          progressBar.show();
+          bar.css('width', percentComplete + '%').text(percentComplete + '%');
+        }
+      }, false);
+      return xhr;
+    },
+
+    url: this_url + "/../",
+    type: "POST",
+    data: formData,
+    processData: false,
+    contentType: false,
+    cache: false,
+    beforeSend: function() {
+      $('.progress-bar').css('width', '0%').text('0%');
+    },
+    success: function(res){
+      $('.invalid-feedback').remove();
+      $('.is-invalid').removeClass('is-invalid');
+      if(res.status === 'success'){ window.location.href = res.redirect_url; }
+      else if(res.status === 'error'){ window.location.href = res.redirect_url; }
+      else { alert(res.message); }
+    },
+    error: function(xhr){
+      if(xhr.status === 422){
+        $('.invalid-feedback').remove();
+        $('.is-invalid').removeClass('is-invalid');
+        let errors = xhr.responseJSON.errors;
+        $.each(errors, function(key, value){
+          let input = $('[name="'+ key +'"]');
+          input.addClass('is-invalid');
+          input.after('<div class="invalid-feedback">'+ value[0] +'</div>');
+        });
+      }
+    }
+  });
+});

@@ -39,5 +39,6 @@
 @endsection
 
 @push('js')
+<script src="{{ mix('assets/backend/mix/js/datatable-extensions.js') }}"></script>
 <script> var card = new KTCard('exilednoname_card'); </script>
 @endpush
