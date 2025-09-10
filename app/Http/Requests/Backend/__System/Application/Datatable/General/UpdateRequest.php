@@ -9,7 +9,7 @@ class UpdateRequest extends BaseFormRequest {
 
   public function rules(): array {
     return [
-      'name' => ['required', 'max:20', Rule::unique('system_application_table_generals', 'name')->ignore($this->route('id'))],
+      'name' => ['required', 'max:15', Rule::unique('system_application_table_generals', 'name')->ignore($this->route('id'))],
     ];
   }
 

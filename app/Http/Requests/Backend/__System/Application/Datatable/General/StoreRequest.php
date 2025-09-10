@@ -8,7 +8,7 @@ class StoreRequest extends BaseFormRequest {
 
   public function rules(): array {
     return [
-      'name' => ['required', 'max:3', 'unique:system_application_table_generals,name'],
+      'name' => ['required', 'max:15', 'unique:system_application_table_generals,name'],
     ];
   }
 

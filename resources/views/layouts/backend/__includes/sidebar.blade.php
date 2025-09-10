@@ -1,14 +1,22 @@
 <div class="aside aside-left aside-fixed d-flex flex-column flex-row-auto" id="kt_aside">
-  <div class="brand flex-column-auto" id="kt_brand"><a href="index.html" class="brand-logo"><img alt="Logo" src="{{ env('APP_URL') }}/assets/backend/media/logos/logo-light.png" /></a></div>
+  <div class="brand flex-column-auto" id="kt_brand">
+    <a href="/dashboard">
+      <h3 class="text-white"> EXILEDNONAME </h3>
+    </a>
+  </div>
   <div class="aside-menu-wrapper flex-column-fluid" id="kt_aside_menu_wrapper">
     <div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
       <ul class="menu-nav">
         <li class="menu-item {{ (request()->is('dashboard')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard') }}" class="menu-link"><i class="menu-icon fas fa-desktop"></i><span class="menu-text"> Dashboard </span></a></li>
 
-        <li class="menu-section"><h4 class="menu-text"> Extensions </h4></li>
+        <li class="menu-section">
+          <h4 class="menu-text"> Extensions </h4>
+        </li>
         <li class="menu-item {{ (request()->is('dashboard/file-manager*')) ? 'menu-item-active' : '' }}"><a href="{{ url('/dashboard/file-manager') }}" class="menu-link"><i class="menu-icon fas fa-hdd"></i><span class="menu-text"> File Manager </span></a></li>
 
-        <li class="menu-section"><h4 class="menu-text"> Others </h4></li>
+        <li class="menu-section">
+          <h4 class="menu-text"> Others </h4>
+        </li>
         <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/profiles*')) ? 'menu-item-open' : '' }}">
           <a class="menu-link menu-toggle">
             <i class="menu-icon fas fa-user-tie"></i>
@@ -24,7 +32,9 @@
         </li>
         <li class="menu-item"><a class="menu-link" id="logout"><i class="menu-icon fas fa-sign-out-alt"></i><span class="menu-text"> {{ __('default.label.logout') }} </span></a></li>
 
-        <li class="menu-section"><h4 class="menu-text"> Applications </h4></li>
+        <li class="menu-section">
+          <h4 class="menu-text"> Applications </h4>
+        </li>
         <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/applications/datatables*')) ? 'menu-item-open' : '' }}">
           <a href="javascript:void(0);" class="menu-link menu-toggle">
             <i class="menu-icon fas fa-list-ul"></i>
@@ -39,7 +49,9 @@
           </div>
         </li>
 
-        <li class="menu-section"><h4 class="menu-text"> Administratives </h4></li>
+        <li class="menu-section">
+          <h4 class="menu-text"> Administratives </h4>
+        </li>
         <li class="menu-item menu-item-submenu {{ (request()->is('dashboard/administratives/applications*')) ? 'menu-item-open' : '' }}">
           <a class="menu-link menu-toggle">
             <i class="menu-icon fas fa-cogs"></i>
