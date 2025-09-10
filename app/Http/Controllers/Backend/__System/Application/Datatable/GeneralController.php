@@ -15,7 +15,7 @@ use App\Http\Requests\Backend\__System\Application\Datatable\General\UpdateReque
 
 class GeneralController extends Controller implements HasMiddleware {
 
-  public static function middleware(): array { return []; }
+  public static function middleware(): array { return ['auth', 'verified']; }
 
   use DefaultController;
   use ExtensionController;

@@ -1,4 +1,4 @@
-$('.filter_table_date').change(function () {
+$('#date').change(function () {
   var card = new KTCard('exilednoname_card');
   KTApp.block('#exilednoname_body', {
     overlayColor: '#ffffff',

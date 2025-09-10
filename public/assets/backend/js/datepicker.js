@@ -26,6 +26,14 @@ var KTBootstrapDatepicker = function () {
         templates: arrows
       });
 
+      $('#ex_datepicker_datetime').datepicker({
+        orientation: "bottom right",
+        rtl: KTUtil.isRTL(),
+        todayHighlight: true,
+        format: 'yyyy-mm-dd',
+        templates: arrows
+      });
+
       $('#ex_datepicker_daterange').datepicker({
         orientation: "bottom right",
         rtl: KTUtil.isRTL(),

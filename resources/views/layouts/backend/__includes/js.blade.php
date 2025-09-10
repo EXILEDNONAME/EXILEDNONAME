@@ -19,10 +19,9 @@
 
 @if(!empty($datatable) && $datatable == 'true' || !empty($activities) && $activities == 'true' || !empty($trash) && $trash == 'true' || !empty($administrative) && $administrative == 'true')
 <script>
-    var this_url = "{{ URL::Current() }}";
+    var this_url = "{{ request()->getPathInfo(); }}";
     var active = "{{ !empty($active) && $active == 'true' ? 'true' : '' }}";
     var date = "{{ !empty($date) && $date == 'true' ? 'true' : '' }}";
-    var datetime = "{{ !empty($datetime) && $datetime == 'true' ? 'true' : '' }}";
     var daterange = "{{ !empty($daterange) && $daterange == 'true' ? 'true' : '' }}";
     var file = "{{ !empty($file) && $file == 'true' ? 'true' : '' }}";
     var status = "{{ !empty($status) && $status == 'true' ? 'true' : '' }}";

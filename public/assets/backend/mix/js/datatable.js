@@ -31,8 +31,7 @@ var table = $('#exilednoname_table').DataTable({
   ajax: {
     url: this_url,
     "data" : function (ex) {
-      ex.date = $('.filter_table_date').val();
-      ex.datetime = $('#datetime').val();
+      ex.date = $('#date').val();
       ex.date_start = $('#date_start').val();
       ex.date_end = $('#date_end').val();
     }
@@ -81,13 +80,6 @@ var table = $('#exilednoname_table').DataTable({
 
     ...(date ? [{
       data: 'date', orderable: true, 'className': 'align-middle text-nowrap', 'width': '1',
-      render: function ( data, type, row ) {
-        if (data == null) { return '<center> - </center>'}
-        else { return data; }
-      }}, ] : []),
-
-    ...(datetime ? [{
-      data: 'datetime', orderable: true, 'className': 'align-middle text-nowrap', 'width': '1',
       render: function ( data, type, row ) {
         if (data == null) { return '<center> - </center>'}
         else { return data; }
@@ -255,7 +247,23 @@ $('.filter_table_active').change(function () {
   $('#exilednoname_table').DataTable().column(-2).search( $(this).val() ).draw();
 });
 
-$('.filter_table_date').change(function () {
+$('#date').change(function () {
+  var card = new KTCard('exilednoname_card');
+  KTApp.block('#exilednoname_body', {
+    overlayColor: '#ffffff',
+    type: 'loader',
+    state: 'primary',
+    message: translations.default.label.processing + ' ...',
+    opacity: 0.3,
+    size: 'lg'
+  });
+  setTimeout(function() {
+    KTApp.unblock('#exilednoname_body');
+    $('#exilednoname_table').DataTable().draw();
+  }, 500);
+});
+
+$('#datetime').change(function () {
   var card = new KTCard('exilednoname_card');
   KTApp.block('#exilednoname_body', {
     overlayColor: '#ffffff',

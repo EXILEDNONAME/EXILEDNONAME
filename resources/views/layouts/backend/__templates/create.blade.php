@@ -20,7 +20,6 @@
           <div class="error" id="errors" style="color:red"></div>
           @include($path . 'form', ['formMode' => 'create'])
           @include('layouts.backend.__extensions.form.date')
-          @include('layouts.backend.__extensions.form.datetime')
           @include('layouts.backend.__extensions.form.daterange')
           @include('layouts.backend.__extensions.form.status')
           @include('layouts.backend.__extensions.form.active')

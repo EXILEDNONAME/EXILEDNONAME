@@ -24,13 +24,11 @@ trait IndexController {
       $query = $this->model::query();
 
       if (request('date')) { $query->whereDate('date', request('date')); }
-      if (request('datetime')) { $query->whereDate('datetime', request('datetime')); }
       if (request('date_start') && request('date_end')) { $query->whereBetween('date_start', [request('date_start'), request('date_end')]); }
 
       return DataTables::of($query)
       ->addIndexColumn()
-      ->editColumn('date', function ($order) { return empty($order->date) ? NULL : \Carbon\Carbon::parse($order->date)->format('d F Y'); })
-      ->editColumn('datetime', function ($order) { return empty($order->datetime) ? NULL : \Carbon\Carbon::parse($order->datetime)->format('d F Y, H:i'); })
+      ->editColumn('date', function ($order) { return empty($order->date) ? NULL : \Carbon\Carbon::parse($order->date)->format('d F Y, H:i'); })
       ->editColumn('date_start', function ($order) { return empty($order->date_start) ? NULL : \Carbon\Carbon::parse($order->date_start)->format('d F Y'); })
       ->editColumn('date_end', function ($order) { return empty($order->date_end) ? NULL : \Carbon\Carbon::parse($order->date_end)->format('d F Y'); })
       ->editColumn('description', function ($order) { return nl2br(e($order->description)); })

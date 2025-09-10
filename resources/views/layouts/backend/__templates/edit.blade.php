@@ -20,7 +20,6 @@
           <input class="form-control" name="id" type="hidden" value="{{ $data->id }}">
           @include($path . 'form', ['formMode' => 'edit'])
           @include('layouts.backend.__extensions.form.date')
-          @include('layouts.backend.__extensions.form.datetime')
           @include('layouts.backend.__extensions.form.daterange')
           @include('layouts.backend.__extensions.form.status')
           @include('layouts.backend.__extensions.form.active')

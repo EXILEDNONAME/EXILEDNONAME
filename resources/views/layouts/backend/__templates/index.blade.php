@@ -14,7 +14,7 @@
           <a href="{{ URL::Current() }}/create" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.create') }}"><i class="fas fa-plus"></i></a>
           <a id="refresh_table_default" class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.refresh') }}"><i class="fas fa-sync-alt"></i></a>
 
-          @if(($active ?? '') === 'true' || ($status ?? '') === 'true' || ($date ?? '') === 'true' || ($datetime ?? '') === 'true' || ($daterange ?? '') === 'true')
+          @if(($active ?? '') === 'true' || ($status ?? '') === 'true' || ($date ?? '') === 'true' || ($daterange ?? '') === 'true')
           <div data-toggle="collapse" data-target="#collapse-filter"><a class="btn btn-icon btn-xs btn-hover-light-primary" data-toggle="tooltip" data-original-title="{{ __('default.label.filter./') }}"><i class="fas fa-filter"></i></a></div>
           @else
           @endif
@@ -96,25 +96,8 @@
             <div class="mb-2">
               <div class="col-lg-12 my-2 my-md-0">
                 <div class="d-flex align-items-center">
-                  <div class="input-daterange input-group" id="ex_datepicker_date">
-                    <input type="text" id="date" class="form-control filter-form text-center filter_table_date" name="date" placeholder="- {{ __('default.select.date') }} -" autocomplete="off" readonly>
-                    <div class="input-group-append">
-                      <span class="input-group-text">
-                        <i class="ki ki-calendar"></i>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            @endif
-
-            @if (!empty($datetime) && $datetime == 'true')
-            <div class="mb-2">
-              <div class="col-lg-12 my-2 my-md-0">
-                <div class="d-flex align-items-center">
-                  <div class="input-daterange input-group" id="ex_datepicker_date">
-                    <input type="text" id="datetime" class="form-control filter-form text-center" name="datetime" placeholder="- {{ __('default.select.date') }} -" autocomplete="off" readonly>
+                  <div class="input-group input-daterange" id="ex_datepicker_date">
+                    <input type="text" id="date" class="form-control filter-form" name="date" placeholder="- {{ __('default.select.date') }} -" autocomplete="off" readonly>
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="ki ki-calendar"></i>
@@ -169,7 +152,6 @@
                 @if (!empty($status) && $status == 'true') <th> {{ __('default.label.status') }} </th> @endif
                 @if (!empty($file) && $file == 'true') <th> {{ __('default.label.file') }} </th> @endif
                 @if (!empty($date) && $date == 'true') <th> {{ __('default.label.date') }} </th> @endif
-                @if (!empty($datetime) && $datetime == 'true') <th> {{ __('default.label.datetime') }} </th> @endif
                 @if (!empty($daterange) && $daterange == 'true')
                 <th> {{ __('default.label.date-start') }} </th>
                 <th> {{ __('default.label.date-end') }} </th>

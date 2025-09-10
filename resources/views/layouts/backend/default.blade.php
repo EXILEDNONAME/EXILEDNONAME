@@ -22,10 +22,10 @@
 			</div>
 		</div>
 
-		@include('layouts.backend.__includes.components.canvas-user')
-		@include('layouts.backend.__includes.components.canvas-cart')
-		@include('layouts.backend.__includes.components.canvas-panel')
-		@include('layouts.backend.__includes.components.canvas-chat')
+		<!-- @!include('layouts.backend.__includes.components.canvas-user') -->
+		<!-- @!include('layouts.backend.__includes.components.canvas-cart') -->
+		<!-- @!include('layouts.backend.__includes.components.canvas-panel') -->
+		<!-- @!include('layouts.backend.__includes.components.canvas-chat') -->
 		@include('layouts.backend.__includes.components.scroll-top')
 		@include('layouts.backend.__includes.components.sticky-toolbar')
 		@include('layouts.backend.__includes.js')
