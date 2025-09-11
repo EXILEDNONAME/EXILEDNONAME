@@ -1,5 +1,9 @@
 @extends('layouts.backend.default')
 
+@push('head')
+<link rel="stylesheet" href="{{ env('APP_URL') }}/assets/backend/plugins/custom/datatables/datatables.bundle.css">
+@endpush
+
 @section('content')
 @stack('box')
 <div class="row">
@@ -303,6 +307,9 @@
 @endsection
 
 @push('js')
-<script src="{{ mix('assets/backend/mix/js/datatable-extensions.js') }}"></script>
-<script src="{{ mix('assets/backend/mix/js/datatable.js') }}"></script>
+<script src="{{ env('APP_URL') }}/assets/backend/plugins/custom/datatables/datatables.bundle.js"></script>
+<script>
+@include('_main')
+@include('table-refresh')
+</script>
 @endpush

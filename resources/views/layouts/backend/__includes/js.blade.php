@@ -2,21 +2,6 @@
     var EXILEDNONAME = {};
 </script>
 
-<script>
-    fetch("{{ route('assets.lang') }}").then(response => {
-        return response.json();
-    }).then(data => {
-        translations = data;
-    });
-    window.translations = {
-        default: {
-            label: {
-                please_wait: "{{ __('default.label.please_wait') }}"
-            }
-        }
-    };
-</script>
-
 @if(!empty($datatable) && $datatable == 'true' || !empty($activities) && $activities == 'true' || !empty($trash) && $trash == 'true' || !empty($administrative) && $administrative == 'true')
 <script>
     var this_url = "{{ request()->getPathInfo(); }}";
@@ -34,7 +19,10 @@
 </script>
 @endif
 
-<script src="{{ mix('assets/backend/mix/js/app.js') }}"></script>
+<script src="{{ env('APP_URL') }}/assets/backend/plugins/global/plugins.bundle.js"></script>
+<script src="{{ env('APP_URL') }}/assets/backend/plugins/custom/prismjs/prismjs.bundle.js"></script>
+<script src="{{ env('APP_URL') }}/assets/backend/js/scripts.bundle.js"></script>
+<script src="{{ env('APP_URL') }}/assets/backend/js/pages/widgets.js"></script>
 @stack('js')
 
 @if ($message = Session::get('success'))
