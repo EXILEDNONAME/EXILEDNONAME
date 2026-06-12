@@ -34,4 +34,4 @@ php artisan crud:generate SuratMasuk --fields_from_file="./resources/cruds/sampl
 
 - [OK] FORM DATERANGE
 - [OK] EDIT FORM MOBILE DISPLAY
-- DATATABLE RELATION
+- [OK] DATATABLE RELATION
